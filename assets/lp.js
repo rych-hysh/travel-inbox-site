@@ -62,17 +62,6 @@
   });
   window.matchMedia('(min-width: 768px)').addEventListener('change', () => setMenu(false));
 
-  /* --- 事前登録CTA：フォームまで移動して入力欄にフォーカス ------------- */
-  const email = $('#signup-email');
-  $$('[data-focus-signup]').forEach((a) =>
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      $('#register').scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'center' });
-      history.replaceState(null, '', '#register');
-      email.focus({ preventScroll: true });
-    })
-  );
-
   /* --- スクロールで静かに現れる --------------------------------------- */
   const reveals = $$('.reveal');
   // 同じ親の中では少しずつ遅らせる
@@ -114,55 +103,13 @@
   window.addEventListener('resize', updateButtons);
   updateButtons();
 
-  /* --- 事前登録フォーム ------------------------------------------------ */
-  // data-endpoint が設定されていれば JSON で POST する。
-  // 未設定のあいだは、運営宛ての事前登録メールをメールアプリで作成する。
-  const form = $('#signup');
-  const status = $('#signup-status');
-  const setStatus = (msg, isError = false) => {
-    status.textContent = msg;
-    status.classList.toggle('is-error', isError);
-    form.classList.toggle('is-invalid', isError);
-  };
-  email.addEventListener('input', () => form.classList.contains('is-invalid') && setStatus(''));
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const value = email.value.trim();
-    if (!value || !email.checkValidity()) {
-      setStatus('メールアドレスの形式をご確認ください。', true);
-      email.setAttribute('aria-invalid', 'true');
-      email.focus();
-      return;
-    }
-    email.removeAttribute('aria-invalid');
-
-    const endpoint = form.dataset.endpoint;
-    if (endpoint) {
-      const button = $('button[type="submit"]', form);
-      button.disabled = true;
-      setStatus('送信しています…');
-      try {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: value }),
-        });
-        if (!res.ok) throw new Error(String(res.status));
-        form.reset();
-        setStatus('ご登録ありがとうございます。リリースの際にお知らせします。');
-      } catch {
-        setStatus('送信できませんでした。時間をおいて、もう一度お試しください。', true);
-      } finally {
-        button.disabled = false;
-      }
-      return;
-    }
-
-    const subject = 'Travel Inbox 事前登録';
-    const body = `Travel Inbox のリリースのお知らせを希望します。\n\nお知らせ先：${value}\n`;
-    window.location.href =
-      'mailto:travel.inbox.support@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    setStatus('メールアプリが開きます。そのまま送信すると事前登録が完了します。');
-  });
+  /* --- App Store への導線 --------------------------------------------- */
+  // 公開前は data-app-store-pending を付けておき、押されたら準備中であることを伝える。
+  const storeStatus = $('[data-store-status]');
+  $$('[data-app-store-pending]').forEach((a) =>
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      storeStatus.textContent = 'App Store での公開準備中です。もうしばらくお待ちください。';
+    })
+  );
 })();
