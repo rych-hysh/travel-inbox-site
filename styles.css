@@ -1,0 +1,778 @@
+/*
+ * Travel Inbox — サイトのスタイル。
+ *
+ * 方向性はアプリ本体（src/constants/theme.ts）と同じ「紙と墨」。
+ * 温かみのある紙の地、ほぼ黒の墨、影ではなく罫線と余白。色は
+ * 「時間に関わるもの」だけに使う。
+ *
+ * Web フォントは読み込まない。両OSとも明朝とゴシックを標準で持っていて、
+ * 読み込み待ちも外部への通信も発生しないほうが、この佇まいには合う。
+ */
+
+/* ------------------------------------------------------------------ */
+/* トークン                                                            */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --paper: #faf8f4;
+  --surface: #ffffff;
+  --sunken: #f1eee7;
+
+  --ink: #1a1815;
+  --ink-muted: #5c564b;
+  --ink-faint: #706858;
+  --ink-inverse: #faf8f4;
+
+  --rule: #e4dfd4;
+  --rule-strong: #c9c2b4;
+
+  --indigo: #22364f;
+  --indigo-pressed: #16243a;
+  --indigo-wash: #ebeef2;
+
+  --vermilion: #b0452f;
+  --vermilion-wash: #f8ebe7;
+
+  --moss: #4a6b52;
+  --moss-wash: #eaefea;
+
+  --font-serif: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', 'Songti SC',
+    serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic',
+    YuGothic, Meiryo, system-ui, sans-serif;
+
+  --measure: 66rem;
+  --measure-prose: 44rem;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14120f;
+    --surface: #1b1915;
+    --sunken: #211e19;
+
+    --ink: #f2ede3;
+    --ink-muted: #b6ae9f;
+    --ink-faint: #9a9384;
+    --ink-inverse: #14120f;
+
+    --rule: #2e2a24;
+    --rule-strong: #453f36;
+
+    --indigo: #a8c0da;
+    --indigo-pressed: #c3d5e8;
+    --indigo-wash: #1e2733;
+
+    --vermilion: #e39079;
+    --vermilion-wash: #33201a;
+
+    --moss: #9ab9a0;
+    --moss-wash: #1c2620;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 基本                                                                */
+/* ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  /* 紙の地。単色だとのっぺりするので、上端だけごく薄く沈ませる。 */
+  background-image: radial-gradient(120% 60% at 50% -10%, var(--sunken), transparent 70%);
+  background-repeat: no-repeat;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  text-wrap: balance;
+  /* 行頭が 「 や 。 にならないようにする（日本語の禁則）。 */
+  line-break: strict;
+}
+
+p {
+  margin: 0 0 1.2em;
+}
+
+a {
+  color: var(--indigo);
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: from-font;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem 0;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  background: var(--sunken);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--ink-inverse);
+  padding: 0.75rem 1rem;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* ヘッダーとフッター                                                  */
+/* ------------------------------------------------------------------ */
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.site-header > .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 60px;
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.wordmark .mark {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 3vw, 1.75rem);
+  font-size: 0.875rem;
+}
+
+.site-nav a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  display: inline-block;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'] {
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 var(--ink);
+}
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 5rem;
+  padding-block: 2.5rem 3.5rem;
+  color: var(--ink-faint);
+  font-size: 0.8125rem;
+}
+
+.site-footer > .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.site-footer a {
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 currentColor;
+}
+
+/* ------------------------------------------------------------------ */
+/* ヒーロー                                                            */
+/* ------------------------------------------------------------------ */
+
+.hero {
+  padding-block: clamp(3.5rem, 10vw, 7rem) clamp(3rem, 8vw, 5.5rem);
+}
+
+.hero > .wrap {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .hero > .wrap {
+    /* 見出しの「いつか行きたい」を一行に収めたいので、文字側を広く取る。 */
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0 0 1.25rem;
+  text-transform: none;
+}
+
+.hero h1 {
+  /* 狭い画面で「いつか行きたい」が途中で折れない大きさに収める。 */
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  line-height: 1.45;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero .lead {
+  font-size: 1.0625rem;
+  color: var(--ink-muted);
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.65rem 1.4rem;
+  border: 1px solid var(--indigo);
+  border-radius: 4px;
+  background: var(--indigo);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--indigo-pressed);
+  border-color: var(--indigo-pressed);
+}
+
+@media (prefers-color-scheme: dark) {
+  .button {
+    color: var(--ink-inverse);
+  }
+}
+
+.button-quiet {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule-strong);
+}
+
+.button-quiet:hover {
+  background: var(--sunken);
+  border-color: var(--ink-faint);
+  color: var(--ink);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--vermilion);
+}
+
+.hero-note {
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.hero-art {
+  width: 100%;
+  height: auto;
+  max-width: 30rem;
+  margin-inline: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------------ */
+/* セクション                                                          */
+/* ------------------------------------------------------------------ */
+
+.section {
+  padding-block: clamp(3rem, 8vw, 5rem);
+  border-top: 1px solid var(--rule);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0 0 1rem;
+}
+
+.section h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  margin: 0 0 1.25rem;
+}
+
+.section .intro {
+  color: var(--ink-muted);
+  max-width: var(--measure-prose);
+}
+
+/* 「散らばる」— 三つの出どころが一つに集まる図 */
+.scatter {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 45rem) {
+  .scatter {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.scatter li {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.scatter strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.scatter,
+.features {
+  padding: 0;
+  margin-inline: 0;
+}
+
+/* 特徴。箱で囲まず、罫線で区切る。 */
+.features {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+.feature {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(1.75rem, 4vw, 2.5rem);
+  display: grid;
+  gap: 1rem 2.5rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 45rem) {
+  .feature {
+    grid-template-columns: 3.5rem 1fr;
+  }
+}
+
+.feature .glyph {
+  width: 40px;
+  height: 40px;
+  color: var(--indigo);
+}
+
+.feature h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--ink-muted);
+  max-width: 38rem;
+}
+
+.feature p + p {
+  margin-top: 0.75rem;
+}
+
+/* 記録は自分のもの */
+.promises {
+  display: grid;
+  gap: 1.25rem 2.5rem;
+  grid-template-columns: 1fr;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+@media (min-width: 45rem) {
+  .promises {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.promises li {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+}
+
+/* 印。色だけで意味を持たせない（文章のほうが本体）。 */
+.promises li::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.7em;
+  border: 1px solid var(--moss);
+  background: var(--moss-wash);
+}
+
+.promises strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.closing {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* ------------------------------------------------------------------ */
+/* 文書ページ（プライバシーポリシー・サポート）                        */
+/* ------------------------------------------------------------------ */
+
+.doc-header {
+  padding-block: clamp(3rem, 7vw, 4.5rem) 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.doc-header h1 {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  margin: 0;
+}
+
+.doc-body {
+  padding-block: 2.5rem;
+}
+
+.doc-body > .wrap {
+  max-width: calc(var(--measure-prose) + var(--gutter) * 2);
+}
+
+.doc h2 {
+  font-size: 1.375rem;
+  margin: 3rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 5rem;
+}
+
+.doc > h2:first-child {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: 0;
+}
+
+.doc h3 {
+  font-size: 1.0625rem;
+  margin: 2rem 0 0.75rem;
+}
+
+.doc h4 {
+  font-size: 0.9375rem;
+  margin: 1.5rem 0 0.5rem;
+  font-family: var(--font-sans);
+}
+
+.doc p,
+.doc li {
+  color: var(--ink-muted);
+}
+
+.doc strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.doc ul,
+.doc ol {
+  padding-left: 1.25rem;
+  margin: 0 0 1.2em;
+}
+
+.doc li {
+  margin-bottom: 0.5rem;
+}
+
+.doc li::marker {
+  color: var(--ink-faint);
+}
+
+.doc blockquote {
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 2px solid var(--rule-strong);
+  color: var(--ink-faint);
+}
+
+.doc blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.doc hr {
+  display: none; /* 見出しの罫線が区切りになっているため */
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin: 0 0 1.5em;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.875rem;
+  min-width: 28rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-muted);
+}
+
+th {
+  background: var(--sunken);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* 目次 */
+.toc {
+  margin: 0 0 3rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--sunken);
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.toc-title {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+}
+
+.toc ol {
+  /* 見出し自体が「1.」から始まるので、番号は付けない。 */
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+
+@media (max-width: 40rem) {
+  .toc ol {
+    columns: 1;
+  }
+}
+
+.toc li {
+  margin-bottom: 0.35rem;
+  break-inside: avoid;
+}
+
+.toc a {
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 currentColor;
+}
+
+.doc-contact {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+}
+
+/* ------------------------------------------------------------------ */
+/* 404                                                                 */
+/* ------------------------------------------------------------------ */
+
+.notfound {
+  padding-block: clamp(4rem, 12vw, 8rem);
+  text-align: center;
+}
+
+.notfound h1 {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  margin: 0 0 1rem;
+}
+
+.notfound p {
+  color: var(--ink-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/* 印刷（プライバシーポリシーは紙で読まれることがある）                */
+/* ------------------------------------------------------------------ */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .toc {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .doc h2 {
+    break-after: avoid;
+  }
+
+  .table-scroll {
+    break-inside: avoid;
+  }
+}

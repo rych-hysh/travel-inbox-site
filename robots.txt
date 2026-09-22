@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rych-hysh.github.io/travel-inbox-site/sitemap.xml
