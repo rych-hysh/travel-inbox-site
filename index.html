@@ -3,410 +3,631 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel Inbox — 「いつか行きたい」を、行ける日に。</title>
-    <meta name="description" content="Instagram・Google Maps・Web記事で見つけた「行きたい場所」をひとつに集めて、地図とカレンダーから思い出すためのアプリ。" />
+    <title>Travel Inbox | 「いつか行きたい」を、行ける日に変える</title>
+    <meta
+      name="description"
+      content="InstagramやGoogle Maps、SNSで見つけた行きたい場所やイベントを保存・整理。地図やカレンダーから再発見して、次のおでかけや旅行につなげるTravel Inbox。"
+    />
     <link rel="canonical" href="https://rych-hysh.github.io/travel-inbox-site/" />
-    <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f3ec" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Travel Inbox" />
-    <meta property="og:title" content="Travel Inbox — 「いつか行きたい」を、行ける日に。" />
-    <meta property="og:description" content="Instagram・Google Maps・Web記事で見つけた「行きたい場所」をひとつに集めて、地図とカレンダーから思い出すためのアプリ。" />
+    <meta property="og:title" content="Travel Inbox | 「いつか行きたい」を、行ける日に変える" />
+    <meta
+      property="og:description"
+      content="InstagramやGoogle Maps、SNSで見つけた行きたい場所やイベントを保存・整理。地図やカレンダーから再発見して、次のおでかけや旅行につなげるTravel Inbox。"
+    />
     <meta property="og:url" content="https://rych-hysh.github.io/travel-inbox-site/" />
-    <meta property="og:image" content="https://rych-hysh.github.io/travel-inbox-site/icon.png" />
+    <meta property="og:image" content="https://rych-hysh.github.io/travel-inbox-site/assets/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Travel Inbox — 「いつか行きたい」を、行ける日に変える。" />
     <meta property="og:locale" content="ja_JP" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Travel Inbox | 「いつか行きたい」を、行ける日に変える" />
+    <meta
+      name="twitter:description"
+      content="見つけた「行きたい」をひとつに保存して、地図とカレンダーから次のおでかけにつなげるアプリ。"
+    />
+    <meta name="twitter:image" content="https://rych-hysh.github.io/travel-inbox-site/assets/og.png" />
 
     <link rel="icon" href="icon.png" />
     <link rel="apple-touch-icon" href="icon.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="assets/lp.css" />
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <script src="assets/lp.js" defer></script>
   </head>
 
   <body>
+    <!-- アイコン。本文中では <use href="#i-…"> で参照する。 -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <symbol id="logo" viewBox="0 0 40 32">
+        <path d="M2 16.5 38 3 15 20.5z" fill="#f3ece0" />
+        <path d="M15 20.5 38 3 21.5 29.5z" fill="#e3d6c2" />
+        <path d="M15 20.5 17 27.5l2.4-3.1z" fill="#cdbda3" />
+        <path d="M2 16.5 38 3 21.5 29.5 15 20.5zM15 20.5 38 3M15 20.5l2 7 2.4-3.1" fill="none" stroke="#8f7f67" stroke-width=".9" stroke-linejoin="round" />
+      </symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M10.2 8.6v6.8l5.6-3.4z" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-6.1 6.5-11a6.5 6.5 0 1 0-13 0c0 4.9 6.5 11 6.5 11Z" /><circle cx="12" cy="10" r="2.4" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2" /><path d="M3.5 9.5h17M8 3v4M16 3v4M8 13.5h.01M12 13.5h.01M16 13.5h.01M8 17h.01M12 17h.01" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-tag" viewBox="0 0 24 24"><path d="M4 11.2V5.5A1.5 1.5 0 0 1 5.5 4h5.7a2 2 0 0 1 1.4.6l7 7a2 2 0 0 1 0 2.8l-5.2 5.2a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1-.6-1.4Z" /><circle cx="8.2" cy="8.2" r="1.4" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-map" viewBox="0 0 24 24"><path d="m3.5 6.5 5.5-2.5 6 2.5 5.5-2.5v13.5l-5.5 2.5-6-2.5-5.5 2.5zM9 4v13.5M15 6.5V20" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-plane" viewBox="0 0 24 24"><path d="M21 3 3 10.5l7 2.5 2.5 7zM21 3 10 13" /></symbol>
+        <symbol stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-home" viewBox="0 0 24 24"><path d="m4 11 8-6.5 8 6.5v9h-5v-5H9v5H4z" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-inbox" viewBox="0 0 24 24"><path d="m3.5 13.5 2.5-8h12l2.5 8V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19zM3.5 13.5h5l1.5 2.5h4l1.5-2.5h5" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5" /><path d="M5 20c1-3.5 3.8-5.5 7-5.5s6 2 7 5.5" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-chev-l" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-share" viewBox="0 0 24 24"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5M5 13v6.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V13" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7A1.5 1.5 0 0 1 5 5.5h4.5l2 2H19a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 19 20H5a1.5 1.5 0 0 1-1.5-1.5z" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-locate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="7.5" /><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-flag" viewBox="0 0 24 24"><path d="M5.5 21V4M5.5 4.5h11l-2.2 4 2.2 4h-11" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14" /></symbol>
+        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" /></symbol>
+    </svg>
+
     <a class="skip-link" href="#main">本文へスキップ</a>
 
-    <header class="site-header">
-      <div class="wrap">
-        <a class="wordmark" href="./">
-          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect
-              x="2.5"
-              y="3.5"
-              width="19"
-              height="17"
-              rx="1.5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.4"
-            />
-            <path
-              d="M2.5 13.5h4.2l1.4 2.4h7.8l1.4-2.4h4.2"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.4"
-              stroke-linejoin="round"
-            />
-            <circle cx="12" cy="8" r="2.1" fill="var(--vermilion)" />
-          </svg>
-          Travel Inbox
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="brand" href="./" aria-label="Travel Inbox ホーム">
+          <svg class="brand-mark" aria-hidden="true"><use href="#logo" /></svg>
+          <span class="brand-name">Travel Inbox</span>
         </a>
 
-        <nav class="site-nav" aria-label="サイト">
-          <a href="#how">使い方</a>
-          <a href="#features">できること</a>
-          <a href="support.html">サポート</a>
-          <a href="privacy.html">プライバシー</a>
+        <nav class="global-nav" id="global-nav" aria-label="メイン">
+          <ul>
+            <li><a href="#features">特徴</a></li>
+            <li><a href="#how">使い方</a></li>
+            <li><a href="#pricing">料金</a></li>
+            <li><a href="#faq">よくある質問</a></li>
+          </ul>
+          <a class="btn btn-primary btn-sm nav-cta" href="#download">ダウンロード</a>
         </nav>
+
+        <a class="btn btn-primary btn-sm header-cta" href="#download">ダウンロード</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="global-nav" data-menu-toggle>
+          <svg class="icon" aria-hidden="true"><use href="#i-menu" /></svg>
+          <span class="visually-hidden" data-menu-label>メニューを開く</span>
+        </button>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero">
-        <div class="wrap">
-          <div>
-            <p class="kicker">旅行・おでかけメモ</p>
-            <h1>「いつか行きたい」を、<br />行ける日に。</h1>
-            <p class="lead">
-              Instagram で見つけたカフェ、Google Maps で星を付けた場所、あとで読もうと思った記事。
-              ばらばらになった「行きたい」をひとつに集めて、地図とカレンダーから思い出すためのアプリです。
+      <!-- ============================================================ HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow hero-eyebrow">見つけた「行きたい」を、旅にする。</p>
+            <h1 class="hero-title" id="hero-title">
+              <span class="line">「いつか行きたい」を、</span>
+              <span class="line">行ける日に変える。</span>
+            </h1>
+            <p class="hero-lead">
+              Instagram、Google Maps、Web記事、SNSで見つけた<br class="br-wide" />行きたい場所やイベントをひとつに保存。<br />
+              地図やカレンダーから再発見して、<br class="br-wide" />次のおでかけや旅行につなげます。
             </p>
-
-            <div class="cta">
-               
-              <span class="badge">App Store 公開準備中</span>
-              
-              <a class="button-quiet button" href="#features">できることを見る</a>
+            <div class="hero-actions">
+              <a class="btn btn-primary btn-lg" href="#download">
+                App Store で入手
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+              <a class="btn btn-ghost btn-lg" href="#how">
+                デモを見る
+                <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+              </a>
             </div>
-
-            <p class="hero-note">iPhone 向けのアプリです。広告はありません。</p>
+            <p class="hero-note">iPhone 向け　App Store 公開準備中　広告なし</p>
           </div>
 
-          <!-- 保存した場所が地図の上に並んでいる様子。写真を使わないのは、
-               撮り直しのたびに差し替えが要るのと、紙の佇まいに合わないため。 -->
-          <svg
-            class="hero-art"
-            viewBox="0 0 440 360"
-            role="img"
-            aria-label="保存した場所が地図の上に並び、開催日がカレンダーに載っている様子のイラスト"
-          >
-            <rect
-              x="28"
-              y="24"
-              width="384"
-              height="296"
-              rx="3"
-              fill="var(--surface)"
-              stroke="var(--rule)"
-            />
+          <div class="hero-stage" aria-label="Travel Inbox のアプリ画面" role="group">
+            <span class="shape shape-circle-lg" aria-hidden="true"></span>
+            <span class="shape shape-circle-sm" aria-hidden="true"></span>
+            <span class="shape shape-line shape-line-top" aria-hidden="true"></span>
+            <span class="shape shape-line shape-line-bottom" aria-hidden="true"></span>
 
-            <!-- 区画と街路 -->
-            <g stroke="var(--rule)" stroke-width="1" fill="none">
-              <path d="M28 96h384M28 168h384M28 240h384" />
-              <path d="M124 24v296M220 24v296M316 24v296" />
-            </g>
-            <g stroke="var(--rule-strong)" stroke-width="1.5" fill="none">
-              <path d="M28 168h384" />
-              <path d="M220 24v296" />
-            </g>
+            <!-- Inbox -->
+            <figure class="phone phone-inbox" role="img" aria-label="Inbox画面。保存したカフェや絶景スポットが、保存元のサービスと一緒に一覧で並んでいる">
+              <div class="phone-screen">
+                <div class="status"><span>9:41</span><span class="status-icons"></span></div>
+                <div class="app-head">
+                  <span class="app-brand"><svg aria-hidden="true"><use href="#logo" /></svg>Travel Inbox</span>
+                  <svg class="app-ico" aria-hidden="true"><use href="#i-plus" /></svg>
+                </div>
+                <div class="app-search"><svg aria-hidden="true"><use href="#i-search" /></svg>保存した場所を検索</div>
+                <div class="app-tabs"><span class="is-on">すべて</span><span>スポット</span><span>イベント</span></div>
+                <ul class="app-list">
+                  <li>
+                    <img src="assets/img/cafe.svg" alt="" width="60" height="80" />
+                    <div><b>ブルーボトルコーヒー 清澄白河</b><small>カフェ・東京</small><em class="src src-ig">Instagram</em></div>
+                    <svg class="fav is-on" aria-hidden="true"><use href="#i-heart" /></svg>
+                  </li>
+                  <li>
+                    <img src="assets/img/setouchi.svg" alt="" width="60" height="80" />
+                    <div><b>直島</b><small>絶景・香川</small><em class="src src-web">Web記事</em></div>
+                    <svg class="fav is-on" aria-hidden="true"><use href="#i-heart" /></svg>
+                  </li>
+                  <li>
+                    <img src="assets/img/art.svg" alt="" width="60" height="80" />
+                    <div><b>teamLab Planets</b><small>アート・東京</small><em class="src src-x">X</em></div>
+                    <svg class="fav" aria-hidden="true"><use href="#i-heart" /></svg>
+                  </li>
+                  <li>
+                    <img src="assets/img/bamboo.svg" alt="" width="60" height="80" />
+                    <div><b>嵐山 竹林の小径</b><small>絶景・京都</small><em class="src src-gm">Google Maps</em></div>
+                    <svg class="fav is-on" aria-hidden="true"><use href="#i-heart" /></svg>
+                  </li>
+                  <li>
+                    <img src="assets/img/kanazawa.svg" alt="" width="60" height="80" />
+                    <div><b>金沢 ひがし茶屋街</b><small>街歩き・石川</small><em class="src src-ig">Instagram</em></div>
+                    <svg class="fav" aria-hidden="true"><use href="#i-heart" /></svg>
+                  </li>
+                </ul>
+                <nav class="tabbar" aria-hidden="true">
+                  <span><svg><use href="#i-home" /></svg>ホーム</span>
+                  <span><svg><use href="#i-map" /></svg>マップ</span>
+                  <span class="is-on"><svg><use href="#i-inbox" /></svg>インボックス</span>
+                  <span><svg><use href="#i-cal" /></svg>カレンダー</span>
+                  <span><svg><use href="#i-user" /></svg>マイページ</span>
+                </nav>
+              </div>
+            </figure>
 
-            <!-- 川 -->
-            <path
-              d="M28 274c54-8 78-40 128-44s72 26 122 14 88-46 134-40"
-              fill="none"
-              stroke="var(--indigo-wash)"
-              stroke-width="14"
-              stroke-linecap="round"
-            />
+            <!-- Map -->
+            <figure class="phone phone-map" role="img" aria-label="Map画面。保存したスポットが地図上にピンで表示され、選んだカフェの詳細が下に出ている">
+              <div class="phone-screen">
+                <div class="status"><span>9:41</span><span class="status-icons"></span></div>
+                <div class="map">
+                  <svg class="map-art" viewBox="0 0 200 330" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                    <rect width="200" height="330" fill="#eeebe3" />
+                    <path d="M-10 250q60-30 90 10t130-20" stroke="#c9dcea" stroke-width="18" fill="none" />
+                    <rect x="120" y="60" width="60" height="44" rx="4" fill="#dfe7d3" />
+                    <rect x="14" y="150" width="40" height="52" rx="4" fill="#dfe7d3" />
+                    <g stroke="#fff" fill="none" stroke-linecap="round">
+                      <path d="M0 40h200M0 128h200M-10 205l220-30M40 0v330M104 0l-12 330M160 0v330" stroke-width="5" />
+                      <path d="M0 84h200M70 0v330M130 0l10 330M0 300h200M0 170h110" stroke-width="2.5" />
+                    </g>
+                    <path d="M-10 118 210 20" stroke="#f1ddb5" stroke-width="6" />
+                  </svg>
+                  <div class="map-search"><svg aria-hidden="true"><use href="#i-search" /></svg>このエリアを検索</div>
+                  <span class="pin" style="--x: 22%; --y: 22%"></span>
+                  <span class="pin" style="--x: 70%; --y: 16%"></span>
+                  <span class="pin" style="--x: 42%; --y: 38%"></span>
+                  <span class="pin" style="--x: 80%; --y: 44%"></span>
+                  <span class="pin" style="--x: 18%; --y: 56%"></span>
+                  <span class="pin pin-active" style="--x: 57%; --y: 52%"></span>
+                  <span class="here" style="--x: 34%; --y: 64%"></span>
+                  <span class="map-locate"><svg aria-hidden="true"><use href="#i-locate" /></svg></span>
+                  <div class="sheet">
+                    <img src="assets/img/cafe.svg" alt="" width="60" height="80" />
+                    <div>
+                      <b>ブルーボトルコーヒー 清澄白河</b>
+                      <small>東京都江東区平野</small>
+                      <span class="chips"><i>カフェ</i><i>週末</i><i>行きたい</i></span>
+                    </div>
+                    <svg class="fav is-on" aria-hidden="true"><use href="#i-heart" /></svg>
+                  </div>
+                </div>
+                <nav class="tabbar" aria-hidden="true">
+                  <span><svg><use href="#i-home" /></svg>ホーム</span>
+                  <span class="is-on"><svg><use href="#i-map" /></svg>マップ</span>
+                  <span><svg><use href="#i-inbox" /></svg>インボックス</span>
+                  <span><svg><use href="#i-cal" /></svg>カレンダー</span>
+                  <span><svg><use href="#i-user" /></svg>マイページ</span>
+                </nav>
+              </div>
+            </figure>
 
-            <!-- 緑地 -->
-            <rect x="52" y="192" width="60" height="40" rx="2" fill="var(--moss-wash)" />
-
-            <!-- 保存した場所 -->
-            <g>
-              <path
-                d="M150 132c0-9.4-7.6-17-17-17s-17 7.6-17 17c0 12.2 17 29 17 29s17-16.8 17-29z"
-                fill="var(--indigo)"
-              />
-              <circle cx="133" cy="132" r="6" fill="var(--surface)" />
-            </g>
-            <g>
-              <path
-                d="M300 92c0-9.4-7.6-17-17-17s-17 7.6-17 17c0 12.2 17 29 17 29s17-16.8 17-29z"
-                fill="var(--vermilion)"
-              />
-              <circle cx="283" cy="92" r="6" fill="var(--surface)" />
-            </g>
-            <g>
-              <path
-                d="M214 226c0-9.4-7.6-17-17-17s-17 7.6-17 17c0 12.2 17 29 17 29s17-16.8 17-29z"
-                fill="var(--moss)"
-              />
-              <circle cx="197" cy="226" r="6" fill="var(--surface)" />
-            </g>
-
-            <!-- 共有から届いたメモ -->
-            <g>
-              <rect
-                x="56"
-                y="48"
-                width="152"
-                height="56"
-                rx="3"
-                fill="var(--surface)"
-                stroke="var(--rule-strong)"
-              />
-              <rect x="68" y="62" width="88" height="7" rx="2" fill="var(--ink)" opacity="0.82" />
-              <rect
-                x="68"
-                y="78"
-                width="116"
-                height="5"
-                rx="2"
-                fill="var(--ink-faint)"
-                opacity="0.5"
-              />
-              <rect x="68" y="88" width="46" height="5" rx="2" fill="var(--ink-faint)" opacity="0.5" />
-            </g>
-
-            <!-- 開催日のあるイベント -->
-            <g>
-              <rect
-                x="252"
-                y="232"
-                width="136"
-                height="96"
-                rx="3"
-                fill="var(--surface)"
-                stroke="var(--rule-strong)"
-              />
-              <path d="M252 256h136" stroke="var(--rule)" stroke-width="1" />
-              <rect x="264" y="240" width="40" height="6" rx="2" fill="var(--ink-faint)" opacity="0.6" />
-              <g fill="var(--rule-strong)">
-                <circle cx="272" cy="274" r="4" />
-                <circle cx="296" cy="274" r="4" />
-                <circle cx="320" cy="274" r="4" />
-                <circle cx="344" cy="274" r="4" />
-                <circle cx="368" cy="274" r="4" />
-                <circle cx="272" cy="300" r="4" />
-                <circle cx="320" cy="300" r="4" />
-                <circle cx="344" cy="300" r="4" />
-                <circle cx="368" cy="300" r="4" />
-              </g>
-              <circle cx="296" cy="300" r="9" fill="var(--vermilion-wash)" />
-              <circle cx="296" cy="300" r="4" fill="var(--vermilion)" />
-            </g>
-          </svg>
+            <!-- Calendar -->
+            <figure class="phone phone-cal" role="img" aria-label="Calendar画面。2026年4月のカレンダーで12日を選ぶと、銀座ランチ、teamLab Planets、東京タワーの予定が並ぶ">
+              <div class="phone-screen">
+                <div class="status"><span>9:41</span><span class="status-icons"></span></div>
+                <div class="cal-head">
+                  <svg aria-hidden="true"><use href="#i-chev-l" /></svg>
+                  <b>2026年4月</b>
+                  <svg aria-hidden="true"><use href="#i-chev" /></svg>
+                </div>
+                <div class="cal-grid" data-cal></div>
+                <div class="cal-day">4月12日（日）</div>
+                <ul class="cal-list">
+                  <li><time>11:00</time><span class="bar"></span><div><b>銀座ランチ</b><small>中央区銀座</small></div></li>
+                  <li><time>14:00</time><span class="bar bar-art"></span><div><b>teamLab Planets</b><small>江東区豊洲</small></div></li>
+                  <li><time>17:00</time><span class="bar bar-sight"></span><div><b>東京タワー</b><small>港区芝公園</small></div></li>
+                </ul>
+                <span class="fab"><svg aria-hidden="true"><use href="#i-plus" /></svg></span>
+                <nav class="tabbar" aria-hidden="true">
+                  <span><svg><use href="#i-home" /></svg>ホーム</span>
+                  <span><svg><use href="#i-map" /></svg>マップ</span>
+                  <span><svg><use href="#i-inbox" /></svg>インボックス</span>
+                  <span class="is-on"><svg><use href="#i-cal" /></svg>カレンダー</span>
+                  <span><svg><use href="#i-user" /></svg>マイページ</span>
+                </nav>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="wrap">
-          <p class="section-label">なぜ</p>
-          <h2>「行きたい」は、いつも別々の場所にある。</h2>
-          <p class="intro">
-            見つけた瞬間は覚えているのに、実際に出かける頃には、どのアプリのどこに入れたのか分からなくなっています。
-            保存する場所が分かれていることが原因なので、探し方を工夫しても解決しません。
-          </p>
-
-          <ul class="scatter">
-            <li>
-              <strong>Instagram</strong>
-              リールで見たお店を保存したけれど、コレクションの奥に埋もれている。
-            </li>
-            <li>
-              <strong>Google Maps</strong>
-              星は付けたものの、旅行先を開くと星だらけで、どれが何だったか思い出せない。
-            </li>
-            <li>
-              <strong>記事・SNS</strong>
-              「あとで読む」に入れた記事は、あとで読まれないまま増えていく。
-            </li>
-          </ul>
-        </div>
+      <!-- ======================================================== BENEFITS -->
+      <section class="benefits" aria-label="Travel Inbox でできること">
+        <ul class="container benefit-list">
+          <li class="benefit reveal">
+            <span class="benefit-icon"><svg aria-hidden="true"><use href="#i-bookmark" /></svg></span>
+            <div><h2>見つけた瞬間に保存</h2><p>行きたいを逃さない</p></div>
+          </li>
+          <li class="benefit reveal">
+            <span class="benefit-icon"><svg aria-hidden="true"><use href="#i-pin" /></svg></span>
+            <div><h2>地図で再発見</h2><p>近くの保存スポットに気づける</p></div>
+          </li>
+          <li class="benefit reveal">
+            <span class="benefit-icon"><svg aria-hidden="true"><use href="#i-cal" /></svg></span>
+            <div><h2>カレンダーで予定化</h2><p>週末や旅行に組み込める</p></div>
+          </li>
+          <li class="benefit reveal">
+            <span class="benefit-icon"><svg aria-hidden="true"><use href="#i-tag" /></svg></span>
+            <div><h2>イベントもまとめて管理</h2><p>展示・フェス・グルメも</p></div>
+          </li>
+        </ul>
       </section>
 
-      <section class="section" id="how">
-        <div class="wrap">
-          <p class="section-label">使い方</p>
-          <h2>見つけたその場で、<br />3ステップ。</h2>
-          <p class="intro">
-            Travel Inbox を開く必要はありません。いつものアプリの共有ボタンから保存できます。
-          </p>
+      <!-- ======================================================== FEATURES -->
+      <section class="section features" id="features" aria-labelledby="features-title">
+        <div class="container features-grid">
+          <div class="section-intro reveal">
+            <p class="eyebrow eyebrow-en">Features</p>
+            <h2 class="section-title" id="features-title"><span class="nw">旅のアイデアを、</span><br />ひとつの場所に。</h2>
+            <p class="section-lead">
+              気になる場所も、行きたいイベントも。<br />
+              Travel Inbox なら、すべてまとめて<br class="br-wide" />あなただけの旅のインボックスに。
+            </p>
+            <a class="btn btn-primary" href="#how">
+              使い方を見る
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+          </div>
 
-          <ol class="steps">
-            <li>
-              <strong>共有ボタンをタップ</strong>
-              Instagram、Google Maps、Safari など、見ているアプリの共有ボタンを押します。
+          <ol class="feature-list" role="list">
+            <li class="feature reveal">
+              <div class="feature-visual fv-save" aria-hidden="true">
+                <div class="fv-sources">
+                  <span class="src-dot src-ig">Instagram</span>
+                  <span class="src-dot src-gm">Google Maps</span>
+                  <span class="src-dot src-x">X</span>
+                  <span class="src-dot src-web">Web</span>
+                </div>
+                <div class="fv-shot">
+                  <img src="assets/img/kanazawa.svg" alt="" width="300" height="400" loading="lazy" />
+                  <span class="fv-save-btn"><svg><use href="#i-bookmark" /></svg></span>
+                </div>
+                <span class="fv-toast"><svg><use href="#i-check" /></svg>Travel Inbox に保存しました</span>
+              </div>
+              <p class="feature-num">01</p>
+              <h3>見つけたらすぐ保存</h3>
+              <p>Instagram や Google Maps、Web記事、SNS で見つけたスポットやイベントを、共有メニューからワンタップで保存。</p>
             </li>
-            <li>
-              <strong>Travel Inbox を選ぶ</strong>
-              一覧に出てこないときは、アイコンの列の右端にある「その他」から追加できます。
+
+            <li class="feature reveal">
+              <div class="feature-visual fv-organize" aria-hidden="true">
+                <p class="fv-title"><svg><use href="#i-chev-l" /></svg>コレクション</p>
+                <ul>
+                  <li><svg><use href="#i-folder" /></svg>行きたいカフェ<span>24</span></li>
+                  <li><svg><use href="#i-folder" /></svg>次の旅行候補<span>12</span></li>
+                  <li><svg><use href="#i-folder" /></svg>アート・展示<span>8</span></li>
+                  <li><svg><use href="#i-tag" /></svg>雨の日<span>15</span></li>
+                  <li><svg><use href="#i-tag" /></svg>温泉<span>9</span></li>
+                </ul>
+                <p class="fv-tags"><i>#京都</i><i>#絶景</i><i>#デート</i></p>
+              </div>
+              <p class="feature-num">02</p>
+              <h3>好きなように整理</h3>
+              <p>タグやカテゴリ、「行きたい・行く予定・行った」のステータスで、自分らしく整理。とりあえず保存して、あとから整えられます。</p>
             </li>
-            <li>
-              <strong>届いた通知をタップ</strong>
-              保存画面が開きます。タイトルや画像は URL から読み取るので、確認して保存するだけです。
+
+            <li class="feature reveal">
+              <div class="feature-visual fv-map" aria-hidden="true">
+                <svg class="fv-map-art" viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice">
+                  <rect width="200" height="150" fill="#eeebe3" />
+                  <path d="M-10 118q60-30 100 0t120-16" stroke="#c9dcea" stroke-width="14" fill="none" />
+                  <rect x="130" y="16" width="50" height="34" rx="3" fill="#dfe7d3" />
+                  <g stroke="#fff" fill="none"><path d="M0 34h200M0 82h200M52 0v150M120 0l-8 150M170 0v150" stroke-width="4" /><path d="M0 58h200M86 0v150M146 0v150" stroke-width="2" /></g>
+                </svg>
+                <span class="pin" style="--x: 26%; --y: 30%"></span>
+                <span class="pin" style="--x: 64%; --y: 22%"></span>
+                <span class="pin pin-active" style="--x: 48%; --y: 50%"></span>
+                <span class="pin" style="--x: 80%; --y: 58%"></span>
+                <div class="fv-thumbs">
+                  <img src="assets/img/setouchi.svg" alt="" width="60" height="80" loading="lazy" />
+                  <img src="assets/img/onomichi.svg" alt="" width="60" height="80" loading="lazy" />
+                  <img src="assets/img/onsen.svg" alt="" width="60" height="80" loading="lazy" />
+                </div>
+              </div>
+              <p class="feature-num">03</p>
+              <h3>地図で見つける</h3>
+              <p>旅行先や現在地の近くで、以前保存したスポットを地図上で再発見。「この辺に何か保存してたはず」に応えます。</p>
+            </li>
+
+            <li class="feature reveal">
+              <div class="feature-visual fv-cal" aria-hidden="true">
+                <p class="fv-title">2026年4月<svg><use href="#i-chev" /></svg></p>
+                <div class="cal-grid cal-grid-mini" data-cal data-range="18,19"></div>
+                <div class="fv-event">
+                  <img src="assets/img/bamboo.svg" alt="" width="60" height="80" loading="lazy" />
+                  <div><b>週末の京都旅行</b><small>4月18日（土）〜19日（日）</small></div>
+                </div>
+              </div>
+              <p class="feature-num">04</p>
+              <h3>カレンダーで計画</h3>
+              <p>会期のある展示やイベントはカレンダーに。「いつか行きたい」を、具体的な日付に変えられます。</p>
             </li>
           </ol>
         </div>
       </section>
 
-      <section class="section" id="features">
-        <div class="wrap">
-          <p class="section-label">できること</p>
-          <h2>集めて、見つけて、行く。</h2>
+      <!-- ============================================================= HOW -->
+      <section class="section how" id="how" aria-labelledby="how-title">
+        <div class="container how-grid">
+          <div class="section-intro reveal">
+            <p class="eyebrow eyebrow-en">How it works</p>
+            <h2 class="section-title" id="how-title">旅は、<br />こんなふうに。</h2>
+            <p class="section-lead">
+              気になるものとの出会いから、実際の旅の思い出になるまで。Travel Inbox がずっと寄り添います。
+            </p>
+          </div>
 
-          <ul class="features">
-            <li class="feature">
-              <svg
-                class="glyph"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <path d="M12 16V3" />
-                <path d="M7.5 7.5 12 3l4.5 4.5" />
-                <path d="M5 13v6.5a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5V13" />
-              </svg>
-              <div>
-                <h3>共有するだけで保存</h3>
-                <p>
-                  見ているページから共有シートを開いて Travel Inbox を選ぶだけ。
-                  URL からタイトルや画像を読み取るので、入力の手間はほとんどありません。
-                </p>
-                <p>読み取れなかったときは、その場で書き足せます。メモもタグも後から足せます。</p>
-              </div>
+          <div class="timeline-wrap">
+            <ol class="timeline">
+              <li class="step reveal">
+                <span class="step-num">01</span>
+                <span class="step-icon"><svg aria-hidden="true"><use href="#i-search" /></svg></span>
+                <h3>発見</h3>
+                <p>SNS や Web で、気になるスポットやイベントに出会う</p>
+              </li>
+              <li class="step reveal">
+                <span class="step-num">02</span>
+                <span class="step-icon"><svg aria-hidden="true"><use href="#i-bookmark" /></svg></span>
+                <h3>保存</h3>
+                <p>共有メニューから、ワンタップで Travel Inbox へ</p>
+              </li>
+              <li class="step reveal">
+                <span class="step-num">03</span>
+                <span class="step-icon"><svg aria-hidden="true"><use href="#i-tag" /></svg></span>
+                <h3>整理</h3>
+                <p>タグやカテゴリで、自分らしく整理する</p>
+              </li>
+              <li class="step reveal">
+                <span class="step-num">04</span>
+                <span class="step-icon"><svg aria-hidden="true"><use href="#i-map" /></svg></span>
+                <h3>再発見</h3>
+                <p>地図やリストで、保存した「行きたい」に再会する</p>
+              </li>
+              <li class="step reveal">
+                <span class="step-num">05</span>
+                <span class="step-icon"><svg aria-hidden="true"><use href="#i-cal" /></svg></span>
+                <h3>計画</h3>
+                <p>カレンダーで、週末や旅行の予定に組み込む</p>
+              </li>
+              <li class="step reveal">
+                <span class="step-num">06</span>
+                <span class="step-icon step-icon-last"><svg aria-hidden="true"><use href="#i-flag" /></svg></span>
+                <h3>訪問</h3>
+                <p>ついに、その場所へ。「行きたかった」が「行ってよかった」に。</p>
+              </li>
+            </ol>
+            <svg class="flight" viewBox="0 0 160 90" aria-hidden="true">
+              <path class="flight-trail" d="M4 70C40 72 70 60 96 44" fill="none" stroke="#8eb0cf" stroke-width="1.4" stroke-dasharray="3 5" stroke-linecap="round" />
+              <g class="flight-plane"><use href="#logo" x="96" y="8" width="54" height="44" /></g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================== INSPIRATION -->
+      <section class="section inspiration" id="inspiration" aria-labelledby="insp-title">
+        <div class="container insp-grid">
+          <div class="section-intro reveal">
+            <p class="eyebrow eyebrow-en">Inspiration</p>
+            <h2 class="section-title" id="insp-title"><span class="nw">行きたいであふれる、</span><br />やさしい世界。</h2>
+            <p class="section-lead">
+              カフェ、絶景、アート、イベント、週末の小さな旅。まだ見ぬ素敵な場所が、あなたを待っています。
+            </p>
+            <div class="insp-controls">
+              <button class="round-btn" type="button" data-scroll="-1" aria-controls="insp-track">
+                <svg aria-hidden="true"><use href="#i-chev-l" /></svg><span class="visually-hidden">前へ</span>
+              </button>
+              <button class="round-btn" type="button" data-scroll="1" aria-controls="insp-track">
+                <svg aria-hidden="true"><use href="#i-chev" /></svg><span class="visually-hidden">次へ</span>
+              </button>
+            </div>
+          </div>
+
+          <ul class="insp-track" id="insp-track" tabindex="0" aria-label="おでかけ先のイメージ（横にスクロールできます）">
+            <li class="insp-card">
+              <figure>
+                <div class="insp-img"><img src="assets/img/cafe.svg" alt="窓から庭の緑が見える、やわらかな光のカフェ" width="600" height="800" loading="lazy" /><span class="insp-tag">カフェ</span><span class="insp-save" aria-hidden="true"><svg><use href="#i-bookmark" /></svg></span></div>
+                <figcaption><b>やさしい時間が流れるカフェ</b><span>京都</span></figcaption>
+              </figure>
             </li>
-
-            <li class="feature">
-              <svg
-                class="glyph"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <path d="M12 21s6.5-6.1 6.5-11a6.5 6.5 0 1 0-13 0c0 4.9 6.5 11 6.5 11Z" />
-                <circle cx="12" cy="10" r="2.4" />
-              </svg>
-              <div>
-                <h3>地図で再発見する</h3>
-                <p>
-                  保存した場所は地図の上にまとまります。出かけた先で開けば、近くに保存していた場所が見つかります。
-                </p>
-                <p>「せっかく来たのに思い出せなかった」が、なくなります。</p>
-              </div>
+            <li class="insp-card">
+              <figure>
+                <div class="insp-img"><img src="assets/img/setouchi.svg" alt="穏やかな海に島々が浮かぶ瀬戸内の風景" width="600" height="800" loading="lazy" /><span class="insp-tag">絶景</span><span class="insp-save" aria-hidden="true"><svg><use href="#i-bookmark" /></svg></span></div>
+                <figcaption><b>いつか見たい、あの絶景</b><span>瀬戸内</span></figcaption>
+              </figure>
             </li>
-
-            <li class="feature">
-              <svg
-                class="glyph"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <rect x="3.5" y="5" width="17" height="15.5" rx="1.6" />
-                <path d="M3.5 9.5h17M8 3.5V6.5M16 3.5V6.5" />
-                <circle cx="12" cy="15" r="1.5" fill="currentColor" stroke="none" />
-              </svg>
-              <div>
-                <h3>カレンダーで逃さない</h3>
-                <p>
-                  会期のある展示、期間限定のイベント、開催日の決まっているお祭り。
-                  日付のある「行きたい」はカレンダーに並び、開催日が近づくと通知でお知らせします。
-                </p>
-              </div>
+            <li class="insp-card">
+              <figure>
+                <div class="insp-img"><img src="assets/img/art.svg" alt="無数の光が浮かぶ没入型のアート空間" width="600" height="800" loading="lazy" /><span class="insp-tag">アート</span><span class="insp-save" aria-hidden="true"><svg><use href="#i-bookmark" /></svg></span></div>
+                <figcaption><b>心が動くアート体験</b><span>東京</span></figcaption>
+              </figure>
             </li>
-
-            <li class="feature">
-              <svg
-                class="glyph"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <path d="M4 11.2V5.5A1.5 1.5 0 0 1 5.5 4h5.7a2 2 0 0 1 1.4.6l7 7a2 2 0 0 1 0 2.8l-5.2 5.2a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1-.6-1.4Z" />
-                <circle cx="8.2" cy="8.2" r="1.4" />
-              </svg>
-              <div>
-                <h3>あとから探せる整理</h3>
-                <p>
-                  タグ、状態（行きたい／行った）、場所、期間で絞り込めます。
-                  行った場所に印をつけていけば、そのまま自分の記録になります。
-                </p>
-              </div>
+            <li class="insp-card">
+              <figure>
+                <div class="insp-img"><img src="assets/img/kanazawa.svg" alt="木格子の町家が続く石畳の通り" width="600" height="800" loading="lazy" /><span class="insp-tag">週末旅行</span><span class="insp-save" aria-hidden="true"><svg><use href="#i-bookmark" /></svg></span></div>
+                <figcaption><b>週末で行ける、小さな旅</b><span>金沢</span></figcaption>
+              </figure>
+            </li>
+            <li class="insp-card">
+              <figure>
+                <div class="insp-img"><img src="assets/img/onsen.svg" alt="紅葉の山を望む湯けむりの露天風呂" width="600" height="800" loading="lazy" /><span class="insp-tag">温泉</span><span class="insp-save" aria-hidden="true"><svg><use href="#i-bookmark" /></svg></span></div>
+                <figcaption><b>湯けむりの町で、ひと休み</b><span>箱根</span></figcaption>
+              </figure>
+            </li>
+            <li class="insp-card">
+              <figure>
+                <div class="insp-img"><img src="assets/img/fireworks.svg" alt="夜空に大輪の花火が咲く花火大会" width="600" height="800" loading="lazy" /><span class="insp-tag">イベント</span><span class="insp-save" aria-hidden="true"><svg><use href="#i-bookmark" /></svg></span></div>
+                <figcaption><b>夏の夜空を見上げる、花火大会</b><span>長岡</span></figcaption>
+              </figure>
+            </li>
+            <li class="insp-card">
+              <figure>
+                <div class="insp-img"><img src="assets/img/museum.svg" alt="静かな美術館で絵画を眺める人" width="600" height="800" loading="lazy" /><span class="insp-tag">展示</span><span class="insp-save" aria-hidden="true"><svg><use href="#i-bookmark" /></svg></span></div>
+                <figcaption><b>会期中に行きたい、あの展示</b><span>上野</span></figcaption>
+              </figure>
+            </li>
+            <li class="insp-card">
+              <figure>
+                <div class="insp-img"><img src="assets/img/onomichi.svg" alt="坂道に家々が重なり、海と橋が見える街並み" width="600" height="800" loading="lazy" /><span class="insp-tag">街歩き</span><span class="insp-save" aria-hidden="true"><svg><use href="#i-bookmark" /></svg></span></div>
+                <figcaption><b>坂道と路地をたどる街歩き</b><span>尾道</span></figcaption>
+              </figure>
             </li>
           </ul>
         </div>
       </section>
 
-      <section class="section">
-        <div class="wrap">
-          <p class="section-label">預かるもの</p>
-          <h2>記録は、あなたのものです。</h2>
-          <p class="intro">
-            このアプリが預かるのは、あなたが保存したものだけです。集めた情報を使って誰かに何かを売ることはしません。
-          </p>
+      <!-- ========================================================= PRICING -->
+      <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+        <div class="container pricing-grid">
+          <div class="section-intro reveal">
+            <p class="eyebrow eyebrow-en">Pricing</p>
+            <h2 class="section-title" id="pricing-title">はじめるのに、<br /><span class="nw">費用はかかりません。</span></h2>
+          </div>
+          <div class="pricing-body reveal">
+            <p class="price"><span class="price-num">¥0</span><span class="price-unit">ダウンロード</span></p>
+            <p class="pricing-text">
+              保存・整理・地図・カレンダーといった基本機能は、無料でお使いいただける予定です。
+              料金の詳細は、App Store での公開にあわせてお知らせします。
+            </p>
+            <ul class="pricing-points">
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>広告は表示しません</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>保存した内容を第三者に販売・提供しません</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>アカウントとデータはいつでも削除できます</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-          <ul class="promises">
-            <li>
-              <span><strong>広告はありません。</strong>表示も、広告目的のトラッキングもしていません。</span>
-            </li>
-            <li>
-              <span><strong>解析ツールは入れていません。</strong>アプリの操作内容を外部へ送る仕組みがありません。</span>
-            </li>
-            <li>
-              <span><strong>第三者への販売・提供をしません。</strong>保存した内容はあなたにだけ見えます。</span>
-            </li>
-            <li>
-              <span
-                ><strong>現在地は端末の中だけで使います。</strong
-                >近くの保存スポットを探すためだけに使い、送信も保存もしません。</span
-              >
-            </li>
-            <li>
-              <span><strong>いつでも消せます。</strong>アカウントと全データをアプリ内から削除できます。</span>
-            </li>
-            <li>
-              <span><strong>他の人に見せる機能がありません。</strong>公開も共有もされません。</span>
-            </li>
-          </ul>
+      <!-- ============================================================= FAQ -->
+      <section class="section faq" id="faq" aria-labelledby="faq-title">
+        <div class="container faq-grid">
+          <div class="section-intro reveal">
+            <p class="eyebrow eyebrow-en">FAQ</p>
+            <h2 class="section-title" id="faq-title">よくある質問</h2>
+            <p class="section-lead">そのほかのご質問は<a href="support.html">サポートページ</a>をご覧ください。</p>
+          </div>
+          <div class="faq-list reveal">
+            <details>
+              <summary>どこから保存できますか？</summary>
+              <p>
+                Instagram、Google Maps、Safari など、共有ボタンのあるアプリから保存できます。共有メニューで Travel Inbox を選ぶだけで、URL からタイトルや画像を読み取ります。読み取れなかった項目は、その場やあとから書き足せます。
+              </p>
+            </details>
+            <details>
+              <summary>Instagram や Google Maps の保存リストを自動で取り込めますか？</summary>
+              <p>
+                現時点では、各サービスの保存リストとの自動同期には対応していません。見つけたその場で共有から保存する仕組みなので、ほかのサービスのアカウント連携は必要ありません。
+              </p>
+            </details>
+            <details>
+              <summary>どの端末で使えますか？</summary>
+              <p>まずは iPhone 向けに App Store での公開を準備しています。公開したら、このページからダウンロードできるようになります。</p>
+            </details>
+            <details>
+              <summary>保存した場所が、ほかの人に見られることはありますか？</summary>
+              <p>
+                ありません。Travel Inbox には公開や共有の機能がなく、保存した内容はあなたにだけ見えます。現在地は近くの保存スポットを探すためだけに端末内で使い、送信も保存もしません。
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
 
-          <div class="closing">
-            <a class="button button-quiet" href="privacy.html">プライバシーポリシーを読む</a>
-            <a class="button button-quiet" href="support.html">困ったときは</a>
+      <!-- ============================================================= CTA -->
+      <section class="final-cta" id="download" aria-labelledby="cta-title">
+        <div class="container cta-grid">
+          <div class="cta-copy reveal">
+            <h2 class="cta-title" id="cta-title">さあ、次の旅へ。</h2>
+            <p>行きたいで終わらせない。<br />Travel Inbox で、もっと自由で、<br class="br-narrow" />豊かな旅のある毎日を。</p>
+          </div>
+
+          <div class="store reveal">
+            <img class="store-icon" src="icon.png" alt="Travel Inbox のアプリアイコン" width="96" height="96" loading="lazy" />
+            <div class="store-body">
+              <!-- App Store の URL が決まったら href を差し替え、data-app-store-pending を外す。 -->
+              <a class="store-btn" href="#download" data-app-store-pending aria-describedby="store-note">
+                <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
+                <span><small>iPhone 向け</small>App Store でダウンロード</span>
+              </a>
+              <p class="store-note" id="store-note">App Store 公開準備中</p>
+              <p class="store-status" role="status" aria-live="polite" data-store-status></p>
+            </div>
+          </div>
+
+          <div class="cta-art" aria-hidden="true">
+            <span class="shape shape-circle-lg"></span>
+            <span class="shape shape-circle-sm"></span>
+            <svg class="cta-plane" viewBox="0 0 400 320">
+              <defs>
+                <linearGradient id="pw1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf7ef" /><stop offset="1" stop-color="#ebe1d1" /></linearGradient>
+                <linearGradient id="pw2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eee4d4" /><stop offset="1" stop-color="#d9cbb4" /></linearGradient>
+                <filter id="pshadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#5a4a36" flood-opacity=".18" /></filter>
+              </defs>
+              <g filter="url(#pshadow)">
+                <path d="M16 164 384 26 150 206z" fill="url(#pw1)" />
+                <path d="M150 206 384 26 216 296z" fill="url(#pw2)" />
+                <path d="M150 206l22 70 26-32z" fill="#cbbba2" />
+              </g>
+              <path d="M150 206 384 26" stroke="#fff" stroke-width="1.5" opacity=".8" />
+            </svg>
+            <p class="cta-vertical">Small ideas<br />travel far</p>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- ========================================================== FOOTER -->
     <footer class="site-footer">
-      <div class="wrap">
-        <p>© 2026 Travel Inbox</p>
-        <nav aria-label="フッター">
-          <a href="support.html">サポート</a>
-          <a href="privacy.html">プライバシーポリシー</a>
-          <a href="mailto:travel.inbox.support@gmail.com">お問い合わせ</a>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="./" aria-label="Travel Inbox ホーム">
+            <svg class="brand-mark" aria-hidden="true"><use href="#logo" /></svg>
+            <span class="brand-name">Travel Inbox</span>
+          </a>
+          <p>「いつか行きたい」を、行ける日に変える。</p>
+        </div>
+        <nav class="footer-nav" aria-label="フッター">
+          <ul>
+            <li><a href="#features">特徴</a></li>
+            <li><a href="#how">使い方</a></li>
+            <li><a href="#pricing">料金</a></li>
+            <li><a href="#faq">よくある質問</a></li>
+          </ul>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="support.html">サポート</a></li>
+            <li><a href="mailto:travel.inbox.support@gmail.com">お問い合わせ</a></li>
+          </ul>
         </nav>
+        <p class="copyright">© 2026 Travel Inbox</p>
       </div>
     </footer>
   </body>
