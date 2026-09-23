@@ -1,8 +1,7 @@
 /*
  * Travel Inbox — サイトのスタイル。
  *
- * プライバシーポリシー・サポートなど文書ページのスタイル。
- * ランディングページは assets/lp.css。色は LP と同じアイボリーの紙と淡いブルー。
+ * 方向性はアプリ本体（src/constants/theme.ts）と同じ「紙と墨」。
  * 温かみのある紙の地、ほぼ黒の墨、影ではなく罫線と余白。色は
  * 「時間に関わるもの」だけに使う。
  *
@@ -15,21 +14,21 @@
 /* ------------------------------------------------------------------ */
 
 :root {
-  --paper: #f7f3ec;
-  --surface: #fcfaf6;
-  --sunken: #f0eadf;
+  --paper: #faf8f4;
+  --surface: #ffffff;
+  --sunken: #f1eee7;
 
-  --ink: #2b2926;
-  --ink-muted: #4f4b45;
-  --ink-faint: #6f6960;
-  --ink-inverse: #f7f3ec;
+  --ink: #1a1815;
+  --ink-muted: #5c564b;
+  --ink-faint: #706858;
+  --ink-inverse: #faf8f4;
 
-  --rule: #e4ddd1;
-  --rule-strong: #d6cdbf;
+  --rule: #e4dfd4;
+  --rule-strong: #c9c2b4;
 
-  --indigo: #3c5d7b;
-  --indigo-pressed: #2f4a63;
-  --indigo-wash: #d6e4ef;
+  --indigo: #22364f;
+  --indigo-pressed: #16243a;
+  --indigo-wash: #ebeef2;
 
   --vermilion: #b0452f;
   --vermilion-wash: #f8ebe7;
@@ -270,6 +269,337 @@ code {
 .site-footer a:hover {
   color: var(--ink);
   box-shadow: inset 0 -1px 0 currentColor;
+}
+
+/* ------------------------------------------------------------------ */
+/* ヒーロー                                                            */
+/* ------------------------------------------------------------------ */
+
+.hero {
+  padding-block: clamp(3.5rem, 10vw, 7rem) clamp(3rem, 8vw, 5.5rem);
+}
+
+.hero > .wrap {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .hero > .wrap {
+    /* 見出しの「いつか行きたい」を一行に収めたいので、文字側を広く取る。 */
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0 0 1.25rem;
+  text-transform: none;
+}
+
+.hero h1 {
+  /* 狭い画面で「いつか行きたい」が途中で折れない大きさに収める。 */
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  line-height: 1.45;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero .lead {
+  font-size: 1.0625rem;
+  color: var(--ink-muted);
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.65rem 1.4rem;
+  border: 1px solid var(--indigo);
+  border-radius: 4px;
+  background: var(--indigo);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--indigo-pressed);
+  border-color: var(--indigo-pressed);
+}
+
+@media (prefers-color-scheme: dark) {
+  .button {
+    color: var(--ink-inverse);
+  }
+}
+
+.button-quiet {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule-strong);
+}
+
+.button-quiet:hover {
+  background: var(--sunken);
+  border-color: var(--ink-faint);
+  color: var(--ink);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--vermilion);
+}
+
+.hero-note {
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.hero-art {
+  width: 100%;
+  height: auto;
+  max-width: 30rem;
+  margin-inline: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------------ */
+/* セクション                                                          */
+/* ------------------------------------------------------------------ */
+
+.section {
+  padding-block: clamp(3rem, 8vw, 5rem);
+  border-top: 1px solid var(--rule);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0 0 1rem;
+}
+
+.section h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  margin: 0 0 1.25rem;
+}
+
+.section .intro {
+  color: var(--ink-muted);
+  max-width: var(--measure-prose);
+}
+
+/* 「散らばる」— 三つの出どころが一つに集まる図 */
+.scatter {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 45rem) {
+  .scatter {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.scatter li {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.scatter strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.scatter,
+.features {
+  padding: 0;
+  margin-inline: 0;
+}
+
+/* 使い方。番号は明朝体で、並びが順序だと分かるように。 */
+.steps {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  counter-reset: step;
+}
+
+@media (min-width: 45rem) {
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.steps li {
+  list-style: none;
+  counter-increment: step;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.steps li::before {
+  content: counter(step);
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--indigo);
+  margin-bottom: 0.75rem;
+}
+
+.steps strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+/* 特徴。箱で囲まず、罫線で区切る。 */
+.features {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+.feature {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(1.75rem, 4vw, 2.5rem);
+  display: grid;
+  gap: 1rem 2.5rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 45rem) {
+  .feature {
+    grid-template-columns: 3.5rem 1fr;
+  }
+}
+
+.feature .glyph {
+  width: 40px;
+  height: 40px;
+  color: var(--indigo);
+}
+
+.feature h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--ink-muted);
+  max-width: 38rem;
+}
+
+.feature p + p {
+  margin-top: 0.75rem;
+}
+
+/* 記録は自分のもの */
+.promises {
+  display: grid;
+  gap: 1.25rem 2.5rem;
+  grid-template-columns: 1fr;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+@media (min-width: 45rem) {
+  .promises {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.promises li {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+}
+
+/* 印。色だけで意味を持たせない（文章のほうが本体）。 */
+.promises li::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.7em;
+  border: 1px solid var(--moss);
+  background: var(--moss-wash);
+}
+
+.promises strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.closing {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
 }
 
 /* ------------------------------------------------------------------ */
