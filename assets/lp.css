@@ -1341,16 +1341,25 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.35em;
+  gap: 0.5em;
   padding: 1.1em 0.8em 0;
 }
 
+/* 保存元サービスのマーク。ロゴまわりに余白を確保するため、白い円形のバッジに載せる。 */
 .src-dot {
-  padding: 0.2em 0.65em;
-  border-radius: 1em;
-  font-size: 0.72em;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  display: grid;
+  place-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+}
+
+.src-dot svg {
+  width: 1.3em;
+  height: 1.3em;
 }
 
 .fv-shot {
