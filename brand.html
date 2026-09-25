@@ -355,25 +355,20 @@
         font-weight: 600;
       }
 
-      /* 「現状と違う」の印 */
+      /* 「現状と違う」の印。色の意味を借りないよう、墨の地に白文字の判子にする。 */
       .diff {
         display: inline-block;
         margin-left: 6px;
         padding: 0 7px;
         border-radius: var(--radius-sm);
-        background: var(--vermilion-wash);
-        color: var(--vermilion);
+        background: var(--ink);
+        color: var(--ink-inverse);
         font-size: var(--fs-label);
         font-weight: 600;
         line-height: 1.7;
         letter-spacing: 0.04em;
         vertical-align: 0.12em;
         white-space: nowrap;
-      }
-
-      .ok {
-        background: var(--moss-wash);
-        color: var(--moss);
       }
 
       /* ---------------------------------------------------------------- */
@@ -531,6 +526,7 @@
 
       .tint-name {
         margin-top: 10px;
+        color: var(--ink);
         font-family: var(--font-serif);
         font-weight: 600;
         font-size: var(--fs-item-title);
@@ -539,6 +535,7 @@
 
       .tint-hex {
         margin-top: 4px;
+        color: var(--ink-muted);
         font-family: var(--font-mono);
         font-size: 11.5px;
         letter-spacing: 0;
@@ -578,6 +575,167 @@
         background: none;
         padding: 0;
         color: var(--ink-faint);
+      }
+
+      /* 状態とタグ（アプリの StatusBadge / Chip / TagLabel と同じ形） */
+      .specimens {
+        margin-top: 24px;
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 720px) {
+        .specimens {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .specimen {
+        border: 1px solid var(--rule);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        overflow: hidden;
+      }
+
+      .specimen-stage {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        min-height: 96px;
+        padding: 20px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .specimen-body {
+        padding: 12px 16px 16px;
+        font-size: var(--fs-caption);
+        line-height: 1.7;
+        color: var(--ink-muted);
+      }
+
+      .specimen-body b {
+        display: block;
+        margin-bottom: 2px;
+        font-size: var(--fs-body-s);
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .specimen.bad .specimen-body b::before {
+        content: '× ';
+        color: var(--danger);
+      }
+
+      .seal {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 8px;
+        border-radius: var(--radius-sm);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      .seal svg,
+      .meta-status svg {
+        width: 12px;
+        height: 12px;
+        flex: none;
+      }
+
+      .seal-outline {
+        padding: 4px 7px;
+        border: 1px solid var(--rule-strong);
+        color: var(--ink-muted);
+      }
+
+      .seal-planned {
+        background: var(--vermilion);
+        color: var(--ink-inverse);
+      }
+
+      .seal-visited {
+        background: var(--moss);
+        color: var(--ink-inverse);
+      }
+
+      .tag-chip {
+        display: inline-flex;
+        padding: 6px 11px;
+        border: 1px solid var(--rule-strong);
+        border-radius: var(--radius-md);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0.1px;
+        color: var(--ink);
+      }
+
+      .tag-chip.is-selected {
+        background: var(--indigo);
+        border-color: var(--indigo);
+        color: var(--ink-inverse);
+      }
+
+      .hash {
+        color: var(--indigo);
+      }
+
+      .is-selected .hash {
+        color: inherit;
+      }
+
+      .mini-rows {
+        width: 100%;
+        display: grid;
+      }
+
+      .mini-row {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .mini-row:last-child {
+        border-bottom: 0;
+      }
+
+      .mini-title {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 25px;
+        letter-spacing: -0.1px;
+      }
+
+      .mini-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 10px;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0.2px;
+        color: var(--ink-muted);
+      }
+
+      .meta-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .old-badge {
+        display: inline-flex;
+        padding: 5px 8px;
+        border-radius: var(--radius-sm);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
       }
 
       /* 装飾色 */
@@ -628,30 +786,14 @@
       }
 
       .rule-box {
-        padding: 18px 20px 20px;
-        border-radius: var(--radius-lg);
+        padding-top: 14px;
+        border-top: 2px solid var(--ink);
         font-size: var(--fs-body-s);
-      }
-
-      .rule-box.do {
-        background: var(--moss-wash);
-      }
-
-      .rule-box.dont {
-        background: var(--vermilion-wash);
       }
 
       .rule-box h4 {
         margin: 0 0 8px;
         font-size: var(--fs-body-s);
-      }
-
-      .rule-box.do h4 {
-        color: var(--moss);
-      }
-
-      .rule-box.dont h4 {
-        color: var(--vermilion);
       }
 
       .rule-box ul {
@@ -664,14 +806,17 @@
         text-indent: -1.1em;
       }
 
+      /* 色は印（○ ×）だけ。文は墨のまま。 */
       .rule-box.do li::before {
         content: '○ ';
         color: var(--moss);
+        font-weight: 700;
       }
 
       .rule-box.dont li::before {
         content: '× ';
-        color: var(--vermilion);
+        color: var(--danger);
+        font-weight: 700;
       }
 
       /* ---------------------------------------------------------------- */
@@ -812,13 +957,12 @@
         margin-top: 20px;
         padding: 16px 20px;
         border-radius: var(--radius-lg);
-        background: var(--indigo-wash);
+        background: var(--sunken);
         font-size: var(--fs-body-s);
       }
 
       .ask b {
-        color: var(--indigo);
-        font-weight: 600;
+        font-weight: 700;
       }
 
       /* ---------------------------------------------------------------- */
@@ -1122,6 +1266,7 @@
           <li class="sub"><a href="#color-meaning">意味の色</a></li>
           <li class="sub"><a href="#color-tints">アイテムの色</a></li>
           <li class="sub"><a href="#color-sources">出典の色</a></li>
+          <li class="sub"><a href="#color-status">状態とタグ</a></li>
           <li class="sub"><a href="#color-brand">ブランドの装飾色</a></li>
           <li class="sub"><a href="#color-rules">使い方</a></li>
           <li><a href="#type">書体</a></li>
@@ -1271,57 +1416,57 @@
           <h3 id="color-meaning">意味の色</h3>
           <div class="prose">
             <p>
-              それぞれに「本体」「押したとき」「淡い地（wash）」がある。wash の上に本体色の文字を置いても 4.5:1 を超える。<strong>意味と関係ない場所でこの色を使わない。</strong>
+              それぞれに「本体」「押したとき」「淡い地（wash）」がある。本体の上に置く文字は白、wash の上に置く文字は墨か淡墨。<strong>wash の上に同じ色相の濃い文字を置かない</strong>（色どうしが近くて読みにくく、どこにでもある生成っぽいバッジに見える）。意味と関係ない場所でこの色を使わない。
             </p>
           </div>
           <div class="swatches">
             <div class="swatch">
               <div class="pair">
                 <div class="chip" style="background: #3d6891; color: #fff">藍</div>
-                <div class="chip" style="background: #e7eef6; color: #3d6891">wash</div>
+                <div class="chip" style="background: #e7eef6; color: var(--ink)">wash</div>
               </div>
               <div class="swatch-body">
                 <p class="swatch-name">藍 indigo — 押せる</p>
                 <p class="swatch-hex">#3D6891 ／ 押下 #2C5178 ／ #E7EEF6</p>
-                <p class="swatch-use">ボタン、リンク、選択中のタブ・日付、地図のピン、フォーカスリング。</p>
-                <p class="swatch-cr">紙 5.5 : 1 ／ 白文字 5.9 : 1 ／ wash 5.0 : 1</p>
+                <p class="swatch-use">ボタン、リンク、選択中のタブ・日付・チップ、地図のピン、フォーカスリング、タグの「#」。wash は旅行の期間やバナーの地。</p>
+                <p class="swatch-cr">紙 5.5 : 1 ／ 白文字 5.9 : 1 ／ wash の上の墨 15.1 : 1</p>
                 <p class="swatch-cr">LP は現在 #4C7294（沈みの上で 4.4 : 1、AA 未満） <span class="diff">現状と違う</span></p>
               </div>
             </div>
             <div class="swatch">
               <div class="pair">
                 <div class="chip" style="background: #b44431; color: #fff">朱</div>
-                <div class="chip" style="background: #fbeae5; color: #b44431">wash</div>
+                <div class="chip" style="background: #fbeae5; color: var(--ink)">wash</div>
               </div>
               <div class="swatch-body">
                 <p class="swatch-name">朱 vermilion — 日付がある</p>
                 <p class="swatch-hex">#B44431 ／ #FBEAE5</p>
-                <p class="swatch-use">「行く予定」、開催日・残り日数、日曜。「必須」の印。</p>
-                <p class="swatch-cr">紙 5.2 : 1 ／ 白文字 5.5 : 1 ／ wash 4.7 : 1</p>
+                <p class="swatch-use">「行く予定」の判子、開催日・残り日数、日曜。「必須」の印。wash はお知らせの地（文字は淡墨）。</p>
+                <p class="swatch-cr">紙 5.2 : 1 ／ 白文字 5.5 : 1 ／ wash の上の墨 15.2 : 1</p>
               </div>
             </div>
             <div class="swatch">
               <div class="pair">
                 <div class="chip" style="background: #3d7556; color: #fff">苔</div>
-                <div class="chip" style="background: #e6f1ea; color: #3d7556">wash</div>
+                <div class="chip" style="background: #e6f1ea; color: var(--ink)">wash</div>
               </div>
               <div class="swatch-body">
                 <p class="swatch-name">苔 moss — 行った</p>
                 <p class="swatch-hex">#3D7556 ／ 押下 #2D5C42 ／ #E6F1EA</p>
-                <p class="swatch-use">「行った」の印、地図の訪問済みピン。</p>
-                <p class="swatch-cr">紙 5.1 : 1 ／ 白文字 5.4 : 1 ／ wash 4.7 : 1</p>
+                <p class="swatch-use">「行った」の判子、地図の訪問済みピン。</p>
+                <p class="swatch-cr">紙 5.1 : 1 ／ 白文字 5.4 : 1 ／ wash の上の墨 15.3 : 1</p>
               </div>
             </div>
             <div class="swatch">
               <div class="pair">
                 <div class="chip" style="background: #a33a28; color: #fff">警</div>
-                <div class="chip" style="background: #f8eae7; color: #a33a28">wash</div>
+                <div class="chip" style="background: #f8eae7; color: var(--ink)">wash</div>
               </div>
               <div class="swatch-body">
                 <p class="swatch-name">警告 danger</p>
                 <p class="swatch-hex">#A33A28 ／ #F8EAE7</p>
                 <p class="swatch-use">削除、エラー。朱と似ているので、必ず文言と一緒に。</p>
-                <p class="swatch-cr">紙 6.2 : 1 ／ wash 5.6 : 1</p>
+                <p class="swatch-cr">紙 6.2 : 1 ／ wash の上の墨 15.1 : 1</p>
               </div>
             </div>
           </div>
@@ -1340,44 +1485,44 @@
           <div class="tints">
             <div class="tint" style="background: #e5eff8">
               <div class="tint-glyph" style="color: #3a6a99; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s6.5-6.1 6.5-11a6.5 6.5 0 1 0-13 0c0 4.9 6.5 11 6.5 11Z" /><circle cx="12" cy="10" r="2.4" /></svg></div>
-              <p class="tint-name" style="color: #3a6a99">空</p>
-              <p class="tint-hex" style="color: #3a6a99">#E5EFF8 / #3A6A99<br />bar #8AB0D6</p>
+              <p class="tint-name">空</p>
+              <p class="tint-hex">#E5EFF8 / #3A6A99<br />bar #8AB0D6</p>
               <div class="tint-bar" style="background: #8ab0d6"></div>
             </div>
             <div class="tint" style="background: #fbe9ec">
               <div class="tint-glyph" style="color: #a8475f; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5zM17 9.5h1.5a2.5 2.5 0 0 1 0 5H17" /></svg></div>
-              <p class="tint-name" style="color: #a8475f">桜</p>
-              <p class="tint-hex" style="color: #a8475f">#FBE9EC / #A8475F<br />bar #E3A0B0</p>
+              <p class="tint-name">桜</p>
+              <p class="tint-hex">#FBE9EC / #A8475F<br />bar #E3A0B0</p>
               <div class="tint-bar" style="background: #e3a0b0"></div>
             </div>
             <div class="tint" style="background: #e7f1e5">
               <div class="tint-glyph" style="color: #467443; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="15.5" rx="2" /><path d="M3.5 9.5h17M8 3v4M16 3v4" /></svg></div>
-              <p class="tint-name" style="color: #467443">抹茶</p>
-              <p class="tint-hex" style="color: #467443">#E7F1E5 / #467443<br />bar #9CC596</p>
+              <p class="tint-name">抹茶</p>
+              <p class="tint-hex">#E7F1E5 / #467443<br />bar #9CC596</p>
               <div class="tint-bar" style="background: #9cc596"></div>
             </div>
             <div class="tint" style="background: #faf0db">
               <div class="tint-glyph" style="color: #8e6317; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11.2V5.5A1.5 1.5 0 0 1 5.5 4h5.7a2 2 0 0 1 1.4.6l7 7a2 2 0 0 1 0 2.8l-5.2 5.2a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1-.6-1.4Z" /><circle cx="8.2" cy="8.2" r="1.4" /></svg></div>
-              <p class="tint-name" style="color: #8e6317">山吹</p>
-              <p class="tint-hex" style="color: #8e6317">#FAF0DB / #8E6317<br />bar #E0B872</p>
+              <p class="tint-name">山吹</p>
+              <p class="tint-hex">#FAF0DB / #8E6317<br />bar #E0B872</p>
               <div class="tint-bar" style="background: #e0b872"></div>
             </div>
             <div class="tint" style="background: #efeaf8">
               <div class="tint-glyph" style="color: #6a579c; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></svg></div>
-              <p class="tint-name" style="color: #6a579c">藤</p>
-              <p class="tint-hex" style="color: #6a579c">#EFEAF8 / #6A579C<br />bar #B2A3DB</p>
+              <p class="tint-name">藤</p>
+              <p class="tint-hex">#EFEAF8 / #6A579C<br />bar #B2A3DB</p>
               <div class="tint-bar" style="background: #b2a3db"></div>
             </div>
             <div class="tint" style="background: #fcebe3">
               <div class="tint-glyph" style="color: #a34e31; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3.5 6.5 5.5-2.5 6 2.5 5.5-2.5v13.5l-5.5 2.5-6-2.5-5.5 2.5zM9 4v13.5M15 6.5V20" /></svg></div>
-              <p class="tint-name" style="color: #a34e31">珊瑚</p>
-              <p class="tint-hex" style="color: #a34e31">#FCEBE3 / #A34E31<br />bar #EDA88C</p>
+              <p class="tint-name">珊瑚</p>
+              <p class="tint-hex">#FCEBE3 / #A34E31<br />bar #EDA88C</p>
               <div class="tint-bar" style="background: #eda88c"></div>
             </div>
           </div>
           <div class="prose">
             <p class="muted">
-              wash の上の ink は 4.7〜5.1 : 1、ink の上の白文字は 5.3 : 1 以上。bar は線や縁のための色で、文字には使わない。
+              ink はグリフ（アイコン）と旅程の日ごとの色のための色で、wash の上の ink は 4.7〜5.1 : 1、ink の地に白文字は 5.3 : 1 以上。wash の上に文字を置くときは墨にする。bar は線や縁のための色で、文字には使わない。
             </p>
           </div>
 
@@ -1395,6 +1540,79 @@
             <span class="source"><i style="background: #35649a"></i>Web <code>#35649A</code></span>
             <span class="source"><i style="background: #86561b"></i>手入力 <code>#86561B</code></span>
             <span class="source"><i style="background: #5c564b"></i>その他 <code>#5C564B</code></span>
+          </div>
+
+          <h3 id="color-status">状態とタグ</h3>
+          <div class="prose">
+            <p>
+              色の使い方がいちばん表に出るところなので、形まで決めておく。考え方は2つ。<strong>決まった状態は、本体色の地に白文字の判子で押す。</strong><strong>ふつうのもの・たくさん並ぶものは、線と墨の文字にして、色は小さな印にだけつける。</strong>
+            </p>
+          </div>
+          <div class="specimens">
+            <div class="specimen">
+              <div class="specimen-stage">
+                <span class="seal seal-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></svg>行きたい</span>
+                <span class="seal seal-planned"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></svg>行く予定</span>
+                <span class="seal seal-visited"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>行った</span>
+              </div>
+              <div class="specimen-body">
+                <b>状態の判子（詳細画面）</b>行く予定は朱、行ったは苔の地に白文字（5.5 : 1 と 5.4 : 1）。ほとんどのアイテムがそうである「行きたい」は、濃い罫の線と淡墨の文字だけ。アイコンと文字を必ず両方つける。
+              </div>
+            </div>
+            <div class="specimen">
+              <div class="specimen-stage">
+                <div class="mini-rows">
+                  <div class="mini-row">
+                    <p class="mini-title">東京デザイン展</p>
+                    <p class="mini-meta"><span class="meta-status" style="color: var(--vermilion)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></svg>行く予定</span><span>Web · 昨日</span></p>
+                  </div>
+                  <div class="mini-row">
+                    <p class="mini-title">谷中の古民家カフェ</p>
+                    <p class="mini-meta"><span class="meta-status" style="color: var(--moss)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm4.6 7.1-5.4 5.8a.9.9 0 0 1-1.3 0l-2.5-2.6a.9.9 0 1 1 1.3-1.3l1.8 1.9 4.8-5.1a.9.9 0 1 1 1.3 1.3Z" /></svg>行った</span><span>Instagram · 今日</span></p>
+                  </div>
+                  <div class="mini-row">
+                    <p class="mini-title">神宮外苑いちょう祭り</p>
+                    <p class="mini-meta"><span>Instagram · 今日</span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="specimen-body">
+                <b>一覧の行の中の状態</b>行の中では地をつけず、アイコンと文字を本体色で紙の上に置く。「行きたい」は何も出さない。どの行にも出る印は、何も伝えないから。
+              </div>
+            </div>
+            <div class="specimen">
+              <div class="specimen-stage">
+                <span class="tag-chip"><span class="hash">#</span>次の旅行</span>
+                <span class="tag-chip"><span class="hash">#</span>カフェ</span>
+                <span class="tag-chip is-selected"><span class="hash">#</span>紅葉</span>
+              </div>
+              <div class="specimen-body">
+                <b>タグのチップ（詳細・編集・絞り込み）</b>濃い罫の線に、名前は墨、「#」だけ藍。選択中は藍の地に白文字。タグはどれも利用者がつくったものなので、全部同じ見た目にする。
+              </div>
+            </div>
+            <div class="specimen">
+              <div class="specimen-stage">
+                <div class="mini-rows">
+                  <div class="mini-row">
+                    <p class="mini-title">夏祭りの花火大会</p>
+                    <p class="mini-meta"><span>X · 昨日</span><span><span class="hash">#</span>次の旅行</span><span><span class="hash">#</span>夏</span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="specimen-body">
+                <b>行の中のタグ</b>出典の名前と同じ扱い。「#」だけ藍で、名前は淡墨。
+              </div>
+            </div>
+            <div class="specimen bad">
+              <div class="specimen-stage">
+                <span class="old-badge" style="background: var(--vermilion-wash); color: var(--vermilion)">行く予定</span>
+                <span class="old-badge" style="background: var(--moss-wash); color: var(--moss)">行った</span>
+                <span class="old-badge" style="background: var(--indigo-wash); color: var(--indigo)">#次の旅行</span>
+              </div>
+              <div class="specimen-body">
+                <b>淡い地に、同じ色相の濃い文字</b>数値では 4.5 : 1 を超えていても、地と文字の色が近くて読みにくく、どのアプリにもある生成っぽいバッジに見える。状態にもタグにもお知らせにも使わない。
+              </div>
+            </div>
           </div>
 
           <h3 id="color-brand">ブランドの装飾色</h3>
@@ -1476,6 +1694,7 @@
               <h4>こうする</h4>
               <ul>
                 <li>文字は墨・淡墨・薄墨の3段だけ。薄墨より薄い文字はつくらない</li>
+                <li>本体色の地には白文字、wash や沈みの地には墨か淡墨の文字</li>
                 <li>色を変えるときは、必ず文言やアイコンでも同じことを伝える</li>
                 <li>画面では色をトークン名で指定する（App は <code>colors.*</code>、Web は <code>var(--*)</code>）</li>
                 <li>ライトテーマだけが正式。アプリは <code>userInterfaceStyle: 'light'</code></li>
@@ -1484,6 +1703,7 @@
             <div class="rule-box dont">
               <h4>こうしない</h4>
               <ul>
+                <li>淡い地（wash）に、同じ色相の濃い文字を置く</li>
                 <li>藍を「きれいだから」見出しや飾りに使う（押せるように見える）</li>
                 <li>アイテムの色や出典の色で、状態（行った・行く予定）を表す</li>
                 <li>装飾色（空色・紙飛行機）を文字やボタンに使う</li>
@@ -1714,7 +1934,7 @@
                 <span class="spec">ゴシック 600 ／ 12 / 16 ／ +0.2</span>
                 <p class="step-use">チップ、タグ、入力欄の項目名、曜日、「すべて →」。本文での最小サイズ</p>
               </div>
-              <div class="phone-col"><p class="sample a-label"><span style="color: var(--vermilion)">行く予定</span>　<span style="color: var(--indigo)">#次の旅行</span>　<span style="color: var(--ink-faint)">9月</span></p></div>
+              <div class="phone-col"><p class="sample a-label"><span style="color: var(--vermilion)">行く予定</span>　<span style="color: var(--ink-muted)"><span class="hash">#</span>次の旅行</span>　<span style="color: var(--ink-faint)">9月</span></p></div>
             </div>
             <div class="step">
               <div class="step-meta">
@@ -1970,8 +2190,12 @@
               <span class="where">src/app/(tabs)/index.tsx:125</span>
             </li>
             <li>
-              <b>theme.ts のコメントのコントラスト値を直す。</b>ink / paper は実測 16.7 : 1（コメントは 17.1）。
-              <span class="where">src/constants/theme.ts:28</span>
+              <b>ホームの「もうすぐ終了」を、朱の wash に朱の文字で置くのをやめる。</b>地を外して、「あと5日」と同じく朱のアイコンと文字だけにする。
+              <span class="where">src/components/home/HomeRows.tsx:159・240</span>
+            </li>
+            <li>
+              <b>theme.ts のコメントを直す。</b>ink / paper は実測 16.7 : 1（コメントは 17.1）。「各 wash の上に同じ色相の文字を置いても 4.5 : 1」という記述と、<code>Tint.ink</code> の「wash の上の文字」という説明は、この形を勧めて見えるので、wash の上の文字は墨と書き換える。
+              <span class="where">src/constants/theme.ts:26–31・86</span>
             </li>
           </ol>
 
