@@ -845,34 +845,44 @@ input {
 }
 
 .src {
-  display: inline-block;
+  /*
+   * 出典はアプリと同じ形：色は小さな印だけで、名前は淡墨のまま。
+   * 淡い地に同じ色相の文字を置かない（brand.html の「状態とタグ」）。
+   */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
   margin-top: 0.3em;
-  padding: 0.1em 0.6em;
-  border-radius: 1em;
   font-size: 0.75em;
   font-style: normal;
-  background: var(--sunken);
+  font-weight: 600;
   color: var(--ink-muted);
 }
 
+.src::before {
+  content: '';
+  flex: none;
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  background: var(--src-color, var(--ink-faint));
+}
+
+/* 出典の色（brand.html・アプリの sourceColors と同じ値） */
 .src-ig {
-  background: #f6e4e3;
-  color: #8d4b52;
+  --src-color: #ae3a60;
 }
 
 .src-gm {
-  background: #e2ece0;
-  color: #476445;
+  --src-color: #2e7449;
 }
 
 .src-web {
-  background: #e3ebf3;
-  color: #3f5f7d;
+  --src-color: #35649a;
 }
 
 .src-x {
-  background: #e8e6e3;
-  color: #3a3835;
+  --src-color: #3a3833;
 }
 
 .fav {
@@ -1479,12 +1489,19 @@ input {
 }
 
 .fv-tags i {
+  /* アプリのタグのチップと同じ：濃い罫の線に墨の名前、「#」だけ藍。 */
   padding: 0.15em 0.6em;
-  border-radius: 1em;
-  background: var(--powder);
-  color: var(--indigo);
+  border: 1px solid var(--rule-strong);
+  border-radius: 0.5em;
+  color: var(--ink);
   font-size: 0.72em;
   font-style: normal;
+  font-weight: 600;
+}
+
+.fv-tags b {
+  font-weight: inherit;
+  color: var(--indigo);
 }
 
 /* 03 map */
