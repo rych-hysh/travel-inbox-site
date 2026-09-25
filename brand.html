@@ -1,0 +1,2281 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ブランドデザイン — Travel Inbox</title>
+    <meta name="description" content="Travel Inbox のアプリと Web に共通するデザインの決まりごと。色、書体、文字サイズ、余白。" />
+    <!-- 直接 URL を開くためのページ。どこからもリンクせず、検索にも出さない。 -->
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#FAF8F4" />
+    <link rel="icon" href="icon.png" />
+
+    <style>
+      /*
+       * このページのスタイルは、ページ自身が説明している「あるべき」トークンだけで書く。
+       * styles.css / assets/lp.css は現状の値なので読み込まない。
+       */
+      :root {
+        /* 地と墨 */
+        --paper: #faf8f4;
+        --surface: #ffffff;
+        --sunken: #f2eee6;
+        --ink: #1a1815;
+        --ink-muted: #5c564b;
+        --ink-faint: #706858;
+        --ink-inverse: #ffffff;
+        --rule: #e8e3d9;
+        --rule-strong: #cfc8ba;
+
+        /* 意味の色 */
+        --indigo: #3d6891;
+        --indigo-pressed: #2c5178;
+        --indigo-wash: #e7eef6;
+        --vermilion: #b44431;
+        --vermilion-wash: #fbeae5;
+        --moss: #3d7556;
+        --moss-wash: #e6f1ea;
+        --danger: #a33a28;
+        --danger-wash: #f8eae7;
+
+        /* ブランドの装飾色（アイコン由来） */
+        --powder: #d6e4ef;
+        --powder-deep: #a8c4dc;
+        --sky-line: #7fa3c4;
+        --kraft-light: #f3ece0;
+        --kraft: #e3d6c2;
+        --kraft-deep: #cdbda3;
+        --kraft-line: #8f7f67;
+
+        --font-serif: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', 'Noto Serif CJK JP', serif;
+        --font-sans: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', 'Yu Gothic',
+          YuGothic, Meiryo, system-ui, sans-serif;
+        --font-latin: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+        --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+        /* Web の文字サイズ */
+        --fs-hero: clamp(34px, 3.9vw, 56px);
+        --fs-display: clamp(26px, 2.4vw, 34px);
+        --fs-title: 22px;
+        --fs-item-title: 17px;
+        --fs-heading: 16px;
+        --fs-body: 16px;
+        --fs-button: 15px;
+        --fs-body-s: 14px;
+        --fs-caption: 13px;
+        --fs-label: 12px;
+
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-xl: 16px;
+
+        --shadow-card: 0 1px 2px rgb(74 60 42 / 0.06), 0 4px 14px rgb(74 60 42 / 0.05);
+
+        --gutter: clamp(16px, 4vw, 48px);
+        color-scheme: light;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+        scroll-padding-top: 24px;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-size: var(--fs-body);
+        line-height: 1.85;
+        letter-spacing: 0.02em;
+        -webkit-font-smoothing: antialiased;
+        line-break: strict;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      ul,
+      ol,
+      figure,
+      dl,
+      dd {
+        margin: 0;
+      }
+
+      ul,
+      ol {
+        padding: 0;
+        list-style: none;
+      }
+
+      a {
+        color: var(--indigo);
+        text-underline-offset: 0.25em;
+        text-decoration-color: var(--rule-strong);
+      }
+
+      a:hover {
+        text-decoration-color: currentColor;
+      }
+
+      code {
+        font-family: var(--font-mono);
+        font-size: 0.86em;
+        background: var(--sunken);
+        padding: 0.1em 0.35em;
+        border-radius: var(--radius-sm);
+        letter-spacing: 0;
+        overflow-wrap: anywhere;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--indigo);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /* レイアウト                                                        */
+      /* ---------------------------------------------------------------- */
+
+      .page {
+        max-width: 1180px;
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+      }
+
+      .masthead {
+        padding-block: clamp(48px, 7vw, 88px) clamp(32px, 4vw, 48px);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .wordmark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-latin);
+        font-size: 21px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+      }
+
+      .wordmark svg {
+        width: 36px;
+        height: 29px;
+      }
+
+      .eyebrow-en {
+        margin-top: 40px;
+        font-family: var(--font-latin);
+        font-size: var(--fs-label);
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+
+      .masthead h1 {
+        margin-top: 12px;
+        font-family: var(--font-serif);
+        font-weight: 400;
+        font-size: var(--fs-hero);
+        line-height: 1.42;
+        letter-spacing: 0.04em;
+        font-feature-settings: 'palt' 1;
+      }
+
+      .masthead .lead {
+        margin-top: 20px;
+        max-width: 40em;
+        color: var(--ink-muted);
+      }
+
+      .meta-line {
+        margin-top: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        font-size: var(--fs-caption);
+        color: var(--ink-faint);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 48px;
+        padding-block: 48px 120px;
+      }
+
+      @media (min-width: 1000px) {
+        .layout {
+          grid-template-columns: 200px minmax(0, 1fr);
+          gap: 64px;
+        }
+      }
+
+      .toc {
+        font-size: var(--fs-body-s);
+      }
+
+      @media (min-width: 1000px) {
+        .toc {
+          position: sticky;
+          top: 24px;
+          align-self: start;
+          max-height: calc(100vh - 48px);
+          overflow: auto;
+        }
+      }
+
+      .toc-title {
+        font-weight: 700;
+        font-size: var(--fs-caption);
+        color: var(--ink-faint);
+        margin-bottom: 8px;
+      }
+
+      .toc ol {
+        border-left: 1px solid var(--rule);
+      }
+
+      .toc a {
+        display: block;
+        padding: 5px 0 5px 14px;
+        color: var(--ink-muted);
+        text-decoration: none;
+        line-height: 1.5;
+      }
+
+      .toc a:hover {
+        color: var(--indigo);
+      }
+
+      .toc .sub a {
+        padding-left: 26px;
+        font-size: var(--fs-caption);
+      }
+
+      /* ---------------------------------------------------------------- */
+      /* 見出しと本文（このページ自身もガイドラインどおり）                */
+      /* ---------------------------------------------------------------- */
+
+      section.chapter {
+        padding-top: 56px;
+      }
+
+      section.chapter:first-child {
+        padding-top: 0;
+      }
+
+      section.chapter + section.chapter {
+        margin-top: 56px;
+        border-top: 1px solid var(--rule);
+      }
+
+      .chapter-num {
+        font-family: var(--font-latin);
+        font-size: var(--fs-label);
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+
+      h2 {
+        margin-top: 8px;
+        font-family: var(--font-serif);
+        font-weight: 400;
+        font-size: var(--fs-display);
+        line-height: 1.55;
+        letter-spacing: 0.04em;
+        font-feature-settings: 'palt' 1;
+      }
+
+      h3 {
+        margin-top: 48px;
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: var(--fs-title);
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+      }
+
+      h4 {
+        margin-top: 32px;
+        font-weight: 700;
+        font-size: var(--fs-heading);
+        line-height: 1.6;
+      }
+
+      .prose > * + * {
+        margin-top: 1em;
+      }
+
+      .prose {
+        max-width: 44em;
+        margin-top: 16px;
+      }
+
+      .prose ul {
+        display: grid;
+        gap: 6px;
+      }
+
+      .prose ul li {
+        position: relative;
+        padding-left: 1.1em;
+      }
+
+      .prose ul li::before {
+        content: '';
+        position: absolute;
+        left: 0.2em;
+        top: 0.8em;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--rule-strong);
+      }
+
+      .muted {
+        color: var(--ink-muted);
+      }
+
+      strong {
+        font-weight: 600;
+      }
+
+      /* 「現状と違う」の印。色の意味を借りないよう、墨の地に白文字の判子にする。 */
+      .diff {
+        display: inline-block;
+        margin-left: 6px;
+        padding: 0 7px;
+        border-radius: var(--radius-sm);
+        background: var(--ink);
+        color: var(--ink-inverse);
+        font-size: var(--fs-label);
+        font-weight: 600;
+        line-height: 1.7;
+        letter-spacing: 0.04em;
+        vertical-align: 0.12em;
+        white-space: nowrap;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /* 原則                                                              */
+      /* ---------------------------------------------------------------- */
+
+      .principles {
+        margin-top: 28px;
+        display: grid;
+        gap: 1px;
+        background: var(--rule);
+        border-block: 1px solid var(--rule);
+      }
+
+      @media (min-width: 720px) {
+        .principles {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .principle {
+        background: var(--paper);
+        padding: 24px 24px 28px 0;
+      }
+
+      @media (min-width: 720px) {
+        .principle:nth-child(even) {
+          padding-left: 28px;
+          padding-right: 0;
+        }
+      }
+
+      .principle-num {
+        font-family: var(--font-latin);
+        font-size: 15px;
+        color: var(--sky-line);
+      }
+
+      .principle h3 {
+        margin-top: 4px;
+        font-size: var(--fs-item-title);
+        line-height: 1.6;
+        letter-spacing: 0.02em;
+      }
+
+      .principle p {
+        margin-top: 8px;
+        font-size: var(--fs-body-s);
+        color: var(--ink-muted);
+      }
+
+      /* ---------------------------------------------------------------- */
+      /* 色見本                                                            */
+      /* ---------------------------------------------------------------- */
+
+      .swatches {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+      }
+
+      .swatch {
+        border: 1px solid var(--rule);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        overflow: hidden;
+      }
+
+      .chip {
+        height: 76px;
+        display: flex;
+        align-items: flex-end;
+        padding: 10px 12px;
+        font-size: var(--fs-caption);
+        font-weight: 600;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .swatch-body {
+        padding: 10px 12px 12px;
+        font-size: var(--fs-caption);
+        line-height: 1.6;
+      }
+
+      .swatch-name {
+        font-weight: 600;
+        font-size: var(--fs-body-s);
+        color: var(--ink);
+      }
+
+      .swatch-hex {
+        font-family: var(--font-mono);
+        font-size: var(--fs-label);
+        letter-spacing: 0;
+        color: var(--ink-muted);
+      }
+
+      .swatch-tokens {
+        margin-top: 6px;
+        color: var(--ink-faint);
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0;
+        line-height: 1.55;
+      }
+
+      .swatch-use {
+        margin-top: 6px;
+        color: var(--ink-muted);
+      }
+
+      .swatch-cr {
+        margin-top: 6px;
+        font-size: var(--fs-label);
+        color: var(--ink-faint);
+      }
+
+      /* 意味の色：本体と wash を並べる */
+      .pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pair .chip {
+        height: 64px;
+      }
+
+      /* アイテムの色 */
+      .tints {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+      }
+
+      .tint {
+        border-radius: var(--radius-lg);
+        padding: 14px;
+        border: 1px solid transparent;
+      }
+
+      .tint-glyph {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-md);
+        display: grid;
+        place-items: center;
+      }
+
+      .tint-glyph svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .tint-name {
+        margin-top: 10px;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: var(--fs-item-title);
+        line-height: 1.5;
+      }
+
+      .tint-hex {
+        margin-top: 4px;
+        color: var(--ink-muted);
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0;
+        line-height: 1.6;
+      }
+
+      .tint-bar {
+        margin-top: 10px;
+        height: 4px;
+        border-radius: 2px;
+      }
+
+      /* 出典の色 */
+      .sources {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 22px;
+      }
+
+      .source {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: var(--fs-body-s);
+      }
+
+      .source i {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        flex: none;
+      }
+
+      .source code {
+        font-size: 11.5px;
+        background: none;
+        padding: 0;
+        color: var(--ink-faint);
+      }
+
+      /* 状態とタグ（アプリの StatusBadge / Chip / TagLabel と同じ形） */
+      .specimens {
+        margin-top: 24px;
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 720px) {
+        .specimens {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .specimen {
+        border: 1px solid var(--rule);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        overflow: hidden;
+      }
+
+      .specimen-stage {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        min-height: 96px;
+        padding: 20px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .specimen-body {
+        padding: 12px 16px 16px;
+        font-size: var(--fs-caption);
+        line-height: 1.7;
+        color: var(--ink-muted);
+      }
+
+      .specimen-body b {
+        display: block;
+        margin-bottom: 2px;
+        font-size: var(--fs-body-s);
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .specimen.bad .specimen-body b::before {
+        content: '× ';
+        color: var(--danger);
+      }
+
+      .seal {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 8px;
+        border-radius: var(--radius-sm);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      .seal svg,
+      .meta-status svg {
+        width: 12px;
+        height: 12px;
+        flex: none;
+      }
+
+      .seal-outline {
+        padding: 4px 7px;
+        border: 1px solid var(--rule-strong);
+        color: var(--ink-muted);
+      }
+
+      .seal-planned {
+        background: var(--vermilion);
+        color: var(--ink-inverse);
+      }
+
+      .seal-visited {
+        background: var(--moss);
+        color: var(--ink-inverse);
+      }
+
+      .tag-chip {
+        display: inline-flex;
+        padding: 6px 11px;
+        border: 1px solid var(--rule-strong);
+        border-radius: var(--radius-md);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0.1px;
+        color: var(--ink);
+      }
+
+      .tag-chip.is-selected {
+        background: var(--indigo);
+        border-color: var(--indigo);
+        color: var(--ink-inverse);
+      }
+
+      .hash {
+        color: var(--indigo);
+      }
+
+      .is-selected .hash {
+        color: inherit;
+      }
+
+      .mini-rows {
+        width: 100%;
+        display: grid;
+      }
+
+      .mini-row {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .mini-row:last-child {
+        border-bottom: 0;
+      }
+
+      .mini-title {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 25px;
+        letter-spacing: -0.1px;
+      }
+
+      .mini-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 10px;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0.2px;
+        color: var(--ink-muted);
+      }
+
+      .meta-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .old-badge {
+        display: inline-flex;
+        padding: 5px 8px;
+        border-radius: var(--radius-sm);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+      }
+
+      /* 装飾色 */
+      .brand-art {
+        margin-top: 24px;
+        display: grid;
+        gap: 24px;
+        align-items: center;
+        padding: 24px;
+        border: 1px solid var(--rule);
+        border-radius: var(--radius-xl);
+        background: var(--surface);
+      }
+
+      @media (min-width: 720px) {
+        .brand-art {
+          grid-template-columns: 180px minmax(0, 1fr);
+        }
+      }
+
+      .brand-art img {
+        width: 180px;
+        height: 180px;
+        border-radius: 40px;
+        box-shadow: var(--shadow-card);
+      }
+
+      .brand-art .swatches {
+        margin-top: 0;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+
+      .brand-art .chip {
+        height: 52px;
+      }
+
+      /* Do / Don't */
+      .rules {
+        margin-top: 24px;
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 720px) {
+        .rules {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .rule-box {
+        padding-top: 14px;
+        border-top: 2px solid var(--ink);
+        font-size: var(--fs-body-s);
+      }
+
+      .rule-box h4 {
+        margin: 0 0 8px;
+        font-size: var(--fs-body-s);
+      }
+
+      .rule-box ul {
+        display: grid;
+        gap: 6px;
+      }
+
+      .rule-box li {
+        padding-left: 1.1em;
+        text-indent: -1.1em;
+      }
+
+      /* 色は印（○ ×）だけ。文は墨のまま。 */
+      .rule-box.do li::before {
+        content: '○ ';
+        color: var(--moss);
+        font-weight: 700;
+      }
+
+      .rule-box.dont li::before {
+        content: '× ';
+        color: var(--danger);
+        font-weight: 700;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /* 書体                                                              */
+      /* ---------------------------------------------------------------- */
+
+      .faces {
+        margin-top: 24px;
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 860px) {
+        .faces {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+
+      .face {
+        border: 1px solid var(--rule);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        padding: 20px 20px 22px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .face-role {
+        font-size: var(--fs-label);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--indigo);
+      }
+
+      .face-sample {
+        margin-top: 12px;
+        font-size: 40px;
+        line-height: 1.3;
+        color: var(--ink);
+      }
+
+      .face-name {
+        margin-top: 12px;
+        font-weight: 700;
+        font-size: var(--fs-heading);
+      }
+
+      .face p {
+        margin-top: 6px;
+        font-size: var(--fs-body-s);
+        color: var(--ink-muted);
+      }
+
+      .face dl {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 4px 12px;
+        font-size: var(--fs-label);
+        line-height: 1.6;
+      }
+
+      .face dt {
+        color: var(--ink-faint);
+        font-weight: 600;
+      }
+
+      .face dd {
+        font-family: var(--font-mono);
+        letter-spacing: 0;
+        color: var(--ink-muted);
+        overflow-wrap: anywhere;
+      }
+
+      .serif {
+        font-family: var(--font-serif);
+      }
+
+      .latin {
+        font-family: var(--font-latin);
+      }
+
+      /* 明朝かゴシックか */
+      .choose {
+        margin-top: 24px;
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 720px) {
+        .choose {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .choose-col {
+        border-top: 2px solid var(--ink);
+        padding-top: 16px;
+      }
+
+      .choose-col h4 {
+        margin: 0;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+
+      .choose-col h4 .big {
+        font-size: 28px;
+        line-height: 1;
+        font-weight: 600;
+      }
+
+      .choose-col ul {
+        margin-top: 12px;
+        display: grid;
+      }
+
+      .choose-col li {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--rule);
+        font-size: var(--fs-body-s);
+      }
+
+      .choose-col li b {
+        display: block;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .choose-col li span {
+        color: var(--ink-muted);
+      }
+
+      .ask {
+        margin-top: 20px;
+        padding: 16px 20px;
+        border-radius: var(--radius-lg);
+        background: var(--sunken);
+        font-size: var(--fs-body-s);
+      }
+
+      .ask b {
+        font-weight: 700;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /* 表                                                                */
+      /* ---------------------------------------------------------------- */
+
+      .table-wrap {
+        margin-top: 20px;
+        overflow-x: auto;
+        border: 1px solid var(--rule);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--fs-body-s);
+        line-height: 1.6;
+      }
+
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      th {
+        font-size: var(--fs-label);
+        font-weight: 600;
+        color: var(--ink-faint);
+        background: var(--sunken);
+        white-space: nowrap;
+      }
+
+      td:first-child {
+        white-space: nowrap;
+      }
+
+      td.num {
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+      td code {
+        white-space: nowrap;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /* 文字サイズの見本                                                  */
+      /* ---------------------------------------------------------------- */
+
+      .scale {
+        margin-top: 24px;
+        border-top: 1px solid var(--rule);
+      }
+
+      .step {
+        display: grid;
+        gap: 6px 24px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      @media (min-width: 760px) {
+        .step {
+          grid-template-columns: 230px minmax(0, 1fr);
+          align-items: baseline;
+        }
+      }
+
+      .step-meta {
+        font-size: var(--fs-label);
+        line-height: 1.6;
+        color: var(--ink-faint);
+      }
+
+      .step-meta b {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: var(--fs-body-s);
+        font-weight: 600;
+        letter-spacing: 0;
+        color: var(--ink);
+      }
+
+      .step-meta .spec {
+        display: block;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .step-meta .diff {
+        margin: 2px 0 4px;
+      }
+
+      .step-use {
+        margin-top: 4px;
+        font-size: var(--fs-label);
+        color: var(--ink-muted);
+      }
+
+      .sample {
+        color: var(--ink);
+        overflow-wrap: anywhere;
+      }
+
+      /* アプリの見本は端末幅の枠に入れる（1pt = 1px） */
+      .phone-col {
+        max-width: 393px;
+        padding: 0 24px;
+        border-inline: 1px dashed var(--rule-strong);
+      }
+
+      .phone-note {
+        font-size: var(--fs-label);
+        color: var(--ink-faint);
+        margin-top: 12px;
+      }
+
+      /* アプリの型（theme.ts と同じ値） */
+      .a-display { font-family: var(--font-serif); font-size: 30px; line-height: 40px; font-weight: 600; letter-spacing: -0.4px; }
+      .a-title { font-family: var(--font-serif); font-size: 23px; line-height: 33px; font-weight: 600; letter-spacing: -0.3px; }
+      .a-itemTitle { font-family: var(--font-serif); font-size: 17px; line-height: 25px; font-weight: 600; letter-spacing: -0.1px; }
+      .a-heading { font-size: 16px; line-height: 23px; font-weight: 700; letter-spacing: -0.1px; }
+      .a-body { font-size: 15px; line-height: 23px; font-weight: 400; letter-spacing: 0; }
+      .a-bodyStrong { font-size: 15px; line-height: 23px; font-weight: 600; letter-spacing: 0; }
+      .a-button { font-size: 15px; line-height: 22px; font-weight: 600; letter-spacing: 0; }
+      .a-caption { font-size: 13px; line-height: 19px; font-weight: 400; letter-spacing: 0; }
+      .a-label { font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.2px; }
+      .a-tabLabel { font-size: 10px; line-height: 12px; font-weight: 600; letter-spacing: 0.2px; }
+
+      /* Web の型 */
+      .w-hero { font-family: var(--font-serif); font-size: var(--fs-hero); line-height: 1.42; font-weight: 400; letter-spacing: 0.04em; font-feature-settings: 'palt' 1; }
+      .w-display { font-family: var(--font-serif); font-size: var(--fs-display); line-height: 1.55; font-weight: 400; letter-spacing: 0.04em; font-feature-settings: 'palt' 1; }
+      .w-title { font-family: var(--font-serif); font-size: var(--fs-title); line-height: 1.5; font-weight: 600; letter-spacing: 0.01em; }
+      .w-item-title { font-family: var(--font-serif); font-size: var(--fs-item-title); line-height: 1.6; font-weight: 600; letter-spacing: 0.02em; }
+      .w-heading { font-size: var(--fs-heading); line-height: 1.6; font-weight: 700; letter-spacing: 0.02em; }
+      .w-body { font-size: var(--fs-body); line-height: 1.85; font-weight: 400; letter-spacing: 0.02em; }
+      .w-button { font-size: var(--fs-button); line-height: 1.5; font-weight: 600; letter-spacing: 0.04em; }
+      .w-body-s { font-size: var(--fs-body-s); line-height: 1.85; font-weight: 400; letter-spacing: 0.02em; }
+      .w-caption { font-size: var(--fs-caption); line-height: 1.7; font-weight: 400; letter-spacing: 0.02em; }
+      .w-label { font-size: var(--fs-label); line-height: 1.6; font-weight: 600; letter-spacing: 0.04em; }
+      .w-eyebrow-en { font-family: var(--font-latin); font-size: var(--fs-label); line-height: 1.6; letter-spacing: 0.42em; text-transform: uppercase; }
+
+      /* ---------------------------------------------------------------- */
+      /* 余白・角丸                                                        */
+      /* ---------------------------------------------------------------- */
+
+      .spaces {
+        margin-top: 20px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .space-row {
+        display: grid;
+        grid-template-columns: 64px 56px minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        font-size: var(--fs-caption);
+      }
+
+      .space-row code {
+        background: none;
+        padding: 0;
+      }
+
+      .space-row .num {
+        font-variant-numeric: tabular-nums;
+        color: var(--ink-muted);
+      }
+
+      .space-bar {
+        height: 10px;
+        background: var(--powder-deep);
+        border-radius: 2px;
+      }
+
+      .radii {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .radius {
+        width: 112px;
+        font-size: var(--fs-label);
+        color: var(--ink-muted);
+        text-align: center;
+      }
+
+      .radius div {
+        height: 72px;
+        margin-bottom: 8px;
+        background: var(--surface);
+        border: 1px solid var(--rule-strong);
+      }
+
+      /* ---------------------------------------------------------------- */
+      /* 差分リスト                                                        */
+      /* ---------------------------------------------------------------- */
+
+      .todo {
+        margin-top: 16px;
+        counter-reset: todo;
+        border-top: 1px solid var(--rule);
+      }
+
+      .todo li {
+        counter-increment: todo;
+        position: relative;
+        padding: 14px 0 14px 40px;
+        border-bottom: 1px solid var(--rule);
+        font-size: var(--fs-body-s);
+      }
+
+      .todo li::before {
+        content: counter(todo, decimal-leading-zero);
+        position: absolute;
+        left: 0;
+        top: 14px;
+        font-family: var(--font-latin);
+        font-size: var(--fs-body-s);
+        color: var(--sky-line);
+      }
+
+      .todo b {
+        font-weight: 600;
+      }
+
+      .todo .where {
+        display: block;
+        margin-top: 4px;
+        font-size: var(--fs-label);
+        color: var(--ink-faint);
+      }
+
+      pre {
+        margin: 20px 0 0;
+        padding: 18px 20px;
+        border-radius: var(--radius-lg);
+        background: var(--sunken);
+        overflow-x: auto;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        line-height: 1.7;
+        letter-spacing: 0;
+        color: var(--ink);
+      }
+
+      pre .c {
+        color: var(--ink-faint);
+      }
+
+      .footer {
+        padding-block: 32px 48px;
+        border-top: 1px solid var(--rule);
+        font-size: var(--fs-caption);
+        color: var(--ink-faint);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="masthead page">
+      <div class="wordmark">
+        <svg viewBox="0 0 40 32" aria-hidden="true" focusable="false">
+          <path d="M2 16.5 38 3 15 20.5z" fill="#f3ece0" />
+          <path d="M15 20.5 38 3 21.5 29.5z" fill="#e3d6c2" />
+          <path d="M15 20.5 17 27.5l2.4-3.1z" fill="#cdbda3" />
+          <path d="M2 16.5 38 3 21.5 29.5 15 20.5zM15 20.5 38 3M15 20.5l2 7 2.4-3.1" fill="none" stroke="#8f7f67" stroke-width=".9" stroke-linejoin="round" />
+        </svg>
+        Travel Inbox
+      </div>
+      <p class="eyebrow-en">Brand design guidelines</p>
+      <h1>紙と墨と、少しの色。</h1>
+      <p class="lead">
+        アプリと Web の両方に効く、デザインの決まりごと。色・書体・文字サイズ・余白を「どこで何を使うか」まで決めておき、画面や場所ごとに書体やサイズがばらつかないようにする。ここに書いたことが正で、実装が違っていたら実装のほうを直す。
+      </p>
+      <p class="meta-line">
+        <span>対象：iOS / Android アプリ、travel-inbox.hryoichi.com</span>
+        <span>更新：2026年9月25日</span>
+        <span><span class="diff">現状と違う</span> ＝ 今の実装がこの決まりと食い違っているところ</span>
+      </p>
+    </header>
+
+    <div class="page layout">
+      <nav class="toc" aria-label="目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#principles">原則</a></li>
+          <li><a href="#color">色</a></li>
+          <li class="sub"><a href="#color-ground">地と墨</a></li>
+          <li class="sub"><a href="#color-meaning">意味の色</a></li>
+          <li class="sub"><a href="#color-tints">アイテムの色</a></li>
+          <li class="sub"><a href="#color-sources">出典の色</a></li>
+          <li class="sub"><a href="#color-status">状態とタグ</a></li>
+          <li class="sub"><a href="#color-brand">ブランドの装飾色</a></li>
+          <li class="sub"><a href="#color-rules">使い方</a></li>
+          <li><a href="#type">書体</a></li>
+          <li class="sub"><a href="#type-faces">3つの書体</a></li>
+          <li class="sub"><a href="#type-choose">明朝かゴシックか</a></li>
+          <li class="sub"><a href="#type-weight">太さ</a></li>
+          <li class="sub"><a href="#type-emphasis">文中の強調</a></li>
+          <li><a href="#size">文字サイズ</a></li>
+          <li class="sub"><a href="#size-app">アプリ</a></li>
+          <li class="sub"><a href="#size-web">Web</a></li>
+          <li class="sub"><a href="#size-spacing">行間と字間</a></li>
+          <li><a href="#space">余白・角丸・線・影</a></li>
+          <li><a href="#gaps">実装との差分</a></li>
+          <li><a href="#tokens">Web のトークン</a></li>
+        </ol>
+      </nav>
+
+      <main>
+        <!-- ============================================================ -->
+        <section class="chapter" id="principles">
+          <p class="chapter-num">01 — Principles</p>
+          <h2>原則</h2>
+          <div class="principles">
+            <div class="principle">
+              <p class="principle-num">01</p>
+              <h3>紙の上に、墨で書く</h3>
+              <p>
+                地は温かい紙色、文字はほぼ黒の墨。これは個人のアーカイブで、ダッシュボードではない。何か月も前に見つけた場所を読み返す時間が、落ち着いて見えるように。
+              </p>
+            </div>
+            <div class="principle">
+              <p class="principle-num">02</p>
+              <h3>明朝は声、ゴシックは道具</h3>
+              <p>
+                読ませたいもの（見出し、場所やイベントの名前）は明朝。操作するもの、説明するもの、数えるものはゴシック。日本の編集デザインの昔からの分担をそのまま使う。
+              </p>
+            </div>
+            <div class="principle">
+              <p class="principle-num">03</p>
+              <h3>色は、意味があるときだけ</h3>
+              <p>
+                藍は「押せる」、朱は「日付がある」、苔は「行った」。アイテムごとの淡い色は見分けるため。飾りの色はアイコン由来の空色と紙飛行機の色に限り、文字や操作には使わない。
+              </p>
+            </div>
+            <div class="principle">
+              <p class="principle-num">04</p>
+              <h3>区切りは、罫線と余白で</h3>
+              <p>
+                箱で囲まずに、細い罫線と余白で構造をつくる。カードや角丸は、それが独立した「もの」のときだけ。影は本当に浮いているものだけにつける。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <section class="chapter" id="color">
+          <p class="chapter-num">02 — Color</p>
+          <h2>色</h2>
+          <div class="prose">
+            <p>
+              アプリの <code>src/constants/theme.ts</code> の値を正とする。コントラストを測って決めた値なので、Web もこちらに揃える。<strong>パレットは1つ。アプリ用と Web 用を分けない。</strong>コントラスト比は WCAG 2 の計算式で実測した値（AA は本文 4.5:1 以上）。
+            </p>
+          </div>
+
+          <h3 id="color-ground">地と墨</h3>
+          <div class="swatches">
+            <div class="swatch">
+              <div class="chip" style="background: #faf8f4">Aa 紙</div>
+              <div class="swatch-body">
+                <p class="swatch-name">紙 paper</p>
+                <p class="swatch-hex">#FAF8F4</p>
+                <p class="swatch-tokens">App colors.paper<br />Web --paper</p>
+                <p class="swatch-use">画面・ページの地。純白にしない。</p>
+                <p class="swatch-cr">Web（LP・文書）は現在 #F7F3EC <span class="diff">現状と違う</span></p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: #ffffff">Aa 面</div>
+              <div class="swatch-body">
+                <p class="swatch-name">面 surface</p>
+                <p class="swatch-hex">#FFFFFF</p>
+                <p class="swatch-tokens">App colors.surface<br />Web --surface</p>
+                <p class="swatch-use">紙の上に置く独立した「もの」（シート、入力欄、カード）。</p>
+                <p class="swatch-cr">Web は現在 #FCFAF6 <span class="diff">現状と違う</span></p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: #f2eee6">Aa 沈み</div>
+              <div class="swatch-body">
+                <p class="swatch-name">沈み sunken</p>
+                <p class="swatch-hex">#F2EEE6</p>
+                <p class="swatch-tokens">App colors.sunken<br />Web --sunken</p>
+                <p class="swatch-use">一段下がった面。画像のない枠、表の見出し、コード。</p>
+                <p class="swatch-cr">Web は現在 #F0EADF <span class="diff">現状と違う</span></p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: #1a1815; color: #fff">Aa 墨</div>
+              <div class="swatch-body">
+                <p class="swatch-name">墨 ink</p>
+                <p class="swatch-hex">#1A1815</p>
+                <p class="swatch-tokens">App colors.ink<br />Web --ink</p>
+                <p class="swatch-use">見出し・名前・本文。</p>
+                <p class="swatch-cr">紙 16.7 : 1 ／ Web は現在 #2B2926 <span class="diff">現状と違う</span></p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: #5c564b; color: #fff">Aa 墨・淡</div>
+              <div class="swatch-body">
+                <p class="swatch-name">淡墨 inkMuted</p>
+                <p class="swatch-hex">#5C564B</p>
+                <p class="swatch-tokens">App colors.inkMuted<br />Web --ink-muted</p>
+                <p class="swatch-use">説明文、リード文、メタ情報。</p>
+                <p class="swatch-cr">紙 6.9 : 1 ／ 沈み 6.3 : 1</p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: #706858; color: #fff">Aa 墨・薄</div>
+              <div class="swatch-body">
+                <p class="swatch-name">薄墨 inkFaint</p>
+                <p class="swatch-hex">#706858</p>
+                <p class="swatch-tokens">App colors.inkFaint<br />Web --ink-faint</p>
+                <p class="swatch-use">補足、注記、非選択のタブ。文字色の下限。</p>
+                <p class="swatch-cr">紙 5.2 : 1 ／ 沈み 4.8 : 1</p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: #e8e3d9">罫</div>
+              <div class="swatch-body">
+                <p class="swatch-name">罫 rule</p>
+                <p class="swatch-hex">#E8E3D9</p>
+                <p class="swatch-tokens">App colors.rule<br />Web --rule</p>
+                <p class="swatch-use">区切りの細線。アプリは hairline、Web は 1px。</p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: #cfc8ba">罫・濃</div>
+              <div class="swatch-body">
+                <p class="swatch-name">濃い罫 ruleStrong</p>
+                <p class="swatch-hex">#CFC8BA</p>
+                <p class="swatch-tokens">App colors.ruleStrong<br />Web --rule-strong</p>
+                <p class="swatch-use">入力欄の枠、リンクの下線。</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="color-meaning">意味の色</h3>
+          <div class="prose">
+            <p>
+              それぞれに「本体」「押したとき」「淡い地（wash）」がある。本体の上に置く文字は白、wash の上に置く文字は墨か淡墨。<strong>wash の上に同じ色相の濃い文字を置かない</strong>（色どうしが近くて読みにくく、どこにでもある生成っぽいバッジに見える）。意味と関係ない場所でこの色を使わない。
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch">
+              <div class="pair">
+                <div class="chip" style="background: #3d6891; color: #fff">藍</div>
+                <div class="chip" style="background: #e7eef6; color: var(--ink)">wash</div>
+              </div>
+              <div class="swatch-body">
+                <p class="swatch-name">藍 indigo — 押せる</p>
+                <p class="swatch-hex">#3D6891 ／ 押下 #2C5178 ／ #E7EEF6</p>
+                <p class="swatch-use">ボタン、リンク、選択中のタブ・日付・チップ、地図のピン、フォーカスリング、タグの「#」。wash は旅行の期間やバナーの地。</p>
+                <p class="swatch-cr">紙 5.5 : 1 ／ 白文字 5.9 : 1 ／ wash の上の墨 15.1 : 1</p>
+                <p class="swatch-cr">LP は現在 #4C7294（沈みの上で 4.4 : 1、AA 未満） <span class="diff">現状と違う</span></p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="pair">
+                <div class="chip" style="background: #b44431; color: #fff">朱</div>
+                <div class="chip" style="background: #fbeae5; color: var(--ink)">wash</div>
+              </div>
+              <div class="swatch-body">
+                <p class="swatch-name">朱 vermilion — 日付がある</p>
+                <p class="swatch-hex">#B44431 ／ #FBEAE5</p>
+                <p class="swatch-use">「行く予定」の判子、開催日・残り日数、日曜。「必須」の印。wash はお知らせの地（文字は淡墨）。</p>
+                <p class="swatch-cr">紙 5.2 : 1 ／ 白文字 5.5 : 1 ／ wash の上の墨 15.2 : 1</p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="pair">
+                <div class="chip" style="background: #3d7556; color: #fff">苔</div>
+                <div class="chip" style="background: #e6f1ea; color: var(--ink)">wash</div>
+              </div>
+              <div class="swatch-body">
+                <p class="swatch-name">苔 moss — 行った</p>
+                <p class="swatch-hex">#3D7556 ／ 押下 #2D5C42 ／ #E6F1EA</p>
+                <p class="swatch-use">「行った」の判子、地図の訪問済みピン。</p>
+                <p class="swatch-cr">紙 5.1 : 1 ／ 白文字 5.4 : 1 ／ wash の上の墨 15.3 : 1</p>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="pair">
+                <div class="chip" style="background: #a33a28; color: #fff">警</div>
+                <div class="chip" style="background: #f8eae7; color: var(--ink)">wash</div>
+              </div>
+              <div class="swatch-body">
+                <p class="swatch-name">警告 danger</p>
+                <p class="swatch-hex">#A33A28 ／ #F8EAE7</p>
+                <p class="swatch-use">削除、エラー。朱と似ているので、必ず文言と一緒に。</p>
+                <p class="swatch-cr">紙 6.2 : 1 ／ wash の上の墨 15.1 : 1</p>
+              </div>
+            </div>
+          </div>
+          <div class="prose">
+            <p class="muted">
+              ほかに <code>overlay</code> rgba(26, 24, 21, .32)（シートの背後）、<code>areaFill</code> 藍の 8%（地図の旅行エリア）、<code>googleAttribution</code> #5E5E5E（Google の指定色。変えない）がある。土曜は藍、日曜は朱。
+            </p>
+          </div>
+
+          <h3 id="color-tints">アイテムの色</h3>
+          <div class="prose">
+            <p>
+              画像のないアイテムがグレーの四角の列にならないよう、ID から6色のどれかを決めて（<code>tintFor</code>）、一覧・カレンダー・地図で同じ色をまとわせる。旅行の「日ごとの色」はこの6色の ink を順に使う（7日目で一巡、未定は薄墨）。<strong>見分けるための色で、意味はない。</strong>意味の色の代わりに使わない。
+            </p>
+          </div>
+          <div class="tints">
+            <div class="tint" style="background: #e5eff8">
+              <div class="tint-glyph" style="color: #3a6a99; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s6.5-6.1 6.5-11a6.5 6.5 0 1 0-13 0c0 4.9 6.5 11 6.5 11Z" /><circle cx="12" cy="10" r="2.4" /></svg></div>
+              <p class="tint-name">空</p>
+              <p class="tint-hex">#E5EFF8 / #3A6A99<br />bar #8AB0D6</p>
+              <div class="tint-bar" style="background: #8ab0d6"></div>
+            </div>
+            <div class="tint" style="background: #fbe9ec">
+              <div class="tint-glyph" style="color: #a8475f; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5zM17 9.5h1.5a2.5 2.5 0 0 1 0 5H17" /></svg></div>
+              <p class="tint-name">桜</p>
+              <p class="tint-hex">#FBE9EC / #A8475F<br />bar #E3A0B0</p>
+              <div class="tint-bar" style="background: #e3a0b0"></div>
+            </div>
+            <div class="tint" style="background: #e7f1e5">
+              <div class="tint-glyph" style="color: #467443; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="15.5" rx="2" /><path d="M3.5 9.5h17M8 3v4M16 3v4" /></svg></div>
+              <p class="tint-name">抹茶</p>
+              <p class="tint-hex">#E7F1E5 / #467443<br />bar #9CC596</p>
+              <div class="tint-bar" style="background: #9cc596"></div>
+            </div>
+            <div class="tint" style="background: #faf0db">
+              <div class="tint-glyph" style="color: #8e6317; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11.2V5.5A1.5 1.5 0 0 1 5.5 4h5.7a2 2 0 0 1 1.4.6l7 7a2 2 0 0 1 0 2.8l-5.2 5.2a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1-.6-1.4Z" /><circle cx="8.2" cy="8.2" r="1.4" /></svg></div>
+              <p class="tint-name">山吹</p>
+              <p class="tint-hex">#FAF0DB / #8E6317<br />bar #E0B872</p>
+              <div class="tint-bar" style="background: #e0b872"></div>
+            </div>
+            <div class="tint" style="background: #efeaf8">
+              <div class="tint-glyph" style="color: #6a579c; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></svg></div>
+              <p class="tint-name">藤</p>
+              <p class="tint-hex">#EFEAF8 / #6A579C<br />bar #B2A3DB</p>
+              <div class="tint-bar" style="background: #b2a3db"></div>
+            </div>
+            <div class="tint" style="background: #fcebe3">
+              <div class="tint-glyph" style="color: #a34e31; background: #fff8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3.5 6.5 5.5-2.5 6 2.5 5.5-2.5v13.5l-5.5 2.5-6-2.5-5.5 2.5zM9 4v13.5M15 6.5V20" /></svg></div>
+              <p class="tint-name">珊瑚</p>
+              <p class="tint-hex">#FCEBE3 / #A34E31<br />bar #EDA88C</p>
+              <div class="tint-bar" style="background: #eda88c"></div>
+            </div>
+          </div>
+          <div class="prose">
+            <p class="muted">
+              ink はグリフ（アイコン）と旅程の日ごとの色のための色で、wash の上の ink は 4.7〜5.1 : 1、ink の地に白文字は 5.3 : 1 以上。wash の上に文字を置くときは墨にする。bar は線や縁のための色で、文字には使わない。
+            </p>
+          </div>
+
+          <h3 id="color-sources">出典の色</h3>
+          <div class="prose">
+            <p>
+              各サービスの色に近づけた、出典マークの色。読む前に見分けがつくように。<strong>色をつけるのは小さなマークだけで、横のサービス名は文字色のまま。</strong>
+            </p>
+          </div>
+          <div class="sources">
+            <span class="source"><i style="background: #ae3a60"></i>Instagram <code>#AE3A60</code></span>
+            <span class="source"><i style="background: #2e7449"></i>Google Maps <code>#2E7449</code></span>
+            <span class="source"><i style="background: #3b3547"></i>TikTok <code>#3B3547</code></span>
+            <span class="source"><i style="background: #3a3833"></i>X <code>#3A3833</code></span>
+            <span class="source"><i style="background: #35649a"></i>Web <code>#35649A</code></span>
+            <span class="source"><i style="background: #86561b"></i>手入力 <code>#86561B</code></span>
+            <span class="source"><i style="background: #5c564b"></i>その他 <code>#5C564B</code></span>
+          </div>
+
+          <h3 id="color-status">状態とタグ</h3>
+          <div class="prose">
+            <p>
+              色の使い方がいちばん表に出るところなので、形まで決めておく。考え方は2つ。<strong>決まった状態は、本体色の地に白文字の判子で押す。</strong><strong>ふつうのもの・たくさん並ぶものは、線と墨の文字にして、色は小さな印にだけつける。</strong>
+            </p>
+          </div>
+          <div class="specimens">
+            <div class="specimen">
+              <div class="specimen-stage">
+                <span class="seal seal-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></svg>行きたい</span>
+                <span class="seal seal-planned"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></svg>行く予定</span>
+                <span class="seal seal-visited"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>行った</span>
+              </div>
+              <div class="specimen-body">
+                <b>状態の判子（詳細画面）</b>行く予定は朱、行ったは苔の地に白文字（5.5 : 1 と 5.4 : 1）。ほとんどのアイテムがそうである「行きたい」は、濃い罫の線と淡墨の文字だけ。アイコンと文字を必ず両方つける。
+              </div>
+            </div>
+            <div class="specimen">
+              <div class="specimen-stage">
+                <div class="mini-rows">
+                  <div class="mini-row">
+                    <p class="mini-title">東京デザイン展</p>
+                    <p class="mini-meta"><span class="meta-status" style="color: var(--vermilion)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" /></svg>行く予定</span><span>Web · 昨日</span></p>
+                  </div>
+                  <div class="mini-row">
+                    <p class="mini-title">谷中の古民家カフェ</p>
+                    <p class="mini-meta"><span class="meta-status" style="color: var(--moss)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm4.6 7.1-5.4 5.8a.9.9 0 0 1-1.3 0l-2.5-2.6a.9.9 0 1 1 1.3-1.3l1.8 1.9 4.8-5.1a.9.9 0 1 1 1.3 1.3Z" /></svg>行った</span><span>Instagram · 今日</span></p>
+                  </div>
+                  <div class="mini-row">
+                    <p class="mini-title">神宮外苑いちょう祭り</p>
+                    <p class="mini-meta"><span>Instagram · 今日</span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="specimen-body">
+                <b>一覧の行の中の状態</b>行の中では地をつけず、アイコンと文字を本体色で紙の上に置く。「行きたい」は何も出さない。どの行にも出る印は、何も伝えないから。
+              </div>
+            </div>
+            <div class="specimen">
+              <div class="specimen-stage">
+                <span class="tag-chip"><span class="hash">#</span>次の旅行</span>
+                <span class="tag-chip"><span class="hash">#</span>カフェ</span>
+                <span class="tag-chip is-selected"><span class="hash">#</span>紅葉</span>
+              </div>
+              <div class="specimen-body">
+                <b>タグのチップ（詳細・編集・絞り込み）</b>濃い罫の線に、名前は墨、「#」だけ藍。選択中は藍の地に白文字。タグはどれも利用者がつくったものなので、全部同じ見た目にする。
+              </div>
+            </div>
+            <div class="specimen">
+              <div class="specimen-stage">
+                <div class="mini-rows">
+                  <div class="mini-row">
+                    <p class="mini-title">夏祭りの花火大会</p>
+                    <p class="mini-meta"><span>X · 昨日</span><span><span class="hash">#</span>次の旅行</span><span><span class="hash">#</span>夏</span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="specimen-body">
+                <b>行の中のタグ</b>出典の名前と同じ扱い。「#」だけ藍で、名前は淡墨。
+              </div>
+            </div>
+            <div class="specimen bad">
+              <div class="specimen-stage">
+                <span class="old-badge" style="background: var(--vermilion-wash); color: var(--vermilion)">行く予定</span>
+                <span class="old-badge" style="background: var(--moss-wash); color: var(--moss)">行った</span>
+                <span class="old-badge" style="background: var(--indigo-wash); color: var(--indigo)">#次の旅行</span>
+              </div>
+              <div class="specimen-body">
+                <b>淡い地に、同じ色相の濃い文字</b>数値では 4.5 : 1 を超えていても、地と文字の色が近くて読みにくく、どのアプリにもある生成っぽいバッジに見える。状態にもタグにもお知らせにも使わない。
+              </div>
+            </div>
+          </div>
+
+          <h3 id="color-brand">ブランドの装飾色</h3>
+          <div class="prose">
+            <p>
+              アプリアイコンの淡い空色の円、細い縦線、紙飛行機の紙の色。LP の円や線のあしらい、紙飛行機のロゴ、空の状態やオンボーディングの挿絵に使う。<strong>装飾専用。文字・アイコン・押せるものには使わない</strong>（どれも紙の上で 4.5:1 に届かない）。
+            </p>
+          </div>
+          <div class="brand-art">
+            <img src="icon.png" alt="Travel Inbox のアプリアイコン" width="180" height="180" />
+            <div class="swatches">
+              <div class="swatch">
+                <div class="chip" style="background: #d6e4ef"></div>
+                <div class="swatch-body">
+                  <p class="swatch-name">空色</p>
+                  <p class="swatch-hex">#D6E4EF</p>
+                  <p class="swatch-tokens">--powder</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="chip" style="background: #a8c4dc"></div>
+                <div class="swatch-body">
+                  <p class="swatch-name">空色・濃</p>
+                  <p class="swatch-hex">#A8C4DC</p>
+                  <p class="swatch-tokens">--powder-deep</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="chip" style="background: #7fa3c4"></div>
+                <div class="swatch-body">
+                  <p class="swatch-name">空の線</p>
+                  <p class="swatch-hex">#7FA3C4</p>
+                  <p class="swatch-tokens">--sky-line</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="chip" style="background: #f3ece0"></div>
+                <div class="swatch-body">
+                  <p class="swatch-name">紙飛行機・明</p>
+                  <p class="swatch-hex">#F3ECE0</p>
+                  <p class="swatch-tokens">--kraft-light</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="chip" style="background: #e3d6c2"></div>
+                <div class="swatch-body">
+                  <p class="swatch-name">紙飛行機</p>
+                  <p class="swatch-hex">#E3D6C2</p>
+                  <p class="swatch-tokens">--kraft</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="chip" style="background: #cdbda3"></div>
+                <div class="swatch-body">
+                  <p class="swatch-name">紙飛行機・影</p>
+                  <p class="swatch-hex">#CDBDA3</p>
+                  <p class="swatch-tokens">--kraft-deep</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="chip" style="background: #8f7f67"></div>
+                <div class="swatch-body">
+                  <p class="swatch-name">紙飛行機・線</p>
+                  <p class="swatch-hex">#8F7F67</p>
+                  <p class="swatch-tokens">--kraft-line</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="prose">
+            <p class="muted">
+              LP では現在 <code>--powder</code> <code>--powder-2</code> <code>--powder-3</code> <code>--blue-line</code><code>--beige</code> <code>--beige-2</code> という名前で使われている。値はほぼそのまま、名前だけ上の7つに揃える。
+            </p>
+          </div>
+
+          <h3 id="color-rules">使い方</h3>
+          <div class="rules">
+            <div class="rule-box do">
+              <h4>こうする</h4>
+              <ul>
+                <li>文字は墨・淡墨・薄墨の3段だけ。薄墨より薄い文字はつくらない</li>
+                <li>本体色の地には白文字、wash や沈みの地には墨か淡墨の文字</li>
+                <li>色を変えるときは、必ず文言やアイコンでも同じことを伝える</li>
+                <li>画面では色をトークン名で指定する（App は <code>colors.*</code>、Web は <code>var(--*)</code>）</li>
+                <li>ライトテーマだけが正式。アプリは <code>userInterfaceStyle: 'light'</code></li>
+              </ul>
+            </div>
+            <div class="rule-box dont">
+              <h4>こうしない</h4>
+              <ul>
+                <li>淡い地（wash）に、同じ色相の濃い文字を置く</li>
+                <li>藍を「きれいだから」見出しや飾りに使う（押せるように見える）</li>
+                <li>アイテムの色や出典の色で、状態（行った・行く予定）を表す</li>
+                <li>装飾色（空色・紙飛行機）を文字やボタンに使う</li>
+                <li>画面ごとに近い色を新しくつくる（#4C7294 と #3D6891 のような「ほぼ藍」）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prose">
+            <p class="muted">
+              ダークテーマは現在 Web の文書ページ（styles.css）にだけある。アプリが対応するときにこのページで正式に定義し、それまでは新しい画面・ページをライトだけで作る。
+            </p>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <section class="chapter" id="type">
+          <p class="chapter-num">03 — Typeface</p>
+          <h2>書体</h2>
+          <div class="prose">
+            <p>
+              Web フォントも同梱フォントも使わない。どの OS も明朝とゴシックを標準で持っているので、読み込み待ちも外部への通信もない。その代わり、<strong>書体の選び方（どの役割にどれを使うか）を厳密に決める。</strong>
+            </p>
+          </div>
+
+          <h3 id="type-faces">3つの書体</h3>
+          <div class="faces">
+            <div class="face">
+              <p class="face-role">基本の書体</p>
+              <p class="face-sample">あ Aa 15</p>
+              <p class="face-name">ゴシック</p>
+              <p>本文、ラベル、ボタン、数値。迷ったらゴシック。</p>
+              <dl>
+                <dt>iOS</dt>
+                <dd>システム（Hiragino Sans）<br />fontFamily: undefined</dd>
+                <dt>Android</dt>
+                <dd>システム（Noto Sans CJK JP）</dd>
+                <dt>Web</dt>
+                <dd>var(--font-sans)</dd>
+              </dl>
+            </div>
+            <div class="face">
+              <p class="face-role">強調の書体</p>
+              <p class="face-sample serif" style="font-weight: 600">あ 旅</p>
+              <p class="face-name">明朝</p>
+              <p>見出しと、主役として置かれる名前。1画面・1ページの中で「読ませたい」ところだけ。</p>
+              <dl>
+                <dt>iOS</dt>
+                <dd>Hiragino Mincho ProN</dd>
+                <dt>Android</dt>
+                <dd>serif（Noto Serif CJK JP）</dd>
+                <dt>Web</dt>
+                <dd>var(--font-serif)</dd>
+              </dl>
+            </div>
+            <div class="face">
+              <p class="face-role">ロゴと装飾の欧文（Web のみ）</p>
+              <p class="face-sample latin">Travel 01</p>
+              <p class="face-name">欧文セリフ</p>
+              <p>ワードマーク「Travel Inbox」、英字のアイブロウ、通し番号（01, 02…）、料金の大きな数字。和文や文章には使わない。アプリでは使わない。</p>
+              <dl>
+                <dt>Web</dt>
+                <dd>var(--font-latin)<br />Iowan Old Style → Palatino → Georgia</dd>
+              </dl>
+            </div>
+          </div>
+          <div class="prose">
+            <p class="muted">
+              文書ページのコードだけは等幅（<code>var(--font-mono)</code>）を使う。これ以外の書体は増やさない。
+            </p>
+          </div>
+
+          <h3 id="type-choose">明朝かゴシックか</h3>
+          <div class="choose">
+            <div class="choose-col">
+              <h4><span class="big serif">明朝</span>読ませるもの</h4>
+              <ul>
+                <li><b>画面やページの「顔」になる一文</b><span>ログイン・オンボーディングのコピー、LP のキャッチと各セクションの見出し</span></li>
+                <li><b>画面タイトル</b><span>タブのヘッダー（ホーム、カレンダー…）、プッシュした画面のナビゲーションバー</span></li>
+                <li><b>主役として置かれる名前</b><span>場所・イベント・旅行の名前。一覧の行、カード、地図のシート、旅程の行、詳細画面のどこでも</span></li>
+                <li><b>見出しの役割をもつ数字</b><span>カレンダーの「2026年9月」、近日開催の日付の「30」、プロフィールの件数</span></li>
+                <li><b>Web 文書の章題</b><span>プライバシーポリシーやサポートの h1〜h3</span></li>
+              </ul>
+            </div>
+            <div class="choose-col">
+              <h4><span class="big">ゴシック</span>使うもの・数えるもの</h4>
+              <ul>
+                <li><b>本文・説明・リード文</b><span>段落、ヒント、エラーメッセージ</span></li>
+                <li><b>操作できるもの</b><span>ボタン、タブ、チップ、セグメント、リンク、入力欄</span></li>
+                <li><b>アプリのセクション見出し</b><span>「最近の保存」「次の旅行」など。固有の名前ではなく棚の札なので、ゴシックの太字</span></li>
+                <li><b>メタ情報とデータとしての数字</b><span>出典・日付・距離・件数・時刻、カレンダーのマス目。数字は等幅（tabular-nums）</span></li>
+                <li><b>文中やバナーに入った名前</b><span>カレンダーの「東京さんぽ 2日目」のバナー、通知、ボタンの文言の中の名前</span></li>
+              </ul>
+            </div>
+          </div>
+          <p class="ask">
+            <b>迷ったら：</b>その文字は「読ませたい」のか、「操作させたい・識別させたい」のか。前者なら明朝、後者ならゴシック。同じ種類のもの（たとえば場所の名前）は、<strong>画面が変わっても同じ書体・同じ型</strong>にする。
+          </p>
+
+          <h3 id="type-weight">太さ</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>書体</th><th>使う太さ</th><th>どこで</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ゴシック</td>
+                  <td class="num"><code>400</code> / <code>600</code> / <code>700</code></td>
+                  <td>400 は本文。600 はラベル・ボタン・文中の強調。700 はゴシックの見出し（heading）だけ。</td>
+                </tr>
+                <tr>
+                  <td>明朝（アプリ）</td>
+                  <td class="num"><code>600</code></td>
+                  <td>すべて W6。スマホの画面サイズでは W3 が細すぎて、名前が読み流される。</td>
+                </tr>
+                <tr>
+                  <td>明朝（Web）</td>
+                  <td class="num"><code>400</code> / <code>600</code></td>
+                  <td>26px 以上の大見出し（hero・display）は 400（W3）で軽く。それより小さい title・itemTitle は 600（W6）。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="prose">
+            <ul>
+              <li>
+                <strong>明朝に 500 を指定しない。</strong>ヒラギノ明朝には W3 と W6 しかなく、500 は Mac では W3 になるが、Noto Serif JP（Android・一部の Windows）では Medium になり、OS によって見え方が変わる。LP の見出しが今 500 <span class="diff">現状と違う</span>
+              </li>
+              <li>
+                <strong>選択状態で太さを変えない。</strong>文字幅が変わって、タブやチップが選ぶたびに揺れる。選択は色と地の色で示す。アプリのチップ・インボックスのタブ・地図のセグメント・アイコン選択で 700 に変えている <span class="diff">現状と違う</span>
+              </li>
+              <li>和文にイタリック（斜体）は使わない。</li>
+            </ul>
+          </div>
+
+          <h3 id="type-emphasis">文中の強調</h3>
+          <div class="prose">
+            <ul>
+              <li>文章の一部を強調するときは<strong>ゴシックの 600</strong>（アプリは <code>bodyStrong</code>、Web は <code>&lt;strong&gt;</code>）。</li>
+              <li>文章の途中を明朝に切り替えない。明朝は行や見出し単位で使う。</li>
+              <li>色での強調は意味があるときだけ（朱の「あと5日」など）。下線はリンクだけ。</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <section class="chapter" id="size">
+          <p class="chapter-num">04 — Type scale</p>
+          <h2>文字サイズ</h2>
+          <div class="prose">
+            <p>
+              書体・サイズ・行間・太さ・字間は<strong>「型（トークン）」としてひとまとめに扱い、ばらして指定しない。</strong>アプリは <code>&lt;Text variant="…"&gt;</code>、Web はクラスや CSS 変数で型を選ぶ。使ってよいサイズは下の表にあるものだけ。
+            </p>
+          </div>
+
+          <h3 id="size-app">アプリ</h3>
+          <div class="prose">
+            <p class="muted">単位は pt（Dynamic Type で拡大される。上限は 1.6 倍）。見本は 1pt = 1px、幅 393pt の枠で表示している。</p>
+          </div>
+          <div class="scale">
+            <div class="step">
+              <div class="step-meta">
+                <b>display</b>
+                <span class="spec">明朝 600 ／ 30 / 40 ／ −0.4</span>
+                <p class="step-use">ログイン・オンボーディングの一文、プロフィールの件数</p>
+              </div>
+              <div class="phone-col"><p class="sample a-display">行きたい場所を、<br />ひとつに。</p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>title</b>
+                <span class="spec">明朝 600 ／ 23 / 33 ／ −0.3</span>
+                <p class="step-use">タブのヘッダー、詳細画面の名前、空の状態の見出し、近日開催の日付</p>
+              </div>
+              <div class="phone-col"><p class="sample a-title">カレンダー</p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>itemTitle</b>
+                <span class="spec">明朝 600 ／ 17 / 25 ／ −0.1</span>
+                <p class="step-use">主役として置かれる場所・イベント・旅行の名前。プッシュ画面のナビバーのタイトル</p>
+              </div>
+              <div class="phone-col"><p class="sample a-itemTitle">神宮外苑いちょう祭り</p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>heading</b>
+                <span class="spec">ゴシック 700 ／ 16 / 23 ／ −0.1</span>
+                <p class="step-use">セクション見出し、シート・モーダルの見出し</p>
+              </div>
+              <div class="phone-col"><p class="sample a-heading">最近の保存</p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>body</b>
+                <span class="spec">ゴシック 400 ／ 15 / 23</span>
+                <p class="step-use">本文、メモ、説明、リストの補足行</p>
+              </div>
+              <div class="phone-col"><p class="sample a-body">Instagram や Google Maps で見つけた場所を、共有ボタンからそのまま保存できます。</p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>bodyStrong</b>
+                <span class="spec">ゴシック 600 ／ 15 / 23</span>
+                <p class="step-use">文中の強調、行の中の主要な値、バナーの中の名前</p>
+              </div>
+              <div class="phone-col"><p class="sample a-bodyStrong">東京さんぽ 2日目</p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>button</b> <span class="diff">現状と違う</span>
+                <span class="spec">ゴシック 600 ／ 15 / 22</span>
+                <p class="step-use">ボタンとセグメントの文言だけ。現在の <code>subheading</code> を改名</p>
+              </div>
+              <div class="phone-col"><p class="sample a-button" style="color: var(--indigo)">保存する</p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>caption</b>
+                <span class="spec">ゴシック 400 ／ 13 / 19</span>
+                <p class="step-use">メタ情報（出典・日付・場所）、入力欄のヒントとエラー</p>
+              </div>
+              <div class="phone-col"><p class="sample a-caption" style="color: var(--ink-muted)">東京ビッグサイト · 〜10/14</p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>label</b>
+                <span class="spec">ゴシック 600 ／ 12 / 16 ／ +0.2</span>
+                <p class="step-use">チップ、タグ、入力欄の項目名、曜日、「すべて →」。本文での最小サイズ</p>
+              </div>
+              <div class="phone-col"><p class="sample a-label"><span style="color: var(--vermilion)">行く予定</span>　<span style="color: var(--ink-muted)"><span class="hash">#</span>次の旅行</span>　<span style="color: var(--ink-faint)">9月</span></p></div>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>tabLabel</b> <span class="diff">現状と違う</span>
+                <span class="spec">ゴシック 600 ／ 10 / 12 ／ +0.2</span>
+                <p class="step-use">タブバーの文言だけ（OS の慣例に合わせた例外）。今は <code>(tabs)/_layout.tsx</code> に直書き</p>
+              </div>
+              <div class="phone-col"><p class="sample a-tabLabel"><span style="color: var(--indigo)">ホーム</span>　　<span style="color: var(--ink-faint)">マップ</span>　　<span style="color: var(--ink-faint)">インボックス</span></p></div>
+            </div>
+          </div>
+          <div class="prose">
+            <ul>
+              <li><code>subheading</code> と <code>bodyStrong</code> はほぼ同じ（15pt・600）で、どちらを使うかが画面ごとにばらついている。<code>subheading</code> はボタン専用の <code>button</code> に改名し、見出しに使っていたところは <code>heading</code>、名前に使っていたところは <code>itemTitle</code> にする。</li>
+              <li>ナビゲーションバーやタブのヘッダーも型をそのまま使う（<code>...typography.title</code>）。サイズだけ借りて書体や太さを別に書かない。</li>
+              <li>12pt 未満はタブバーと、Google の帰属表示（Google の指定）のほかに使わない。</li>
+            </ul>
+          </div>
+
+          <h3 id="size-web">Web</h3>
+          <div class="prose">
+            <p class="muted">
+              単位は px。大見出しだけ画面幅で伸縮する（<code>clamp</code>）。LP のスマホ模型の中身はアプリの縮尺を再現するため em で書いてよく、この表の対象外。
+            </p>
+          </div>
+          <div class="scale">
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-hero</b>
+                <span class="spec">明朝 400 ／ 34→56 / 1.42 ／ +0.04em・palt</span>
+                <p class="step-use">LP のファーストビューの一文だけ。スマホ幅では min(8.4vw, 40px)</p>
+              </div>
+              <p class="sample w-hero">「いつか行きたい」を、<br />行ける日に変える。</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-display</b> <span class="diff">現状と違う</span>
+                <span class="spec">明朝 400 ／ 26→34 / 1.55 ／ +0.04em・palt</span>
+                <p class="step-use">LP のセクション見出しと CTA の見出し、文書ページの h1（今は3種類の clamp がある）</p>
+              </div>
+              <p class="sample w-display">見つけた場所を、次の週末に。</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-title</b>
+                <span class="spec">明朝 600 ／ 22 / 1.5</span>
+                <p class="step-use">文書ページの h2</p>
+              </div>
+              <p class="sample w-title">取得する情報と使いみち</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-item-title</b> <span class="diff">現状と違う</span>
+                <span class="spec">明朝 600 ／ 17 / 1.6</span>
+                <p class="step-use">機能・手順・FAQ の見出し、カードの名前、文書の h3。アプリの itemTitle と同じ 17</p>
+              </div>
+              <p class="sample w-item-title">地図で、近くの「行きたい」を見つける</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-heading</b>
+                <span class="spec">ゴシック 700 ／ 16 / 1.6</span>
+                <p class="step-use">小見出し（LP の特長、文書の h4、目次の見出し）</p>
+              </div>
+              <p class="sample w-heading">広告なし・無料</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-body</b>
+                <span class="spec">ゴシック 400 ／ 16 / 1.85 ／ +0.02em</span>
+                <p class="step-use">本文・リード文（リードは淡墨で、行間 2.0 まで）。560px 以下は 15px</p>
+              </div>
+              <p class="sample w-body">Instagram や Google Maps、SNS で見つけた行きたい場所やイベントを保存・整理。地図やカレンダーから再発見して、次のおでかけにつなげます。</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-button</b>
+                <span class="spec">ゴシック 600 ／ 15 / 1.5 ／ +0.04em</span>
+                <p class="step-use">ボタン。大きいボタンは body（16）、小さいボタンは body-s（14）</p>
+              </div>
+              <p class="sample w-button" style="color: var(--indigo)">App Store で入手</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-body-s</b> <span class="diff">現状と違う</span>
+                <span class="spec">ゴシック 400 ／ 14 / 1.85</span>
+                <p class="step-use">カードの中の説明、ナビ、表、目次（LP のカード説明は今 12.5〜13.5px）</p>
+              </div>
+              <p class="sample w-body-s">共有ボタンから保存すると、タイトルや場所が自動で入ります。</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-caption</b>
+                <span class="spec">ゴシック 400 ／ 13 / 1.7</span>
+                <p class="step-use">注記、フッターのリンク、ボタン下の補足、和文のアイブロウ</p>
+              </div>
+              <p class="sample w-caption" style="color: var(--ink-faint)">iPhone 向け　App Store 公開準備中　広告なし</p>
+            </div>
+            <div class="step">
+              <div class="step-meta">
+                <b>--fs-label</b>
+                <span class="spec">ゴシック 600 ／ 12 / 1.6 ／ +0.04em</span>
+                <p class="step-use">タグ、著作権表示、表の見出し。英字アイブロウ（欧文セリフ・大文字・+0.42em）もこのサイズ。Web の最小サイズ</p>
+              </div>
+              <p class="sample"><span class="w-label" style="color: var(--ink-faint)">© 2026 Travel Inbox</span>　<span class="w-eyebrow-en" style="color: var(--ink-faint)">Features</span></p>
+            </div>
+          </div>
+          <div class="prose">
+            <p>LP の現在の値は、次のように寄せる（LP だけで 38 種類のサイズがある）。</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>今の値</th><th>寄せる先</th><th>主な場所</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="num">11 / 11.5px</td><td><code>--fs-label</code> 12</td><td>.insp-tag、.store-btn small、.cta-vertical</td></tr>
+                <tr><td class="num">12.5px</td><td><code>--fs-body-s</code> 14</td><td>.benefit p、.step p、.insp-card span、.store-note</td></tr>
+                <tr><td class="num">13.5 / 14.5px</td><td><code>--fs-body-s</code> 14</td><td>.feature p、.pricing-points li</td></tr>
+                <tr><td class="num">15.5 / 16.5px</td><td><code>--fs-body</code> 16（狭い画面は 15）</td><td>.faq summary（スマホ）、.hero-lead</td></tr>
+                <tr><td class="num">17 / 17.5px</td><td><code>--fs-item-title</code> 17</td><td>.feature h3、.step h3、.faq summary</td></tr>
+                <tr><td class="num">clamp(26–32)、clamp(30–40)</td><td><code>--fs-display</code></td><td>.section-title、.cta-title、文書の h1</td></tr>
+                <tr><td class="num">21 / 25px（欧文セリフ）</td><td>ワードマーク専用として残す</td><td>.brand-name（ヘッダー 25、フッター・スマホ 21）</td></tr>
+                <tr><td class="num">clamp(64–96)（欧文セリフ）</td><td>料金の数字専用として残す</td><td>.price-num</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="size-spacing">行間と字間</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th></th><th>行間</th><th>字間</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>明朝の大見出し</td>
+                  <td>1.4〜1.55</td>
+                  <td>Web は <code>palt</code>（約物を詰める）をかけてから +0.04em。アプリは palt が使えないので型の負の字間で近づける。行頭の鉤括弧はぶら下げてそろえる</td>
+                </tr>
+                <tr>
+                  <td>本文（Web）</td>
+                  <td>1.85（リード 2.0）</td>
+                  <td>+0.02em</td>
+                </tr>
+                <tr>
+                  <td>本文（アプリ）</td>
+                  <td>型のとおり（約 1.5）</td>
+                  <td>0。小さい和文を開けると間延びする</td>
+                </tr>
+                <tr>
+                  <td>装飾の短い語（Web）</td>
+                  <td>—</td>
+                  <td>和文のアイブロウ・ナビは 0.1〜0.32em まで。英字の大文字アイブロウは 0.42em。<strong>文章には開けない</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="prose">
+            <ul>
+              <li>日本語の禁則は strict（行頭に「。」「」」を置かない）。Web は <code>line-break: strict</code>、見出しは <code>text-wrap: balance</code>。</li>
+              <li>
+                見出しは改行位置を決めて書く。1文字だけが次の行に落ちる見出しをつくらない。アプリのホームの「「いつか行きたい」を、行ける日に。」が「に。」だけ2行目に落ちている <span class="diff">現状と違う</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <section class="chapter" id="space">
+          <p class="chapter-num">05 — Space &amp; shape</p>
+          <h2>余白・角丸・線・影</h2>
+
+          <h3>余白</h3>
+          <div class="prose">
+            <p>4 の倍数のグリッド。アプリも Web も同じ段階を使う。画面の左右の余白はアプリ 24pt、Web は 16〜48px で伸縮。</p>
+          </div>
+          <div class="spaces">
+            <div class="space-row"><code>xxs</code><span class="num">2</span><div class="space-bar" style="width: 2px"></div></div>
+            <div class="space-row"><code>xs</code><span class="num">4</span><div class="space-bar" style="width: 4px"></div></div>
+            <div class="space-row"><code>sm</code><span class="num">8</span><div class="space-bar" style="width: 8px"></div></div>
+            <div class="space-row"><code>md</code><span class="num">12</span><div class="space-bar" style="width: 12px"></div></div>
+            <div class="space-row"><code>lg</code><span class="num">16</span><div class="space-bar" style="width: 16px"></div></div>
+            <div class="space-row"><code>xl</code><span class="num">24</span><div class="space-bar" style="width: 24px"></div></div>
+            <div class="space-row"><code>xxl</code><span class="num">36</span><div class="space-bar" style="width: 36px"></div></div>
+            <div class="space-row"><code>xxxl</code><span class="num">56</span><div class="space-bar" style="width: 56px"></div></div>
+          </div>
+          <div class="prose">
+            <p class="muted">Web の大きな区切り（セクション間）だけは 80〜112px の <code>clamp</code> を使ってよい。</p>
+          </div>
+
+          <h3>角丸</h3>
+          <div class="radii">
+            <div class="radius"><div style="border-radius: 4px"></div>sm 4<br />小さな印・コード</div>
+            <div class="radius"><div style="border-radius: 8px"></div>md 8<br />ボタン・入力・サムネイル</div>
+            <div class="radius"><div style="border-radius: 12px"></div>lg 12<br />浮いている面・カード</div>
+            <div class="radius"><div style="border-radius: 16px"></div>xl 16<br />シート・LP の大きなカード</div>
+            <div class="radius"><div style="border-radius: 999px; width: 72px; margin-inline: auto"></div>pill<br />本当の円だけ</div>
+          </div>
+          <div class="prose">
+            <ul>
+              <li>pill は追加ボタン、選択中の日付、地図のピンなど「円」のものだけ。例外として LP の CTA ボタン（App Store で入手 など）は pill のままでよい。</li>
+              <li>LP のカードの 18px は <code>xl</code> 16 に寄せる。 <span class="diff">現状と違う</span></li>
+            </ul>
+          </div>
+
+          <h3>線と影</h3>
+          <div class="prose">
+            <ul>
+              <li>区切りは罫（<code>rule</code>）の細線。アプリは hairline（端末の1ピクセル）、Web は 1px。</li>
+              <li>影は本当に浮いているものだけ：追加ボタン、シート、LP のスマホ模型。アプリは <code>shadow.lifted</code> の1種類だけ。</li>
+              <li>Web の LP のカードは、ごく薄い影（<code>--shadow-card</code>）を許す。文書ページには影を使わない。</li>
+              <li>LP の紙の繊維のノイズと、装飾色の円・線のあしらいは Web のブランド表現として残す。</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <section class="chapter" id="gaps">
+          <p class="chapter-num">06 — Gaps</p>
+          <h2>実装との差分</h2>
+          <div class="prose">
+            <p>2026年9月25日の時点で、実装がこのページと食い違っているところ。直したら消す。</p>
+          </div>
+
+          <h3>アプリ（travel-inbox）</h3>
+          <ol class="todo">
+            <li>
+              <b><code>subheading</code> を <code>button</code> に改名し、ボタンとセグメント以外で使わない。</b>見出しに使っているところは <code>heading</code> に、場所の名前に使っているところは <code>itemTitle</code> にする。
+              <span class="where">SpotPreviewSheet.tsx:74（場所名 → itemTitle）、NearbyListSheet.tsx:47・TripReview.tsx:39・SuggestionSheet.tsx:159（見出し → heading）、Button.tsx:80・inbox.tsx:146（→ button）</span>
+            </li>
+            <li>
+              <b>旅程の行の場所名を <code>itemTitle</code> にする。</b>今は <code>bodyStrong</code>（ゴシック）で、一覧やカードの明朝と食い違っている。
+              <span class="where">components/trips/TripItemRow.tsx:68</span>
+            </li>
+            <li>
+              <b>プッシュ画面のナビバーのタイトルを <code>itemTitle</code> の型にする。</b>今は明朝なのに <code>heading</code>（ゴシックの型）の 16pt を借りている。
+              <span class="where">src/app/_layout.tsx:81</span>
+            </li>
+            <li>
+              <b>タブのヘッダーのタイトルは <code>...typography.title</code> を展開する。</b>値を手で並べて書いている（今は同じ値だが、型を変えたときにずれる）。
+              <span class="where">src/app/(tabs)/_layout.tsx:34</span>
+            </li>
+            <li>
+              <b><code>typography.tabLabel</code>（10 / 12・600・+0.2）を theme.ts に追加して使う。</b>
+              <span class="where">src/app/(tabs)/_layout.tsx:55</span>
+            </li>
+            <li>
+              <b>選択状態で 700 に太らせるのをやめ、色と地の色だけで示す。</b>
+              <span class="where">components/ui/Chip.tsx:133、app/(tabs)/inbox.tsx:209、app/(tabs)/map.tsx:516、components/forms/IconField.tsx:190</span>
+            </li>
+            <li>
+              <b>ホームの見出しの改行を直す。</b>「に。」だけが2行目に落ちる。改行位置を指定するか、1行に収まる文言にする。
+              <span class="where">src/app/(tabs)/index.tsx:125</span>
+            </li>
+            <li>
+              <b>ホームの「もうすぐ終了」を、朱の wash に朱の文字で置くのをやめる。</b>地を外して、「あと5日」と同じく朱のアイコンと文字だけにする。
+              <span class="where">src/components/home/HomeRows.tsx:159・240</span>
+            </li>
+            <li>
+              <b>theme.ts のコメントを直す。</b>ink / paper は実測 16.7 : 1（コメントは 17.1）。「各 wash の上に同じ色相の文字を置いても 4.5 : 1」という記述と、<code>Tint.ink</code> の「wash の上の文字」という説明は、この形を勧めて見えるので、wash の上の文字は墨と書き換える。
+              <span class="where">src/constants/theme.ts:26–31・86</span>
+            </li>
+          </ol>
+
+          <h3>Web（travel-inbox-site）</h3>
+          <ol class="todo">
+            <li>
+              <b>色を統一パレットに置き換える。</b>とくに LP の <code>--blue</code> #4C7294 は沈みの上で AA に届かないので藍 #3D6891 に。墨・紙・罫も上の値に揃え、<code>theme-color</code> も #FAF8F4 に。
+              <span class="where">assets/lp.css :root、styles.css :root、各 HTML の &lt;meta name="theme-color"&gt;</span>
+            </li>
+            <li>
+              <b>装飾色の名前を <code>--powder</code> <code>--powder-deep</code> <code>--sky-line</code> <code>--kraft-*</code> に揃える。</b>
+              <span class="where">assets/lp.css</span>
+            </li>
+            <li>
+              <b>文字サイズを 10 個の型に寄せる。</b>対応は「文字サイズ › Web」の表のとおり。12px 未満をなくす。
+              <span class="where">assets/lp.css（38 種類）、styles.css（rem で 9 種類）</span>
+            </li>
+            <li>
+              <b>明朝の太さの 500 を 400 に。</b>文書ページの h1（600）も display の型（400）に。
+              <span class="where">assets/lp.css .hero-title・.section-title、styles.css .doc-header h1</span>
+            </li>
+            <li>
+              <b>文書ページのワードマークを欧文セリフにする。</b>今はゴシックの 600 で、LP の「Travel Inbox」と別物に見える。
+              <span class="where">styles.css .wordmark</span>
+            </li>
+            <li>
+              <b>カードの角丸 18px を 16px に。</b>
+              <span class="where">assets/lp.css --radius</span>
+            </li>
+          </ol>
+        </section>
+
+        <!-- ============================================================ -->
+        <section class="chapter" id="tokens">
+          <p class="chapter-num">07 — Tokens</p>
+          <h2>Web のトークン</h2>
+          <div class="prose">
+            <p>Web の <code>:root</code> はこの形にする。アプリ側の値は <code>src/constants/theme.ts</code> が正で、名前をケバブケースにしたもの。</p>
+          </div>
+<pre><span class="c">/* 地と墨 */</span>
+--paper: #faf8f4;        --surface: #ffffff;      --sunken: #f2eee6;
+--ink: #1a1815;          --ink-muted: #5c564b;    --ink-faint: #706858;   --ink-inverse: #ffffff;
+--rule: #e8e3d9;         --rule-strong: #cfc8ba;
+
+<span class="c">/* 意味の色 */</span>
+--indigo: #3d6891;       --indigo-pressed: #2c5178;  --indigo-wash: #e7eef6;
+--vermilion: #b44431;    --vermilion-wash: #fbeae5;
+--moss: #3d7556;         --moss-pressed: #2d5c42;    --moss-wash: #e6f1ea;
+--danger: #a33a28;       --danger-wash: #f8eae7;
+
+<span class="c">/* ブランドの装飾色（文字・操作には使わない） */</span>
+--powder: #d6e4ef;       --powder-deep: #a8c4dc;  --sky-line: #7fa3c4;
+--kraft-light: #f3ece0;  --kraft: #e3d6c2;        --kraft-deep: #cdbda3;  --kraft-line: #8f7f67;
+
+<span class="c">/* 書体 */</span>
+--font-serif: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', 'Noto Serif CJK JP', serif;
+--font-sans: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI',
+  'Yu Gothic', YuGothic, Meiryo, system-ui, sans-serif;
+--font-latin: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+
+<span class="c">/* 文字サイズ */</span>
+--fs-hero: clamp(34px, 3.9vw, 56px);   <span class="c">/* 明朝 400 */</span>
+--fs-display: clamp(26px, 2.4vw, 34px); <span class="c">/* 明朝 400 */</span>
+--fs-title: 22px;                       <span class="c">/* 明朝 600 */</span>
+--fs-item-title: 17px;                  <span class="c">/* 明朝 600 */</span>
+--fs-heading: 16px;                     <span class="c">/* ゴシック 700 */</span>
+--fs-body: 16px;                        <span class="c">/* ゴシック 400（560px 以下は 15px） */</span>
+--fs-button: 15px;                      <span class="c">/* ゴシック 600 */</span>
+--fs-body-s: 14px;                      <span class="c">/* ゴシック 400 */</span>
+--fs-caption: 13px;                     <span class="c">/* ゴシック 400 */</span>
+--fs-label: 12px;                       <span class="c">/* ゴシック 600 */</span>
+
+<span class="c">/* 角丸 */</span>
+--radius-sm: 4px;  --radius-md: 8px;  --radius-lg: 12px;  --radius-xl: 16px;</pre>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="page">Travel Inbox ブランドデザイン — このページはどこからもリンクしていない。URL を直接開いて使う。</div>
+    </footer>
+  </body>
+</html>
