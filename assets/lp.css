@@ -1849,30 +1849,10 @@ input {
 
 .pricing-body {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 16px clamp(32px, 5vw, 80px);
-  align-items: start;
+  gap: 16px;
+  align-content: start;
   padding-left: clamp(0px, 3vw, 48px);
   border-left: 1px solid var(--rule-strong);
-}
-
-.price {
-  display: grid;
-  grid-row: span 2;
-}
-
-.price-num {
-  font-family: var(--font-latin);
-  font-size: clamp(64px, 7vw, 96px);
-  line-height: 1;
-  color: var(--indigo);
-}
-
-.price-unit {
-  margin-top: 14px;
-  font-size: var(--fs-caption);
-  letter-spacing: 0.14em;
-  color: var(--ink-faint);
 }
 
 .pricing-text {
@@ -2752,14 +2732,6 @@ input {
 
   .insp-card:nth-child(even) {
     margin-top: 24px;
-  }
-
-  .pricing-body {
-    grid-template-columns: 1fr;
-  }
-
-  .price {
-    grid-row: auto;
   }
 
   .faq-list summary {
