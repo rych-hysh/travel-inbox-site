@@ -15,38 +15,62 @@
 /* ------------------------------------------------------------------ */
 
 :root {
-  --paper: #f7f3ec;
-  --surface: #fcfaf6;
-  --sunken: #f0eadf;
+  /* 色は brand.html のパレット（アプリの theme.ts と同じ値）。 */
+  --paper: #faf8f4;
+  --surface: #ffffff;
+  --sunken: #f2eee6;
 
-  --ink: #2b2926;
-  --ink-muted: #4f4b45;
-  --ink-faint: #6f6960;
-  --ink-inverse: #f7f3ec;
+  --ink: #1a1815;
+  --ink-muted: #5c564b;
+  --ink-faint: #706858;
+  --ink-inverse: #ffffff;
 
-  --rule: #e4ddd1;
-  --rule-strong: #d6cdbf;
+  --rule: #e8e3d9;
+  --rule-strong: #cfc8ba;
 
-  --indigo: #3c5d7b;
-  --indigo-pressed: #2f4a63;
-  --indigo-wash: #d6e4ef;
+  --indigo: #3d6891;
+  --indigo-pressed: #2c5178;
+  --indigo-wash: #e7eef6;
 
-  --vermilion: #b0452f;
-  --vermilion-wash: #f8ebe7;
+  --vermilion: #b44431;
+  --vermilion-wash: #fbeae5;
 
-  --moss: #4a6b52;
-  --moss-wash: #eaefea;
+  --moss: #3d7556;
+  --moss-pressed: #2d5c42;
+  --moss-wash: #e6f1ea;
+
+  --danger: #a33a28;
+  --danger-wash: #f8eae7;
 
   --font-serif: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', 'Songti SC',
     serif;
   --font-sans: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic',
     YuGothic, Meiryo, system-ui, sans-serif;
+  --font-latin: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+
+  /* 文字サイズ。brand.html の Web の10段。 */
+  --fs-hero: clamp(34px, 3.9vw, 56px); /* 明朝 400 */
+  --fs-display: clamp(26px, 2.4vw, 34px); /* 明朝 400 */
+  --fs-title: 22px; /* 明朝 600 */
+  --fs-item-title: 17px; /* 明朝 600 */
+  --fs-heading: 16px; /* ゴシック 700 */
+  --fs-body: 16px; /* ゴシック 400 */
+  --fs-button: 15px; /* ゴシック 600 */
+  --fs-body-s: 14px; /* ゴシック 400 */
+  --fs-caption: 13px; /* ゴシック 400 */
+  --fs-label: 12px; /* ゴシック 600 */
 
   --measure: 66rem;
   --measure-prose: 44rem;
   --gutter: clamp(1.25rem, 5vw, 3rem);
 
   color-scheme: light dark;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --fs-body: 15px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -104,7 +128,7 @@ body {
   background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: var(--fs-body);
   line-height: 1.8;
   letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
@@ -203,9 +227,10 @@ code {
 }
 
 .wordmark {
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  font-weight: 600;
+  font-family: var(--font-latin);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1;
   letter-spacing: 0.02em;
   color: var(--ink);
   text-decoration: none;
@@ -215,8 +240,8 @@ code {
 }
 
 .wordmark .mark {
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 26px;
   flex: none;
 }
 
@@ -224,7 +249,7 @@ code {
   display: flex;
   align-items: center;
   gap: clamp(0.75rem, 3vw, 1.75rem);
-  font-size: 0.875rem;
+  font-size: var(--fs-body-s);
 }
 
 .site-nav a {
@@ -245,7 +270,7 @@ code {
   margin-top: 5rem;
   padding-block: 2.5rem 3.5rem;
   color: var(--ink-faint);
-  font-size: 0.8125rem;
+  font-size: var(--fs-caption);
 }
 
 .site-footer > .wrap {
@@ -282,7 +307,10 @@ code {
 }
 
 .doc-header h1 {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-size: var(--fs-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-feature-settings: 'palt' 1;
   margin: 0;
 }
 
@@ -295,7 +323,7 @@ code {
 }
 
 .doc h2 {
-  font-size: 1.375rem;
+  font-size: var(--fs-title);
   margin: 3rem 0 1rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--rule);
@@ -309,12 +337,13 @@ code {
 }
 
 .doc h3 {
-  font-size: 1.0625rem;
+  font-size: var(--fs-item-title);
   margin: 2rem 0 0.75rem;
 }
 
 .doc h4 {
-  font-size: 0.9375rem;
+  font-size: var(--fs-heading);
+  font-weight: 700;
   margin: 1.5rem 0 0.5rem;
   font-family: var(--font-sans);
 }
@@ -368,7 +397,7 @@ code {
 table {
   border-collapse: collapse;
   width: 100%;
-  font-size: 0.875rem;
+  font-size: var(--fs-body-s);
   min-width: 28rem;
 }
 
@@ -385,7 +414,7 @@ th {
   background: var(--sunken);
   color: var(--ink);
   font-weight: 600;
-  font-size: 0.8125rem;
+  font-size: var(--fs-label);
   white-space: nowrap;
 }
 
@@ -399,12 +428,12 @@ tbody tr:last-child td {
   padding: 1.25rem 1.5rem;
   background: var(--sunken);
   border-radius: 4px;
-  font-size: 0.875rem;
+  font-size: var(--fs-body-s);
 }
 
 .toc-title {
-  font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: var(--fs-heading);
+  font-weight: 700;
   margin: 0 0 0.75rem;
   color: var(--ink);
 }
@@ -443,7 +472,7 @@ tbody tr:last-child td {
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid var(--rule);
-  font-size: 0.875rem;
+  font-size: var(--fs-body-s);
   color: var(--ink-faint);
 }
 
@@ -457,7 +486,10 @@ tbody tr:last-child td {
 }
 
 .notfound h1 {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-size: var(--fs-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-feature-settings: 'palt' 1;
   margin: 0 0 1rem;
 }
 

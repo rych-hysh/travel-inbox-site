@@ -14,25 +14,39 @@
 /* ------------------------------------------------------------------ */
 
 :root {
-  --paper: #f7f3ec;
-  --paper-deep: #f0eadf;
-  --surface: #fcfaf6;
-  --surface-2: #faf6ef;
+  /* 色は brand.html のパレット（アプリの theme.ts と同じ値）。 */
+  --paper: #faf8f4;
+  --surface: #ffffff;
+  --sunken: #f2eee6;
 
-  --ink: #2b2926;
-  --ink-2: #4f4b45;
-  --ink-3: #6f6960;
-  --rule: #e4ddd1;
-  --rule-2: #d6cdbf;
+  --ink: #1a1815;
+  --ink-muted: #5c564b;
+  --ink-faint: #706858;
+  --ink-inverse: #ffffff;
+  --rule: #e8e3d9;
+  --rule-strong: #cfc8ba;
 
-  --blue: #4c7294;
-  --blue-deep: #3c5d7b;
-  --blue-line: #7fa3c4;
+  --indigo: #3d6891;
+  --indigo-pressed: #2c5178;
+  --indigo-wash: #e7eef6;
+  --vermilion: #b44431;
+  --vermilion-wash: #fbeae5;
+  --moss: #3d7556;
+  --moss-pressed: #2d5c42;
+  --moss-wash: #e6f1ea;
+  --danger: #a33a28;
+  --danger-wash: #f8eae7;
+
+  /* ブランドの装飾色（アイコン由来）。文字・操作には使わない。 */
   --powder: #d6e4ef;
-  --powder-2: #c3d7e7;
-  --powder-3: #a8c4dc;
-  --beige: #e6d9c6;
-  --beige-2: #cdbba1;
+  --powder-deep: #a8c4dc;
+  --sky-line: #7fa3c4;
+  --kraft-light: #f3ece0;
+  --kraft: #e3d6c2;
+  --kraft-deep: #cdbda3;
+  --kraft-line: #8f7f67;
+  /* 空色と空色・濃の中間。新しい色ではなく、円のグラデーションのための混色。 */
+  --powder-mid: color-mix(in srgb, var(--powder) 50%, var(--powder-deep));
 
   --shadow-sm: 0 1px 2px rgb(74 60 42 / 0.06), 0 4px 14px rgb(74 60 42 / 0.05);
   --shadow-md: 0 2px 6px rgb(74 60 42 / 0.06), 0 18px 40px -12px rgb(74 60 42 / 0.16);
@@ -40,12 +54,24 @@
   --font-serif: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', 'Noto Serif CJK JP', serif;
   --font-sans: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', 'Yu Gothic',
     YuGothic, Meiryo, system-ui, sans-serif;
-  --font-latin-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --font-latin: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+
+  /* 文字サイズ。使ってよいのはこの10段だけ（ワードマークと料金の数字、スマホ模型の中は除く）。 */
+  --fs-hero: clamp(34px, 3.9vw, 56px); /* 明朝 400 */
+  --fs-display: clamp(26px, 2.4vw, 34px); /* 明朝 400 */
+  --fs-title: 22px; /* 明朝 600 */
+  --fs-item-title: 17px; /* 明朝 600 */
+  --fs-heading: 16px; /* ゴシック 700 */
+  --fs-body: 16px; /* ゴシック 400 */
+  --fs-button: 15px; /* ゴシック 600 */
+  --fs-body-s: 14px; /* ゴシック 400 */
+  --fs-caption: 13px; /* ゴシック 400 */
+  --fs-label: 12px; /* ゴシック 600 */
 
   --container: 1240px;
   --gutter: clamp(20px, 4.2vw, 56px);
   --section-y: clamp(80px, 8vw, 112px);
-  --radius: 18px;
+  --radius: 16px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   --header-h: 76px;
@@ -75,7 +101,7 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .28 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   color: var(--ink);
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: var(--fs-body);
   line-height: 1.85;
   letter-spacing: 0.02em;
   text-rendering: optimizeLegibility;
@@ -116,7 +142,7 @@ input {
 }
 
 :focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--indigo);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -193,8 +219,8 @@ input {
   padding: 0 1.9em;
   border: 1px solid transparent;
   border-radius: 999px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--fs-button);
+  font-weight: 600;
   letter-spacing: 0.12em;
   line-height: 1.2;
   text-decoration: none;
@@ -217,20 +243,20 @@ input {
 }
 
 .btn-primary {
-  background: var(--blue);
+  background: var(--indigo);
   color: #fff;
-  box-shadow: 0 8px 20px -10px rgb(60 93 123 / 0.7);
+  box-shadow: 0 8px 20px -10px color-mix(in srgb, var(--indigo-pressed) 70%, transparent);
 }
 
 .btn-primary:hover {
-  background: var(--blue-deep);
-  box-shadow: 0 12px 24px -12px rgb(60 93 123 / 0.8);
+  background: var(--indigo-pressed);
+  box-shadow: 0 12px 24px -12px color-mix(in srgb, var(--indigo-pressed) 80%, transparent);
   transform: translateY(-1px);
 }
 
 .btn-ghost {
   background: rgb(255 255 255 / 0.35);
-  border-color: var(--ink-3);
+  border-color: var(--ink-faint);
   color: var(--ink);
 }
 
@@ -246,13 +272,13 @@ input {
 .btn-lg {
   --h: 58px;
   min-width: 232px;
-  font-size: 16px;
+  font-size: var(--fs-body);
 }
 
 .btn-sm {
   --h: 44px;
   padding: 0 1.6em;
-  font-size: 14px;
+  font-size: var(--fs-body-s);
 }
 
 .round-btn {
@@ -260,7 +286,7 @@ input {
   place-items: center;
   width: 48px;
   height: 48px;
-  border: 1px solid var(--rule-2);
+  border: 1px solid var(--rule-strong);
   border-radius: 50%;
   background: var(--surface);
   cursor: pointer;
@@ -276,7 +302,7 @@ input {
 }
 
 .round-btn:hover {
-  border-color: var(--ink-3);
+  border-color: var(--ink-faint);
 }
 
 .round-btn:disabled {
@@ -299,7 +325,7 @@ input {
 }
 
 .site-header.is-scrolled {
-  background: rgb(247 243 236 / 0.86);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
   backdrop-filter: blur(14px) saturate(1.2);
   box-shadow: 0 1px 0 var(--rule);
@@ -327,7 +353,7 @@ input {
 }
 
 .brand-name {
-  font-family: var(--font-latin-serif);
+  font-family: var(--font-latin);
   font-size: 25px;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -349,10 +375,10 @@ input {
 .global-nav a:not(.btn) {
   position: relative;
   padding: 8px 0;
-  font-size: 14px;
+  font-size: var(--fs-body-s);
   letter-spacing: 0.1em;
   text-decoration: none;
-  color: var(--ink-2);
+  color: var(--ink-muted);
   transition: color 0.3s;
 }
 
@@ -407,15 +433,15 @@ input {
 /* ------------------------------------------------------------------ */
 
 .eyebrow {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.32em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .eyebrow-en {
   margin-bottom: 22px;
-  font-family: var(--font-latin-serif);
-  font-size: 12px;
+  font-family: var(--font-latin);
+  font-size: var(--fs-label);
   letter-spacing: 0.42em;
   text-transform: uppercase;
 }
@@ -427,8 +453,8 @@ input {
 
 .section-title {
   font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(26px, 2.25vw, 32px);
+  font-weight: 400;
+  font-size: var(--fs-display);
   line-height: 1.6;
   letter-spacing: 0.04em;
   color: var(--ink);
@@ -436,13 +462,13 @@ input {
 
 .section-lead {
   margin-top: 24px;
-  font-size: 15px;
+  font-size: var(--fs-body);
   line-height: 2;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 .section-lead a {
-  color: var(--blue-deep);
+  color: var(--indigo);
   text-underline-offset: 4px;
 }
 
@@ -481,8 +507,8 @@ input {
 
 .hero-title {
   font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(34px, 3.9vw, 56px);
+  font-weight: 400;
+  font-size: var(--fs-hero);
   line-height: 1.42;
   letter-spacing: 0.04em;
   color: var(--ink);
@@ -502,9 +528,9 @@ input {
 .hero-lead {
   max-width: 34em;
   margin-top: 32px;
-  font-size: clamp(15px, 1.12vw, 16.5px);
+  font-size: var(--fs-body);
   line-height: 2.05;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 .hero-actions {
@@ -519,9 +545,9 @@ input {
   align-items: center;
   gap: 10px;
   margin-top: 28px;
-  font-size: 13px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.18em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
   white-space: pre;
 }
 
@@ -530,7 +556,7 @@ input {
   content: '';
   width: 12px;
   height: 1px;
-  background: var(--ink-3);
+  background: var(--ink-faint);
   transform: rotate(60deg);
 }
 
@@ -562,7 +588,7 @@ input {
   width: 38em;
   height: 38em;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #e1ecf5, var(--powder) 55%, var(--powder-2));
+  background: radial-gradient(circle at 35% 30%, #e1ecf5, var(--powder) 55%, var(--powder-mid));
 }
 
 .hero-stage .shape-circle-sm {
@@ -571,12 +597,12 @@ input {
   width: 3.6em;
   height: 3.6em;
   border-radius: 50%;
-  background: var(--powder-3);
+  background: var(--powder-deep);
 }
 
 .shape-line {
   width: 1.5px;
-  background: var(--blue-line);
+  background: var(--sky-line);
   opacity: 0.9;
 }
 
@@ -707,7 +733,7 @@ input {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  font-family: var(--font-latin-serif);
+  font-family: var(--font-latin);
   font-size: 1.55em;
 }
 
@@ -719,7 +745,7 @@ input {
 .app-ico {
   width: 1.7em;
   height: 1.7em;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 .app-search {
@@ -729,8 +755,8 @@ input {
   margin: 0.3em 1.3em 0.7em;
   padding: 0.65em 0.9em;
   border-radius: 0.9em;
-  background: var(--paper-deep);
-  color: var(--ink-3);
+  background: var(--sunken);
+  color: var(--ink-faint);
   font-size: 0.95em;
 }
 
@@ -745,7 +771,7 @@ input {
   padding: 0 1.5em;
   border-bottom: 1px solid var(--rule);
   font-size: 0.95em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .app-tabs span {
@@ -755,7 +781,7 @@ input {
 .app-tabs .is-on {
   color: var(--ink);
   font-weight: 600;
-  box-shadow: inset 0 -0.18em var(--blue);
+  box-shadow: inset 0 -0.18em var(--indigo);
 }
 
 .app-list {
@@ -815,7 +841,7 @@ input {
 .fv-event small {
   display: block;
   font-size: 0.85em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .src {
@@ -825,8 +851,8 @@ input {
   border-radius: 1em;
   font-size: 0.75em;
   font-style: normal;
-  background: var(--paper-deep);
-  color: var(--ink-2);
+  background: var(--sunken);
+  color: var(--ink-muted);
 }
 
 .src-ig {
@@ -853,7 +879,7 @@ input {
   fill: none;
   width: 1.5em;
   height: 1.5em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .fav.is-on {
@@ -868,7 +894,7 @@ input {
   border-top: 1px solid var(--rule);
   background: var(--surface);
   font-size: 0.66em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
   position: relative;
   z-index: 3;
 }
@@ -885,7 +911,7 @@ input {
 }
 
 .tabbar .is-on {
-  color: var(--blue);
+  color: var(--indigo);
   font-weight: 600;
 }
 
@@ -918,7 +944,7 @@ input {
   box-shadow: var(--shadow-sm);
   font-size: 0.95em;
   white-space: nowrap;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 .map-search svg {
@@ -935,7 +961,7 @@ input {
   translate: -50% -100%;
   border-radius: 50% 50% 50% 0;
   rotate: -45deg;
-  background: var(--blue);
+  background: var(--indigo);
   box-shadow: 0 0.2em 0.4em rgb(40 60 80 / 0.25);
 }
 
@@ -950,7 +976,7 @@ input {
 .pin-active {
   width: 2.8em;
   height: 2.8em;
-  background: var(--blue-deep);
+  background: var(--indigo-pressed);
   z-index: 2;
 }
 
@@ -963,7 +989,7 @@ input {
   height: 1.2em;
   translate: -50% 50%;
   border-radius: 50%;
-  background: rgb(76 114 148 / 0.35);
+  background: color-mix(in srgb, var(--indigo) 35%, transparent);
   animation: pulse 2.4s var(--ease) infinite;
 }
 
@@ -1007,7 +1033,7 @@ input {
 .map-locate svg {
   width: 1.5em;
   height: 1.5em;
-  color: var(--blue);
+  color: var(--indigo);
 }
 
 .sheet {
@@ -1031,10 +1057,10 @@ input {
 .chips i {
   padding: 0.05em 0.55em;
   border-radius: 1em;
-  background: var(--paper-deep);
+  background: var(--sunken);
   font-size: 0.75em;
   font-style: normal;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 /* calendar screen */
@@ -1054,7 +1080,7 @@ input {
 .cal-head svg {
   width: 1.4em;
   height: 1.4em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .cal-grid {
@@ -1078,7 +1104,7 @@ input {
 
 .cal-grid .dow {
   font-size: 0.85em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .cal-grid .sun {
@@ -1086,7 +1112,7 @@ input {
 }
 
 .cal-grid .sat {
-  color: var(--blue);
+  color: var(--indigo);
 }
 
 .cal-grid .has::after {
@@ -1096,11 +1122,11 @@ input {
   width: 0.36em;
   height: 0.36em;
   border-radius: 50%;
-  background: var(--blue-line);
+  background: var(--sky-line);
 }
 
 .cal-grid .sel {
-  background: var(--blue);
+  background: var(--indigo);
   color: #fff;
   font-weight: 600;
 }
@@ -1110,8 +1136,9 @@ input {
 }
 
 .cal-grid .rng {
-  background: var(--powder-2);
-  color: var(--blue-deep);
+  /* アプリのカレンダーと同じく、旅行の期間は藍の wash に墨の数字。 */
+  background: var(--indigo-wash);
+  color: var(--ink);
   font-weight: 600;
   border-radius: 0;
   width: 100%;
@@ -1146,14 +1173,14 @@ input {
   padding: 0.55em 0.5em;
   margin-top: 0.4em;
   border-radius: 0.8em;
-  background: var(--surface-2);
+  background: var(--paper);
   box-shadow: inset 0 0 0 1px var(--rule);
 }
 
 .cal-list time {
   font-size: 0.9em;
   font-variant-numeric: tabular-nums;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 .cal-list .bar {
@@ -1168,7 +1195,7 @@ input {
 }
 
 .cal-list .bar-sight {
-  background: var(--blue-line);
+  background: var(--sky-line);
 }
 
 .fab {
@@ -1180,9 +1207,9 @@ input {
   width: 3.4em;
   height: 3.4em;
   border-radius: 50%;
-  background: var(--blue);
+  background: var(--indigo);
   color: #fff;
-  box-shadow: 0 0.4em 0.9em rgb(60 93 123 / 0.35);
+  box-shadow: 0 0.4em 0.9em color-mix(in srgb, var(--indigo-pressed) 35%, transparent);
   z-index: 4;
 }
 
@@ -1197,7 +1224,7 @@ input {
 
 .benefits {
   position: relative;
-  background: rgb(240 234 223 / 0.72);
+  background: color-mix(in srgb, var(--sunken) 72%, transparent);
   border-block: 1px solid var(--rule);
 }
 
@@ -1215,7 +1242,7 @@ input {
 }
 
 .benefit + .benefit {
-  border-left: 1px solid var(--rule-2);
+  border-left: 1px solid var(--rule-strong);
 }
 
 .benefit-icon {
@@ -1226,7 +1253,7 @@ input {
   height: 54px;
   border-radius: 50%;
   background: var(--powder);
-  color: var(--blue-deep);
+  color: var(--indigo);
 }
 
 .benefit-icon svg {
@@ -1236,7 +1263,7 @@ input {
 
 .benefit h2 {
   font-family: var(--font-serif);
-  font-size: 16px;
+  font-size: var(--fs-item-title);
   font-weight: 600;
   letter-spacing: 0.03em;
   white-space: nowrap;
@@ -1245,9 +1272,9 @@ input {
 
 .benefit p {
   margin-top: 2px;
-  font-size: 12.5px;
+  font-size: var(--fs-body-s);
   white-space: nowrap;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 /* ------------------------------------------------------------------ */
@@ -1277,9 +1304,9 @@ input {
   flex-direction: column;
   padding: 14px 14px 26px;
   border-radius: var(--radius);
-  background: rgb(252 250 246 / 0.78);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
   box-shadow:
-    inset 0 0 0 1px rgb(228 221 209 / 0.8),
+    inset 0 0 0 1px color-mix(in srgb, var(--rule) 80%, transparent),
     var(--shadow-sm);
   transition:
     transform 0.4s var(--ease),
@@ -1289,22 +1316,22 @@ input {
 .feature:hover {
   transform: translateY(-4px);
   box-shadow:
-    inset 0 0 0 1px rgb(228 221 209 / 0.8),
+    inset 0 0 0 1px color-mix(in srgb, var(--rule) 80%, transparent),
     var(--shadow-md);
 }
 
 .feature-num {
   margin: 26px 6px 6px;
-  font-family: var(--font-latin-serif);
-  font-size: 15px;
+  font-family: var(--font-latin);
+  font-size: var(--fs-body-s);
   letter-spacing: 0.1em;
-  color: var(--blue);
+  color: var(--indigo);
 }
 
 .feature h3 {
   margin: 0 6px;
   font-family: var(--font-serif);
-  font-size: 17.5px;
+  font-size: var(--fs-item-title);
   font-weight: 600;
   line-height: 1.55;
   letter-spacing: 0.05em;
@@ -1312,9 +1339,9 @@ input {
 
 .feature > p:last-child {
   margin: 14px 6px 0;
-  font-size: 13.5px;
+  font-size: var(--fs-body-s);
   line-height: 1.95;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 .feature-visual {
@@ -1323,7 +1350,7 @@ input {
   aspect-ratio: 1 / 1.05;
   border-radius: 12px;
   overflow: hidden;
-  background: var(--paper-deep);
+  background: var(--sunken);
   font-size: var(--u);
 }
 
@@ -1334,7 +1361,7 @@ input {
 
 /* 01 save */
 .fv-save {
-  background: linear-gradient(180deg, #eef3f7, var(--paper-deep));
+  background: linear-gradient(180deg, #eef3f7, var(--sunken));
 }
 
 .fv-sources {
@@ -1390,7 +1417,7 @@ input {
   height: 2.3em;
   border-radius: 50%;
   background: var(--surface);
-  color: var(--blue);
+  color: var(--indigo);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1436,12 +1463,12 @@ input {
 }
 
 .fv-organize li svg {
-  color: var(--blue);
+  color: var(--indigo);
 }
 
 .fv-organize li span {
   margin-left: auto;
-  color: var(--ink-3);
+  color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1455,7 +1482,7 @@ input {
   padding: 0.15em 0.6em;
   border-radius: 1em;
   background: var(--powder);
-  color: var(--blue-deep);
+  color: var(--indigo);
   font-size: 0.72em;
   font-style: normal;
 }
@@ -1517,7 +1544,7 @@ input {
   margin: 0.8em 0.3em 0;
   padding: 0.5em;
   border-radius: 0.7em;
-  background: var(--surface-2);
+  background: var(--paper);
   box-shadow: inset 0 0 0 1px var(--rule);
   grid-template-columns: auto 1fr;
   font-size: 0.78em;
@@ -1565,7 +1592,7 @@ input {
   right: calc(100% / 12 - 110px);
   top: 67px;
   height: 1px;
-  background: linear-gradient(90deg, var(--blue-line), var(--powder-3));
+  background: linear-gradient(90deg, var(--sky-line), var(--powder-deep));
 }
 
 .step {
@@ -1577,10 +1604,10 @@ input {
 }
 
 .step-num {
-  font-family: var(--font-latin-serif);
-  font-size: 14px;
+  font-family: var(--font-latin);
+  font-size: var(--fs-body-s);
   letter-spacing: 0.1em;
-  color: var(--blue);
+  color: var(--indigo);
 }
 
 .step-icon {
@@ -1592,9 +1619,9 @@ input {
   border-radius: 50%;
   background: var(--surface);
   box-shadow:
-    inset 0 0 0 1px var(--powder-2),
+    inset 0 0 0 1px var(--powder-mid),
     0 0 0 8px var(--paper);
-  color: var(--blue-deep);
+  color: var(--indigo);
   transition: background-color 0.4s var(--ease);
 }
 
@@ -1614,16 +1641,16 @@ input {
 .step h3 {
   margin-top: 18px;
   font-family: var(--font-serif);
-  font-size: 17px;
+  font-size: var(--fs-item-title);
   font-weight: 600;
   letter-spacing: 0.12em;
 }
 
 .step p {
   margin-top: 8px;
-  font-size: 12.5px;
+  font-size: var(--fs-caption);
   line-height: 1.85;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 .flight {
@@ -1654,7 +1681,7 @@ input {
 /* ------------------------------------------------------------------ */
 
 .inspiration {
-  background: rgb(240 234 223 / 0.72);
+  background: color-mix(in srgb, var(--sunken) 72%, transparent);
   border-block: 1px solid var(--rule);
   overflow: hidden;
 }
@@ -1705,7 +1732,7 @@ input {
   aspect-ratio: 3 / 4;
   border-radius: 14px;
   overflow: hidden;
-  background: var(--beige);
+  background: var(--kraft);
   box-shadow: var(--shadow-sm);
   transition:
     box-shadow 0.5s var(--ease),
@@ -1734,8 +1761,8 @@ input {
   top: 12px;
   padding: 3px 10px;
   border-radius: 999px;
-  background: rgb(252 250 246 / 0.9);
-  font-size: 11.5px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   color: var(--ink);
 }
@@ -1749,8 +1776,8 @@ input {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgb(252 250 246 / 0.92);
-  color: var(--blue-deep);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--indigo);
   opacity: 0;
   translate: 0 6px;
   transition:
@@ -1775,18 +1802,21 @@ input {
 .insp-card figcaption b {
   display: block;
   font-family: var(--font-serif);
-  font-size: 15px;
+  font-size: var(--fs-item-title);
   font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1.6;
+  /* 1文字だけ次の行に落ちないよう、文節で折り返して行をそろえる。 */
+  word-break: auto-phrase;
+  text-wrap: balance;
 }
 
 .insp-card figcaption span {
   display: block;
   margin-top: 2px;
-  font-size: 12.5px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.12em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 /* ------------------------------------------------------------------ */
@@ -1806,7 +1836,7 @@ input {
   gap: 16px clamp(32px, 5vw, 80px);
   align-items: start;
   padding-left: clamp(0px, 3vw, 48px);
-  border-left: 1px solid var(--rule-2);
+  border-left: 1px solid var(--rule-strong);
 }
 
 .price {
@@ -1815,23 +1845,23 @@ input {
 }
 
 .price-num {
-  font-family: var(--font-latin-serif);
+  font-family: var(--font-latin);
   font-size: clamp(64px, 7vw, 96px);
   line-height: 1;
-  color: var(--blue-deep);
+  color: var(--indigo);
 }
 
 .price-unit {
   margin-top: 14px;
-  font-size: 13px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.14em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .pricing-text {
-  font-size: 15px;
+  font-size: var(--fs-body);
   line-height: 2;
-  color: var(--ink-2);
+  color: var(--ink-muted);
   max-width: 36em;
 }
 
@@ -1845,13 +1875,13 @@ input {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 14.5px;
+  font-size: var(--fs-body-s);
 }
 
 .pricing-points svg {
   width: 18px;
   height: 18px;
-  color: var(--blue);
+  color: var(--indigo);
   flex: none;
 }
 
@@ -1865,11 +1895,11 @@ input {
 }
 
 .faq-list details {
-  border-bottom: 1px solid var(--rule-2);
+  border-bottom: 1px solid var(--rule-strong);
 }
 
 .faq-list details:first-child {
-  border-top: 1px solid var(--rule-2);
+  border-top: 1px solid var(--rule-strong);
 }
 
 .faq-list summary {
@@ -1877,7 +1907,7 @@ input {
   display: block;
   padding: 24px 56px 24px 4px;
   font-family: var(--font-serif);
-  font-size: 17px;
+  font-size: var(--fs-item-title);
   font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1.6;
@@ -1897,7 +1927,7 @@ input {
   top: 50%;
   width: 16px;
   height: 1.5px;
-  background: var(--blue);
+  background: var(--indigo);
   transition: rotate 0.35s var(--ease);
 }
 
@@ -1910,14 +1940,14 @@ input {
 }
 
 .faq-list summary:hover {
-  color: var(--blue-deep);
+  color: var(--indigo-pressed);
 }
 
 .faq-list details p {
   padding: 0 56px 28px 4px;
-  font-size: 15px;
+  font-size: var(--fs-body);
   line-height: 2;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 /* ------------------------------------------------------------------ */
@@ -1927,7 +1957,7 @@ input {
 .final-cta {
   position: relative;
   padding-block: clamp(72px, 8vw, 104px);
-  background: linear-gradient(180deg, rgb(240 234 223 / 0.3), rgb(240 234 223 / 0.85));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--sunken) 30%, transparent), color-mix(in srgb, var(--sunken) 85%, transparent));
   border-top: 1px solid var(--rule);
   overflow: hidden;
 }
@@ -1941,8 +1971,8 @@ input {
 
 .cta-title {
   font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(30px, 2.9vw, 40px);
+  font-weight: 400;
+  font-size: var(--fs-display);
   letter-spacing: 0.08em;
   line-height: 1.4;
   white-space: nowrap;
@@ -1950,9 +1980,9 @@ input {
 
 .cta-copy p {
   margin-top: 18px;
-  font-size: 15px;
+  font-size: var(--fs-body);
   line-height: 2;
-  color: var(--ink-2);
+  color: var(--ink-muted);
 }
 
 .store {
@@ -1983,7 +2013,7 @@ input {
   background: var(--ink);
   color: var(--paper);
   text-decoration: none;
-  box-shadow: 0 10px 22px -12px rgb(43 41 38 / 0.7);
+  box-shadow: 0 10px 22px -12px color-mix(in srgb, var(--ink) 70%, transparent);
   transition:
     background-color 0.3s var(--ease),
     transform 0.3s var(--ease),
@@ -1993,7 +2023,7 @@ input {
 .store-btn:hover {
   background: #000;
   transform: translateY(-1px);
-  box-shadow: 0 14px 26px -14px rgb(43 41 38 / 0.8);
+  box-shadow: 0 14px 26px -14px color-mix(in srgb, var(--ink) 80%, transparent);
 }
 
 .store-btn .icon {
@@ -2003,15 +2033,15 @@ input {
 
 .store-btn span {
   display: grid;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: var(--fs-body);
+  font-weight: 600;
   letter-spacing: 0.06em;
   line-height: 1.35;
   white-space: nowrap;
 }
 
 .store-btn small {
-  font-size: 11px;
+  font-size: var(--fs-label);
   font-weight: 400;
   letter-spacing: 0.12em;
   opacity: 0.8;
@@ -2019,16 +2049,16 @@ input {
 
 .store-note {
   margin-top: 12px;
-  font-size: 12.5px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.1em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .store-status {
   min-height: 1.6em;
   margin-top: 4px;
-  font-size: 13px;
-  color: var(--blue-deep);
+  font-size: var(--fs-caption);
+  color: var(--indigo);
 }
 
 .cta-art {
@@ -2042,7 +2072,7 @@ input {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #e3edf5, var(--powder) 60%, var(--powder-2));
+  background: radial-gradient(circle at 35% 30%, #e3edf5, var(--powder) 60%, var(--powder-mid));
 }
 
 .cta-art .shape-circle-sm {
@@ -2051,7 +2081,7 @@ input {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: var(--powder-3);
+  background: var(--powder-deep);
 }
 
 .cta-plane {
@@ -2067,13 +2097,13 @@ input {
   right: 0;
   top: 10px;
   padding-left: 22px;
-  border-left: 1px solid var(--rule-2);
-  font-family: var(--font-latin-serif);
-  font-size: 11px;
+  border-left: 1px solid var(--rule-strong);
+  font-family: var(--font-latin);
+  font-size: var(--fs-label);
   letter-spacing: 0.5em;
   line-height: 2.6;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 /* ------------------------------------------------------------------ */
@@ -2103,9 +2133,9 @@ input {
 
 .footer-brand p {
   margin-top: 6px;
-  font-size: 12px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.1em;
-  color: var(--ink-3);
+  color: var(--ink-faint);
 }
 
 .footer-nav {
@@ -2122,9 +2152,9 @@ input {
 }
 
 .footer-nav a {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.08em;
-  color: var(--ink-2);
+  color: var(--ink-muted);
   text-decoration: none;
 }
 
@@ -2135,8 +2165,8 @@ input {
 }
 
 .copyright {
-  font-size: 12px;
-  color: var(--ink-3);
+  font-size: var(--fs-label);
+  color: var(--ink-faint);
   letter-spacing: 0.06em;
 }
 
@@ -2273,6 +2303,10 @@ input {
 
 @media (max-width: 1023px) {
   :root {
+    --fs-hero: clamp(34px, 6.4vw, 54px);
+  }
+
+  :root {
     --header-h: 68px;
   }
 
@@ -2290,10 +2324,6 @@ input {
     max-width: 620px;
   }
 
-  .hero-title {
-    font-size: clamp(34px, 6.4vw, 54px);
-  }
-
   .hero-stage {
     --u: min(13px, calc((100vw - var(--gutter) * 2) / 46));
     justify-self: center;
@@ -2309,7 +2339,7 @@ input {
   }
 
   .benefit:nth-child(n + 3) {
-    border-top: 1px solid var(--rule-2);
+    border-top: 1px solid var(--rule-strong);
   }
 
   .features-grid,
@@ -2345,7 +2375,7 @@ input {
     bottom: 64px;
     width: 1px;
     height: auto;
-    background: linear-gradient(180deg, var(--blue-line), var(--powder-3));
+    background: linear-gradient(180deg, var(--sky-line), var(--powder-deep));
   }
 
   .step {
@@ -2383,7 +2413,7 @@ input {
     align-self: start;
     max-width: none;
     margin-top: 4px;
-    font-size: 14px;
+    font-size: var(--fs-body-s);
   }
 
   .insp-track {
@@ -2426,13 +2456,14 @@ input {
 
 @media (max-width: 767px) {
   :root {
+    --fs-hero: min(8.4vw, 40px);
+    --fs-body: 15px;
+  }
+
+  :root {
     --header-h: 62px;
     --gutter: 20px;
     --section-y: 80px;
-  }
-
-  body {
-    font-size: 15px;
   }
 
   .brand-mark {
@@ -2447,7 +2478,7 @@ input {
   .header-cta {
     --h: 40px;
     padding: 0 1.1em;
-    font-size: 13px;
+    font-size: var(--fs-caption);
     letter-spacing: 0.06em;
   }
 
@@ -2493,7 +2524,7 @@ input {
     display: block;
     padding: 16px 4px;
     border-bottom: 1px solid var(--rule);
-    font-size: 16px;
+    font-size: var(--fs-body);
   }
 
   .global-nav a:not(.btn)::after {
@@ -2516,19 +2547,17 @@ input {
 
   .hero-eyebrow {
     margin-bottom: 18px;
-    font-size: 12px;
+    font-size: var(--fs-label);
     letter-spacing: 0.22em;
   }
 
   .hero-title {
-    font-size: min(8.4vw, 40px);
     line-height: 1.5;
     letter-spacing: 0.02em;
   }
 
   .hero-lead {
     margin-top: 22px;
-    font-size: 14.5px;
     line-height: 2;
   }
 
@@ -2544,7 +2573,7 @@ input {
 
   .hero-note {
     margin-top: 20px;
-    font-size: 12px;
+    font-size: var(--fs-label);
     letter-spacing: 0.1em;
   }
 
@@ -2626,17 +2655,12 @@ input {
     height: 46px;
   }
 
-  .benefit h2 {
-    font-size: 15px;
-  }
-
-  .benefit p {
-    font-size: 12.5px;
-  }
-
   .benefit h2,
   .benefit p {
     white-space: normal;
+    /* 半幅のセルに収まらないので、文節で折り返して行をそろえる。 */
+    word-break: auto-phrase;
+    text-wrap: balance;
   }
 
   .hero-title .line:first-child {
@@ -2723,7 +2747,6 @@ input {
 
   .faq-list summary {
     padding: 20px 44px 20px 0;
-    font-size: 15.5px;
   }
 
   .faq-list summary::before,
@@ -2733,7 +2756,6 @@ input {
 
   .faq-list details p {
     padding: 0 0 24px;
-    font-size: 14.5px;
   }
 
   .store {
