@@ -239,8 +239,8 @@
       }
 
       .toc-title {
-        font-weight: 700;
-        font-size: var(--fs-caption);
+        font-weight: 600;
+        font-size: var(--fs-label);
         color: var(--ink-faint);
         margin-bottom: 8px;
       }
@@ -403,7 +403,7 @@
 
       .principle-num {
         font-family: var(--font-latin);
-        font-size: 15px;
+        font-size: var(--fs-body-s);
         color: var(--sky-line);
       }
 
@@ -471,7 +471,7 @@
         margin-top: 6px;
         color: var(--ink-faint);
         font-family: var(--font-mono);
-        font-size: 11.5px;
+        font-size: var(--fs-label);
         letter-spacing: 0;
         line-height: 1.55;
       }
@@ -537,7 +537,7 @@
         margin-top: 4px;
         color: var(--ink-muted);
         font-family: var(--font-mono);
-        font-size: 11.5px;
+        font-size: var(--fs-label);
         letter-spacing: 0;
         line-height: 1.6;
       }
@@ -571,7 +571,7 @@
       }
 
       .source code {
-        font-size: 11.5px;
+        font-size: var(--fs-label);
         background: none;
         padding: 0;
         color: var(--ink-faint);
@@ -1214,7 +1214,7 @@
         background: var(--sunken);
         overflow-x: auto;
         font-family: var(--font-mono);
-        font-size: 12.5px;
+        font-size: var(--fs-caption);
         line-height: 1.7;
         letter-spacing: 0;
         color: var(--ink);
@@ -1340,7 +1340,6 @@
                 <p class="swatch-hex">#FAF8F4</p>
                 <p class="swatch-tokens">App colors.paper<br />Web --paper</p>
                 <p class="swatch-use">画面・ページの地。純白にしない。</p>
-                <p class="swatch-cr">Web（LP・文書）は現在 #F7F3EC <span class="diff">現状と違う</span></p>
               </div>
             </div>
             <div class="swatch">
@@ -1350,7 +1349,6 @@
                 <p class="swatch-hex">#FFFFFF</p>
                 <p class="swatch-tokens">App colors.surface<br />Web --surface</p>
                 <p class="swatch-use">紙の上に置く独立した「もの」（シート、入力欄、カード）。</p>
-                <p class="swatch-cr">Web は現在 #FCFAF6 <span class="diff">現状と違う</span></p>
               </div>
             </div>
             <div class="swatch">
@@ -1360,7 +1358,6 @@
                 <p class="swatch-hex">#F2EEE6</p>
                 <p class="swatch-tokens">App colors.sunken<br />Web --sunken</p>
                 <p class="swatch-use">一段下がった面。画像のない枠、表の見出し、コード。</p>
-                <p class="swatch-cr">Web は現在 #F0EADF <span class="diff">現状と違う</span></p>
               </div>
             </div>
             <div class="swatch">
@@ -1370,7 +1367,7 @@
                 <p class="swatch-hex">#1A1815</p>
                 <p class="swatch-tokens">App colors.ink<br />Web --ink</p>
                 <p class="swatch-use">見出し・名前・本文。</p>
-                <p class="swatch-cr">紙 16.7 : 1 ／ Web は現在 #2B2926 <span class="diff">現状と違う</span></p>
+                <p class="swatch-cr">紙 16.7 : 1 ／ 沈み 15.3 : 1</p>
               </div>
             </div>
             <div class="swatch">
@@ -1430,7 +1427,6 @@
                 <p class="swatch-hex">#3D6891 ／ 押下 #2C5178 ／ #E7EEF6</p>
                 <p class="swatch-use">ボタン、リンク、選択中のタブ・日付・チップ、地図のピン、フォーカスリング、タグの「#」。wash は旅行の期間やバナーの地。</p>
                 <p class="swatch-cr">紙 5.5 : 1 ／ 白文字 5.9 : 1 ／ wash の上の墨 15.1 : 1</p>
-                <p class="swatch-cr">LP は現在 #4C7294（沈みの上で 4.4 : 1、AA 未満） <span class="diff">現状と違う</span></p>
               </div>
             </div>
             <div class="swatch">
@@ -1684,7 +1680,7 @@
           </div>
           <div class="prose">
             <p class="muted">
-              LP では現在 <code>--powder</code> <code>--powder-2</code> <code>--powder-3</code> <code>--blue-line</code><code>--beige</code> <code>--beige-2</code> という名前で使われている。値はほぼそのまま、名前だけ上の7つに揃える。
+              LP の円のグラデーションには、空色と空色・濃を半分ずつ混ぜた <code>--powder-mid</code> も使う（新しい色ではなく混色）。
             </p>
           </div>
 
@@ -1830,7 +1826,7 @@
           <div class="prose">
             <ul>
               <li>
-                <strong>明朝に 500 を指定しない。</strong>ヒラギノ明朝には W3 と W6 しかなく、500 は Mac では W3 になるが、Noto Serif JP（Android・一部の Windows）では Medium になり、OS によって見え方が変わる。LP の見出しが今 500 <span class="diff">現状と違う</span>
+                <strong>明朝に 500 を指定しない。</strong>ヒラギノ明朝には W3 と W6 しかなく、500 は Mac では W3 になるが、Noto Serif JP（Android・一部の Windows）では Medium になり、OS によって見え方が変わる。
               </li>
               <li>
                 <strong>選択状態で太さを変えない。</strong>文字幅が変わって、タブやチップが選ぶたびに揺れる。選択は色と地の色で示す。アプリのチップ・インボックスのタブ・地図のセグメント・アイコン選択で 700 に変えている <span class="diff">現状と違う</span>
@@ -1964,15 +1960,15 @@
               <div class="step-meta">
                 <b>--fs-hero</b>
                 <span class="spec">明朝 400 ／ 34→56 / 1.42 ／ +0.04em・palt</span>
-                <p class="step-use">LP のファーストビューの一文だけ。スマホ幅では min(8.4vw, 40px)</p>
+                <p class="step-use">LP のファーストビューの一文だけ。1023px 以下は clamp(34px, 6.4vw, 54px)、767px 以下は min(8.4vw, 40px)</p>
               </div>
               <p class="sample w-hero">「いつか行きたい」を、<br />行ける日に変える。</p>
             </div>
             <div class="step">
               <div class="step-meta">
-                <b>--fs-display</b> <span class="diff">現状と違う</span>
+                <b>--fs-display</b>
                 <span class="spec">明朝 400 ／ 26→34 / 1.55 ／ +0.04em・palt</span>
-                <p class="step-use">LP のセクション見出しと CTA の見出し、文書ページの h1（今は3種類の clamp がある）</p>
+                <p class="step-use">LP のセクション見出しと CTA の見出し、文書ページの h1、404 の見出し</p>
               </div>
               <p class="sample w-display">見つけた場所を、次の週末に。</p>
             </div>
@@ -1986,9 +1982,9 @@
             </div>
             <div class="step">
               <div class="step-meta">
-                <b>--fs-item-title</b> <span class="diff">現状と違う</span>
+                <b>--fs-item-title</b>
                 <span class="spec">明朝 600 ／ 17 / 1.6</span>
-                <p class="step-use">機能・手順・FAQ の見出し、カードの名前、文書の h3。アプリの itemTitle と同じ 17</p>
+                <p class="step-use">LP の特長・機能・手順・FAQ の見出し、カードの名前、文書の h3。アプリの itemTitle と同じ 17。狭い枠では文節で折り返す（<code>word-break: auto-phrase</code>）</p>
               </div>
               <p class="sample w-item-title">地図で、近くの「行きたい」を見つける</p>
             </div>
@@ -1996,7 +1992,7 @@
               <div class="step-meta">
                 <b>--fs-heading</b>
                 <span class="spec">ゴシック 700 ／ 16 / 1.6</span>
-                <p class="step-use">小見出し（LP の特長、文書の h4、目次の見出し）</p>
+                <p class="step-use">小見出し（文書の h4、目次の見出し）</p>
               </div>
               <p class="sample w-heading">広告なし・無料</p>
             </div>
@@ -2004,7 +2000,7 @@
               <div class="step-meta">
                 <b>--fs-body</b>
                 <span class="spec">ゴシック 400 ／ 16 / 1.85 ／ +0.02em</span>
-                <p class="step-use">本文・リード文（リードは淡墨で、行間 2.0 まで）。560px 以下は 15px</p>
+                <p class="step-use">本文・リード文（リードは淡墨で、行間 2.0 まで）。767px 以下は 15px</p>
               </div>
               <p class="sample w-body">Instagram や Google Maps、SNS で見つけた行きたい場所やイベントを保存・整理。地図やカレンダーから再発見して、次のおでかけにつなげます。</p>
             </div>
@@ -2018,9 +2014,9 @@
             </div>
             <div class="step">
               <div class="step-meta">
-                <b>--fs-body-s</b> <span class="diff">現状と違う</span>
+                <b>--fs-body-s</b>
                 <span class="spec">ゴシック 400 ／ 14 / 1.85</span>
-                <p class="step-use">カードの中の説明、ナビ、表、目次（LP のカード説明は今 12.5〜13.5px）</p>
+                <p class="step-use">カードの中の説明、ナビ、表、目次、小さいボタン</p>
               </div>
               <p class="sample w-body-s">共有ボタンから保存すると、タイトルや場所が自動で入ります。</p>
             </div>
@@ -2028,7 +2024,7 @@
               <div class="step-meta">
                 <b>--fs-caption</b>
                 <span class="spec">ゴシック 400 ／ 13 / 1.7</span>
-                <p class="step-use">注記、フッターのリンク、ボタン下の補足、和文のアイブロウ</p>
+                <p class="step-use">注記、フッターのリンク、ボタン下の補足、和文のアイブロウ、手順のアイコン下の説明、写真カードの地名</p>
               </div>
               <p class="sample w-caption" style="color: var(--ink-faint)">iPhone 向け　App Store 公開準備中　広告なし</p>
             </div>
@@ -2042,24 +2038,7 @@
             </div>
           </div>
           <div class="prose">
-            <p>LP の現在の値は、次のように寄せる（LP だけで 38 種類のサイズがある）。</p>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>今の値</th><th>寄せる先</th><th>主な場所</th></tr>
-              </thead>
-              <tbody>
-                <tr><td class="num">11 / 11.5px</td><td><code>--fs-label</code> 12</td><td>.insp-tag、.store-btn small、.cta-vertical</td></tr>
-                <tr><td class="num">12.5px</td><td><code>--fs-body-s</code> 14</td><td>.benefit p、.step p、.insp-card span、.store-note</td></tr>
-                <tr><td class="num">13.5 / 14.5px</td><td><code>--fs-body-s</code> 14</td><td>.feature p、.pricing-points li</td></tr>
-                <tr><td class="num">15.5 / 16.5px</td><td><code>--fs-body</code> 16（狭い画面は 15）</td><td>.faq summary（スマホ）、.hero-lead</td></tr>
-                <tr><td class="num">17 / 17.5px</td><td><code>--fs-item-title</code> 17</td><td>.feature h3、.step h3、.faq summary</td></tr>
-                <tr><td class="num">clamp(26–32)、clamp(30–40)</td><td><code>--fs-display</code></td><td>.section-title、.cta-title、文書の h1</td></tr>
-                <tr><td class="num">21 / 25px（欧文セリフ）</td><td>ワードマーク専用として残す</td><td>.brand-name（ヘッダー 25、フッター・スマホ 21）</td></tr>
-                <tr><td class="num">clamp(64–96)（欧文セリフ）</td><td>料金の数字専用として残す</td><td>.price-num</td></tr>
-              </tbody>
-            </table>
+            <p class="muted">表にないサイズは使わない。例外はワードマーク「Travel Inbox」（欧文セリフ 25px、フッターとスマホは 21px）と料金の大きな数字（欧文セリフ clamp(64px, 7vw, 96px)）、スマホ模型の中だけ。</p>
           </div>
 
           <h3 id="size-spacing">行間と字間</h3>
@@ -2136,7 +2115,7 @@
           <div class="prose">
             <ul>
               <li>pill は追加ボタン、選択中の日付、地図のピンなど「円」のものだけ。例外として LP の CTA ボタン（App Store で入手 など）は pill のままでよい。</li>
-              <li>LP のカードの 18px は <code>xl</code> 16 に寄せる。 <span class="diff">現状と違う</span></li>
+              <li>LP のカードも <code>xl</code> 16。</li>
             </ul>
           </div>
 
@@ -2156,7 +2135,7 @@
           <p class="chapter-num">06 — Gaps</p>
           <h2>実装との差分</h2>
           <div class="prose">
-            <p>2026年9月25日の時点で、実装がこのページと食い違っているところ。直したら消す。</p>
+            <p>実装がこのページと食い違っているところ。直したら消す。</p>
           </div>
 
           <h3>アプリ（travel-inbox）</h3>
@@ -2200,32 +2179,9 @@
           </ol>
 
           <h3>Web（travel-inbox-site）</h3>
-          <ol class="todo">
-            <li>
-              <b>色を統一パレットに置き換える。</b>とくに LP の <code>--blue</code> #4C7294 は沈みの上で AA に届かないので藍 #3D6891 に。墨・紙・罫も上の値に揃え、<code>theme-color</code> も #FAF8F4 に。
-              <span class="where">assets/lp.css :root、styles.css :root、各 HTML の &lt;meta name="theme-color"&gt;</span>
-            </li>
-            <li>
-              <b>装飾色の名前を <code>--powder</code> <code>--powder-deep</code> <code>--sky-line</code> <code>--kraft-*</code> に揃える。</b>
-              <span class="where">assets/lp.css</span>
-            </li>
-            <li>
-              <b>文字サイズを 10 個の型に寄せる。</b>対応は「文字サイズ › Web」の表のとおり。12px 未満をなくす。
-              <span class="where">assets/lp.css（38 種類）、styles.css（rem で 9 種類）</span>
-            </li>
-            <li>
-              <b>明朝の太さの 500 を 400 に。</b>文書ページの h1（600）も display の型（400）に。
-              <span class="where">assets/lp.css .hero-title・.section-title、styles.css .doc-header h1</span>
-            </li>
-            <li>
-              <b>文書ページのワードマークを欧文セリフにする。</b>今はゴシックの 600 で、LP の「Travel Inbox」と別物に見える。
-              <span class="where">styles.css .wordmark</span>
-            </li>
-            <li>
-              <b>カードの角丸 18px を 16px に。</b>
-              <span class="where">assets/lp.css --radius</span>
-            </li>
-          </ol>
+          <div class="prose">
+            <p class="muted">なし。色・文字サイズ・太さ・ワードマーク・角丸はこのページのとおり。</p>
+          </div>
         </section>
 
         <!-- ============================================================ -->
@@ -2262,7 +2218,7 @@
 --fs-title: 22px;                       <span class="c">/* 明朝 600 */</span>
 --fs-item-title: 17px;                  <span class="c">/* 明朝 600 */</span>
 --fs-heading: 16px;                     <span class="c">/* ゴシック 700 */</span>
---fs-body: 16px;                        <span class="c">/* ゴシック 400（560px 以下は 15px） */</span>
+--fs-body: 16px;                        <span class="c">/* ゴシック 400（767px 以下は 15px） */</span>
 --fs-button: 15px;                      <span class="c">/* ゴシック 600 */</span>
 --fs-body-s: 14px;                      <span class="c">/* ゴシック 400 */</span>
 --fs-caption: 13px;                     <span class="c">/* ゴシック 400 */</span>
