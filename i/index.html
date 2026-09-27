@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>アプリで開く — Travel Inbox</title>
+    <meta name="robots" content="noindex" />
+    <!-- リンクの中身（トークン）を外部に渡さない。リファラも送らない。 -->
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="https://travel-inbox.hryoichi.com/icon.png" />
+    <link rel="stylesheet" href="https://travel-inbox.hryoichi.com/styles.css" />
+  </head>
+
+  <!--
+    アプリの「送る」「招待リンクを送る」で作られるリンクの行き先
+    （https://travel-inbox.hryoichi.com/i/#<トークン>）。
+
+    アプリが入っている iPhone では、Universal Links でこのページを開かずに
+    アプリが開く（/.well-known/apple-app-site-association）。LINE のアプリ内
+    ブラウザなどで開けなかったときだけ、このページが表示される。
+
+    トークンは # の後ろにあるので、サーバーには届かない。このページもトークンを
+    どこにも送らず、アプリを開くリンク（travelinbox://i/<トークン>）を組み立てる
+    だけ。リンクの中身（場所・旅行の名前など）は表示しない（登録済みの利用者どうし
+    だけで使う機能のため）。
+  -->
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="wordmark" href="https://travel-inbox.hryoichi.com/">
+          <svg class="mark" viewBox="0 0 40 32" aria-hidden="true" focusable="false">
+            <path d="M2 16.5 38 3 15 20.5z" fill="#f3ece0" />
+            <path d="M15 20.5 38 3 21.5 29.5z" fill="#e3d6c2" />
+            <path d="M15 20.5 17 27.5l2.4-3.1z" fill="#cdbda3" />
+            <path d="M2 16.5 38 3 21.5 29.5 15 20.5zM15 20.5 38 3M15 20.5l2 7 2.4-3.1" fill="none" stroke="#8f7f67" stroke-width=".9" stroke-linejoin="round" />
+          </svg>
+          Travel Inbox
+        </a>
+      </div>
+    </header>
+
+    <main class="share-link">
+      <div class="wrap">
+        <h1>このリンクはアプリで開きます</h1>
+        <p>Travel Inbox で送られた場所や、旅行への招待のリンクです。</p>
+
+        <div data-has-token hidden>
+          <p><a class="share-link-open" href="#" data-open-app>アプリで開く</a></p>
+          <p class="share-link-note">「このページを開きますか？」と聞かれたら「開く」を選んでください。</p>
+          <p class="share-link-note">
+            LINE などのアプリの中で開いていて反応しないときは、画面のメニューから「ブラウザで開く」（Safari で開く）を選んでから、もう一度押してください。
+          </p>
+        </div>
+
+        <p data-no-token>
+          リンクが途中で切れているようです。送ってくれた人に、もう一度送ってもらってください。
+        </p>
+
+        <section class="share-link-install" aria-labelledby="install-title">
+          <h2 id="install-title">まだアプリをお持ちでない方</h2>
+          <p>
+            Travel Inbox は iPhone 向けに App Store での公開を準備しています。アプリを入れて登録したあと、もう一度このリンクを開いてください。
+          </p>
+        </section>
+
+        <p class="share-link-links">
+          <a href="https://travel-inbox.hryoichi.com/">ホーム</a> ／
+          <a href="https://travel-inbox.hryoichi.com/support.html">サポート</a> ／
+          <a href="https://travel-inbox.hryoichi.com/privacy.html">プライバシーポリシー</a>
+        </p>
+      </div>
+    </main>
+
+    <script>
+      // アプリの src/utils/share-links.ts と同じ形のトークンだけを受け付ける。
+      (function () {
+        var token = decodeURIComponent(location.hash.replace(/^#/, ''));
+        if (!/^[A-Za-z0-9_-]{8,64}$/.test(token)) return;
+        document.querySelector('[data-open-app]').href = 'travelinbox://i/' + token;
+        document.querySelector('[data-has-token]').hidden = false;
+        document.querySelector('[data-no-token]').hidden = true;
+      })();
+    </script>
+  </body>
+</html>
