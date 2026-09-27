@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["NMS7Y4SQ23.com.travelinbox.app"],
+        "components": [
+          { "/": "/i", "comment": "送られた項目・旅行への招待のリンク（トークンは # の後ろ）" },
+          { "/": "/i/*", "comment": "同上" }
+        ]
+      }
+    ]
+  }
+}
