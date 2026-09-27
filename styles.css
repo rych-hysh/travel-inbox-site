@@ -522,3 +522,63 @@ tbody tr:last-child td {
     break-inside: avoid;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* 送られたリンク（/i/）— アプリで開けなかったときのページ            */
+/* ------------------------------------------------------------------ */
+
+.share-link {
+  padding-block: clamp(4rem, 12vw, 8rem);
+  text-align: center;
+}
+
+.share-link h1 {
+  font-size: var(--fs-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-feature-settings: 'palt' 1;
+  margin: 0 0 1rem;
+}
+
+.share-link p {
+  color: var(--ink-muted);
+}
+
+.share-link-open {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.85rem 2rem;
+  min-height: 44px;
+  border-radius: 999px;
+  background: var(--indigo);
+  color: var(--ink-inverse);
+  font-size: var(--fs-button);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.share-link-open:hover {
+  background: var(--indigo-pressed);
+  color: var(--ink-inverse);
+}
+
+.share-link-note {
+  font-size: var(--fs-caption);
+}
+
+.share-link-install {
+  max-width: 32rem;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.share-link-install h2 {
+  font-size: var(--fs-heading);
+  margin: 0 0 0.5rem;
+}
+
+.share-link-links {
+  margin-top: 2.5rem;
+  font-size: var(--fs-body-s);
+}
