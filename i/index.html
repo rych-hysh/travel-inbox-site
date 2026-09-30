@@ -25,9 +25,8 @@
     中身は、トークンを share-web（Supabase の Edge Function）に POST して受け取る
     （アプリ側の 共有Webページ仕様書.md §5・§8）。トークンは # の後ろにあるので
     このサイトのサーバーには届かず、関数にも URL ではなく本文で送る。見せる項目は
-    関数の先の DB 関数が決める（説明文・サムネイル・Places の座標・状態・タグは
-    返ってこない）。古いアプリで作られたリンクは "hidden" が返り、いままでどおり
-    「アプリで開いてください」だけを出す。
+    関数の先の DB 関数が決める（説明文・サムネイル・Places の座標・状態・タグ・
+    メモ（送ったときに選んだもの以外）は返ってこない）。
 
     外部スクリプト・解析タグ・Cookie は使わない。名前やメモは他の人が書いた文字
     なので、必ず textContent で入れる（innerHTML を使わない）。
@@ -69,7 +68,7 @@
           <p class="share-link-note" data-expires></p>
         </article>
 
-        <!-- 旅行への招待（§5.2）。行程やアイテムは出さない -->
+        <!-- 旅行への招待（§5.2）。行程は出すが、メモ・旅行の中のメモ・メンバーの名前は出さない -->
         <article class="share-card" data-view="invite" hidden>
           <p class="share-lead" data-invite-lead></p>
           <p class="share-kind">旅行</p>
@@ -78,6 +77,7 @@
           <p class="share-warning" data-invite-full hidden>
             この旅行はメンバーが上限（10人）に達しています。
           </p>
+          <div class="share-itinerary" data-invite-itinerary></div>
           <p>参加すると、みんなが保存した場所を日ごとの行程にまとめられます。</p>
           <p class="share-link-note" data-expires></p>
         </article>
@@ -235,6 +235,37 @@
           list.appendChild(a);
         };
 
+        // 地図アプリと元のページへのリンク（§5.1・§10.1）。Places の座標は返って
+        // こないので、返ってきた座標は使ってよい。place ID は Google マップの URL
+        // にだけ使う。
+        var mapLinks = function (list, item, withSource) {
+          var isEvent = item.type === 'event';
+          var name = (isEvent ? item.venue : item.place_name) || item.title || '';
+          var hasPin = typeof item.latitude === 'number' && typeof item.longitude === 'number';
+          var pin = hasPin ? item.latitude + ',' + item.longitude : '';
+          var words = [name, item.address].filter(Boolean).join(' ');
+          var fromGoogleMaps = item.source === 'google_maps' && item.source_url;
+          if (fromGoogleMaps && !withSource) {
+            action(list, 'Google マップで開く', item.source_url);
+          } else if (!fromGoogleMaps && (item.google_place_id || pin || words)) {
+            var google =
+              'https://www.google.com/maps/search/?api=1&query=' +
+              encodeURIComponent(item.google_place_id ? words : pin || words) +
+              (item.google_place_id ? '&query_place_id=' + encodeURIComponent(item.google_place_id) : '');
+            action(list, 'Google マップで開く', google);
+          }
+          if (isApple && (pin || words)) {
+            var apple =
+              'https://maps.apple.com/?q=' +
+              encodeURIComponent(name || words) +
+              (pin ? '&ll=' + pin : item.address ? '&address=' + encodeURIComponent(item.address) : '');
+            action(list, 'Apple マップで開く', apple);
+          }
+          if (withSource && item.source_url) {
+            action(list, SOURCE_LINKS[item.source] || '元のページを見る', item.source_url);
+          }
+        };
+
         var renderItem = function (data) {
           var item = data.item || {};
           var isEvent = item.type === 'event';
@@ -258,35 +289,79 @@
             show('[data-item-memo]', true);
           }
 
-          // 地図アプリのリンク（§5.1・§10.1）。Places の座標は返ってこないので、
-          // 返ってきた座標は使ってよい。place ID は Google マップの URL にだけ使う。
-          var actions = $('[data-item-actions]');
-          var name = (isEvent ? item.venue : item.place_name) || item.title || '';
-          var hasPin = typeof item.latitude === 'number' && typeof item.longitude === 'number';
-          var pin = hasPin ? item.latitude + ',' + item.longitude : '';
-          var words = [name, item.address].filter(Boolean).join(' ');
-          var fromGoogleMaps = item.source === 'google_maps' && item.source_url;
-          if (!fromGoogleMaps && (item.google_place_id || pin || words)) {
-            var google =
-              'https://www.google.com/maps/search/?api=1&query=' +
-              encodeURIComponent(item.google_place_id ? words : pin || words) +
-              (item.google_place_id ? '&query_place_id=' + encodeURIComponent(item.google_place_id) : '');
-            action(actions, 'Google マップで開く', google);
-          }
-          if (isApple && (pin || words)) {
-            var apple =
-              'https://maps.apple.com/?q=' +
-              encodeURIComponent(name || words) +
-              (pin ? '&ll=' + pin : item.address ? '&address=' + encodeURIComponent(item.address) : '');
-            action(actions, 'Apple マップで開く', apple);
-          }
-          if (item.source_url) {
-            action(actions, SOURCE_LINKS[item.source] || '元のページを見る', item.source_url);
-          }
+          mapLinks($('[data-item-actions]'), item, true);
 
           text('[data-view="item"] [data-expires]', until(data.expires_at));
           show('[data-view="message"]', false);
           show('[data-view="item"]', true);
+        };
+
+        // 行程（§5.2）。日ごとに、時刻・名前・種類・住所と地図のリンク。日が
+        // 決まっていない場所は最後に「未定」としてまとめる。
+        var renderItinerary = function (root, entries, start) {
+          if (entries.length === 0) return;
+          var heading = document.createElement('h2');
+          heading.textContent = '行程（' + entries.length + '件）';
+          root.appendChild(heading);
+
+          var groups = [];
+          entries.forEach(function (entry) {
+            var key = typeof entry.day_index === 'number' ? entry.day_index : null;
+            var last = groups[groups.length - 1];
+            if (!last || last.key !== key) groups.push((last = { key: key, entries: [] }));
+            last.entries.push(entry);
+          });
+
+          groups.forEach(function (group) {
+            var dayTitle = document.createElement('h3');
+            if (group.key === null) {
+              dayTitle.textContent = '未定';
+            } else {
+              var label = group.key + '日目';
+              if (start) {
+                var date = new Date(start.getFullYear(), start.getMonth(), start.getDate() + group.key - 1);
+                label += ' ' + date.toLocaleDateString('ja-JP', { month: 'long', day: 'numeric', weekday: 'short' });
+              }
+              dayTitle.textContent = label;
+            }
+            root.appendChild(dayTitle);
+
+            var list = document.createElement('ol');
+            list.className = 'share-stops';
+            group.entries.forEach(function (entry) {
+              var item = entry.item || {};
+              var li = document.createElement('li');
+              var head = document.createElement('p');
+              head.className = 'share-stop-title';
+              if (entry.planned_time) {
+                var time = document.createElement('span');
+                time.className = 'share-stop-time';
+                time.textContent = entry.planned_time;
+                head.appendChild(time);
+              }
+              head.appendChild(document.createTextNode(item.title || ''));
+              li.appendChild(head);
+
+              var meta = [
+                item.type === 'event' ? 'イベント' : CATEGORIES[item.category] || null,
+                item.type === 'event' ? period(parseInstant(item.event_start_at), parseInstant(item.event_end_at)) : null,
+                item.address || [item.prefecture, item.city].filter(Boolean).join('') || null,
+              ].filter(Boolean);
+              if (meta.length > 0) {
+                var line = document.createElement('p');
+                line.className = 'share-stop-meta';
+                line.textContent = meta.join(' ・ ');
+                li.appendChild(line);
+              }
+
+              var links = document.createElement('div');
+              links.className = 'share-stop-links';
+              mapLinks(links, item, false);
+              if (links.childNodes.length > 0) li.appendChild(links);
+              list.appendChild(li);
+            });
+            root.appendChild(list);
+          });
         };
 
         var renderInvite = function (data) {
@@ -307,6 +382,7 @@
           }
           fact(facts, 'メンバー' + (trip.member_count || 1) + '人');
           show('[data-invite-full]', (trip.member_count || 0) >= 10);
+          renderItinerary($('[data-invite-itinerary]'), trip.items || [], start);
 
           text('[data-view="invite"] [data-expires]', until(data.expires_at));
           show('[data-view="message"]', false);
@@ -353,9 +429,6 @@
             } else if (data.state === 'expired') {
               setMessage('このリンクは有効期限が切れています', '送った人に新しいリンクを頼んでください。');
               show('[data-has-token]', false);
-            } else if (data.state === 'hidden') {
-              // Web で見せる前に作られたリンク（§7.3）。いままでどおりの案内。
-              setMessage('このリンクはアプリで開きます', 'Travel Inbox で送られた場所や、旅行への招待のリンクです。');
             } else {
               setMessage(
                 'このリンクは使えなくなっています',

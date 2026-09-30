@@ -685,3 +685,67 @@ tbody tr:last-child td {
 .share-benefits li {
   margin: 0.25rem 0;
 }
+
+.share-itinerary {
+  margin: 0 0 1.5rem;
+}
+
+.share-itinerary h2 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: var(--fs-heading);
+}
+
+.share-itinerary h3 {
+  margin: 1.25rem 0 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--fs-body-s);
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.share-stops {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.share-stops li {
+  margin: 0 0 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+
+.share-stops .share-stop-title {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.share-stop-time {
+  margin-right: 0.5rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+.share-stop-meta {
+  margin: 0.25rem 0 0;
+  font-size: var(--fs-body-s);
+  overflow-wrap: anywhere;
+}
+
+.share-stop-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.share-stop-links .share-action {
+  padding: 0.4rem 0.9rem;
+  font-size: var(--fs-body-s);
+}
