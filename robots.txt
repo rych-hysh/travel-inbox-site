@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://travel-inbox.hryoichi.com/sitemap.xml
+Sitemap: https://tottoki.hryoichi.com/sitemap.xml

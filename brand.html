@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ブランドデザイン — Travel Inbox</title>
-    <meta name="description" content="Travel Inbox のアプリと Web に共通するデザインの決まりごと。色、書体、文字サイズ、余白。" />
+    <title>ブランドデザイン — Tottoki</title>
+    <meta name="description" content="Tottoki のアプリと Web に共通するデザインの決まりごと。色、書体、文字サイズ、余白。" />
     <!-- 直接 URL を開くためのページ。どこからもリンクせず、検索にも出さない。 -->
     <meta name="robots" content="noindex" />
     <meta name="theme-color" content="#FAF8F4" />
@@ -1236,13 +1236,12 @@
   <body>
     <header class="masthead page">
       <div class="wordmark">
-        <svg viewBox="0 0 40 32" aria-hidden="true" focusable="false">
-          <path d="M2 16.5 38 3 15 20.5z" fill="#f3ece0" />
-          <path d="M15 20.5 38 3 21.5 29.5z" fill="#e3d6c2" />
-          <path d="M15 20.5 17 27.5l2.4-3.1z" fill="#cdbda3" />
-          <path d="M2 16.5 38 3 21.5 29.5 15 20.5zM15 20.5 38 3M15 20.5l2 7 2.4-3.1" fill="none" stroke="#8f7f67" stroke-width=".9" stroke-linejoin="round" />
+        <svg viewBox="0 0 24 28" aria-hidden="true" focusable="false">
+          <defs><linearGradient id="pin-wash" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ad6b0" /><stop offset=".45" stop-color="#5ab0e0" /><stop offset="1" stop-color="#3a7bd5" /></linearGradient></defs>
+          <path d="M12 27C9 23.2 2 17.4 2 11a10 10 0 0 1 20 0c0 6.4-7 12.2-10 16z" fill="url(#pin-wash)" />
+          <path d="M8.9 7.6h6.2a.7.7 0 0 1 .7.7v8.9L12 14.6l-3.8 2.6V8.3a.7.7 0 0 1 .7-.7z" fill="#fffdf8" />
         </svg>
-        Travel Inbox
+        Tottoki
       </div>
       <p class="eyebrow-en">Brand design guidelines</p>
       <h1>紙と墨と、少しの色。</h1>
@@ -1250,7 +1249,7 @@
         アプリと Web の両方に効く、デザインの決まりごと。色・書体・文字サイズ・余白を「どこで何を使うか」まで決めておき、画面や場所ごとに書体やサイズがばらつかないようにする。ここに書いたことが正で、実装が違っていたら実装のほうを直す。
       </p>
       <p class="meta-line">
-        <span>対象：iOS / Android アプリ、travel-inbox.hryoichi.com</span>
+        <span>対象：iOS / Android アプリ、tottoki.hryoichi.com</span>
         <span>更新：2026年9月25日</span>
         <span><span class="diff">現状と違う</span> ＝ 今の実装がこの決まりと食い違っているところ</span>
       </p>
@@ -1618,7 +1617,7 @@
             </p>
           </div>
           <div class="brand-art">
-            <img src="icon.png" alt="Travel Inbox のアプリアイコン" width="180" height="180" />
+            <img src="icon.png" alt="Tottoki のアプリアイコン" width="180" height="180" />
             <div class="swatches">
               <div class="swatch">
                 <div class="chip" style="background: #d6e4ef"></div>
@@ -1758,7 +1757,7 @@
               <p class="face-role">ロゴと装飾の欧文（Web のみ）</p>
               <p class="face-sample latin">Travel 01</p>
               <p class="face-name">欧文セリフ</p>
-              <p>ワードマーク「Travel Inbox」、英字のアイブロウ、通し番号（01, 02…）、料金の大きな数字。和文や文章には使わない。アプリでは使わない。</p>
+              <p>ワードマーク「Tottoki」、英字のアイブロウ、通し番号（01, 02…）、料金の大きな数字。和文や文章には使わない。アプリでは使わない。</p>
               <dl>
                 <dt>Web</dt>
                 <dd>var(--font-latin)<br />Iowan Old Style → Palatino → Georgia</dd>
@@ -2034,11 +2033,11 @@
                 <span class="spec">ゴシック 600 ／ 12 / 1.6 ／ +0.04em</span>
                 <p class="step-use">タグ、著作権表示、表の見出し。英字アイブロウ（欧文セリフ・大文字・+0.42em）もこのサイズ。Web の最小サイズ</p>
               </div>
-              <p class="sample"><span class="w-label" style="color: var(--ink-faint)">© 2026 Travel Inbox</span>　<span class="w-eyebrow-en" style="color: var(--ink-faint)">Features</span></p>
+              <p class="sample"><span class="w-label" style="color: var(--ink-faint)">© 2026 Tottoki</span>　<span class="w-eyebrow-en" style="color: var(--ink-faint)">Features</span></p>
             </div>
           </div>
           <div class="prose">
-            <p class="muted">表にないサイズは使わない。例外はワードマーク「Travel Inbox」（欧文セリフ 25px、フッターとスマホは 21px）と料金の大きな数字（欧文セリフ clamp(64px, 7vw, 96px)）、スマホ模型の中だけ。</p>
+            <p class="muted">表にないサイズは使わない。例外はワードマーク「Tottoki」（欧文セリフ 25px、フッターとスマホは 21px）と料金の大きな数字（欧文セリフ clamp(64px, 7vw, 96px)）、スマホ模型の中だけ。</p>
           </div>
 
           <h3 id="size-spacing">行間と字間</h3>
@@ -2231,7 +2230,7 @@
     </div>
 
     <footer class="footer">
-      <div class="page">Travel Inbox ブランドデザイン — このページはどこからもリンクしていない。URL を直接開いて使う。</div>
+      <div class="page">Tottoki ブランドデザイン — このページはどこからもリンクしていない。URL を直接開いて使う。</div>
     </footer>
   </body>
 </html>

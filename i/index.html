@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel Inbox で共有されたリンク</title>
+    <title>Tottoki で共有されたリンク</title>
     <meta name="robots" content="noindex" />
     <!-- リンクの中身（トークン）を外部に渡さない。リファラも送らない。 -->
     <meta name="referrer" content="no-referrer" />
     <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="https://travel-inbox.hryoichi.com/icon.png" />
-    <link rel="stylesheet" href="https://travel-inbox.hryoichi.com/styles.css" />
+    <link rel="icon" href="https://tottoki.hryoichi.com/icon.png" />
+    <link rel="stylesheet" href="https://tottoki.hryoichi.com/styles.css" />
   </head>
 
   <!--
     アプリの「送る」「招待リンクを送る」で作られるリンクの行き先
-    （https://travel-inbox.hryoichi.com/i/#<トークン>）。
+    （https://tottoki.hryoichi.com/i/#<トークン>）。
 
     アプリが入っている iPhone では、Universal Links でこのページを開かずに
     アプリが開く（/.well-known/apple-app-site-association）。このページが
@@ -34,14 +34,13 @@
   <body>
     <header class="site-header">
       <div class="wrap">
-        <a class="wordmark" href="https://travel-inbox.hryoichi.com/">
-          <svg class="mark" viewBox="0 0 40 32" aria-hidden="true" focusable="false">
-            <path d="M2 16.5 38 3 15 20.5z" fill="#f3ece0" />
-            <path d="M15 20.5 38 3 21.5 29.5z" fill="#e3d6c2" />
-            <path d="M15 20.5 17 27.5l2.4-3.1z" fill="#cdbda3" />
-            <path d="M2 16.5 38 3 21.5 29.5 15 20.5zM15 20.5 38 3M15 20.5l2 7 2.4-3.1" fill="none" stroke="#8f7f67" stroke-width=".9" stroke-linejoin="round" />
+        <a class="wordmark" href="https://tottoki.hryoichi.com/">
+          <svg class="mark" viewBox="0 0 24 28" aria-hidden="true" focusable="false">
+            <defs><linearGradient id="pin-wash" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ad6b0" /><stop offset=".45" stop-color="#5ab0e0" /><stop offset="1" stop-color="#3a7bd5" /></linearGradient></defs>
+            <path d="M12 27C9 23.2 2 17.4 2 11a10 10 0 0 1 20 0c0 6.4-7 12.2-10 16z" fill="url(#pin-wash)" />
+            <path d="M8.9 7.6h6.2a.7.7 0 0 1 .7.7v8.9L12 14.6l-3.8 2.6V8.3a.7.7 0 0 1 .7-.7z" fill="#fffdf8" />
           </svg>
-          Travel Inbox
+          Tottoki
         </a>
       </div>
     </header>
@@ -51,7 +50,7 @@
         <!-- 読み込み中・中身を出さないとき -->
         <div data-view="message">
           <h1 data-message-title>このリンクはアプリで開きます</h1>
-          <p data-message-body>Travel Inbox で送られた場所や、旅行への招待のリンクです。</p>
+          <p data-message-body>Tottoki で送られた場所や、旅行への招待のリンクです。</p>
         </div>
 
         <!-- 送られた場所・イベント（§5.1） -->
@@ -99,15 +98,15 @@
           </ul>
           <p data-store hidden><a class="share-link-open" href="#" data-store-link>App Store で入手</a></p>
           <p data-install-note>
-            Travel Inbox は iPhone 向けに App Store での公開を準備しています。アプリを入れて登録したあと、もう一度このリンクを開いてください。
+            Tottoki は iPhone 向けに App Store での公開を準備しています。アプリを入れて登録したあと、もう一度このリンクを開いてください。
           </p>
         </section>
 
         <p class="share-link-links">
-          <a href="https://travel-inbox.hryoichi.com/">ホーム</a> ／
-          <a href="https://travel-inbox.hryoichi.com/support.html#report">問題を報告する</a> ／
-          <a href="https://travel-inbox.hryoichi.com/support.html">サポート</a> ／
-          <a href="https://travel-inbox.hryoichi.com/privacy.html">プライバシーポリシー</a>
+          <a href="https://tottoki.hryoichi.com/">ホーム</a> ／
+          <a href="https://tottoki.hryoichi.com/support.html#report">問題を報告する</a> ／
+          <a href="https://tottoki.hryoichi.com/support.html">サポート</a> ／
+          <a href="https://tottoki.hryoichi.com/privacy.html">プライバシーポリシー</a>
         </p>
       </div>
     </main>
@@ -116,7 +115,7 @@
       (function () {
         // App Store での公開が済んだら true にする（それまではボタンを出さない）。
         var APP_STORE_LIVE = false;
-        var APP_STORE_URL = 'https://apps.apple.com/jp/app/id6815047981';
+        var APP_STORE_URL = 'https://apps.apple.com/jp/app/id6818862412';
 
         // ?backend=dev は dev の Supabase で作ったリンクを確かめるときだけ。
         // どちらも公開の URL で、隠す必要はない。
@@ -169,7 +168,7 @@
         // 「保存すると何ができるか」とストアのボタン（§6.1）。kind が無いときは一般の案内。
         var setInstall = function (kind) {
           if (kind) {
-            text('[data-install-title]', kind === 'invite' ? 'Travel Inbox で参加する' : 'Travel Inbox に保存すると');
+            text('[data-install-title]', kind === 'invite' ? 'Tottoki で参加する' : 'Tottoki に保存すると');
             show('[data-benefits]', true);
           }
           if (isAndroid) {
@@ -274,7 +273,7 @@
           text('[data-item-lead]', (sender ? sender + 'さんから' : '') + what + 'が届きました');
           text('[data-item-kind]', isEvent ? 'イベント' : CATEGORIES[item.category] || '場所');
           text('[data-item-title]', item.title || '');
-          document.title = (item.title || '共有されたリンク') + ' — Travel Inbox';
+          document.title = (item.title || '共有されたリンク') + ' — Tottoki';
 
           var facts = $('[data-item-facts]');
           if (isEvent) {
@@ -368,7 +367,7 @@
           var trip = data.trip || {};
           text('[data-invite-lead]', (trip.owner_name ? trip.owner_name + 'さんから' : '') + '旅行に招待されています');
           text('[data-invite-title]', trip.title || '');
-          document.title = '旅行「' + (trip.title || '') + '」への招待 — Travel Inbox';
+          document.title = '旅行「' + (trip.title || '') + '」への招待 — Tottoki';
 
           var facts = $('[data-invite-facts]');
           if (trip.destination_name && trip.destination_name !== trip.title) {
@@ -402,7 +401,7 @@
           return;
         }
 
-        $('[data-open-app]').href = 'travelinbox://i/' + token;
+        $('[data-open-app]').href = 'tottoki://i/' + token;
         show('[data-has-token]', true);
         setMessage('読み込んでいます…', '');
         setInstall(null);
