@@ -1,5 +1,5 @@
 /*
- * Travel Inbox — サイトのスタイル。
+ * Tottoki — サイトのスタイル。
  *
  * プライバシーポリシー・サポートなど文書ページのスタイル。
  * ランディングページは assets/lp.css。色は LP と同じアイボリーの紙と淡いブルー。
@@ -240,7 +240,7 @@ code {
 }
 
 .wordmark .mark {
-  width: 32px;
+  width: 22px;
   height: 26px;
   flex: none;
 }

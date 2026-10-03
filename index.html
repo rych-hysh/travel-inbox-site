@@ -3,34 +3,34 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel Inbox | 「いつか行きたい」を、行ける日に変える</title>
+    <title>Tottoki | 行きたいを、とっとく。</title>
     <meta
       name="description"
-      content="InstagramやGoogle Maps、SNSで見つけた行きたい場所やイベントを保存・整理。地図やカレンダーから再発見して、次のおでかけや旅行につなげるTravel Inbox。"
+      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。あとで見返して、整理して、次のおでかけにつなげるアプリです。"
     />
-    <link rel="canonical" href="https://travel-inbox.hryoichi.com/" />
+    <link rel="canonical" href="https://tottoki.hryoichi.com/" />
     <meta name="theme-color" content="#faf8f4" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Travel Inbox" />
-    <meta property="og:title" content="Travel Inbox | 「いつか行きたい」を、行ける日に変える" />
+    <meta property="og:site_name" content="Tottoki" />
+    <meta property="og:title" content="Tottoki | 行きたいを、とっとく。" />
     <meta
       property="og:description"
-      content="InstagramやGoogle Maps、SNSで見つけた行きたい場所やイベントを保存・整理。地図やカレンダーから再発見して、次のおでかけや旅行につなげるTravel Inbox。"
+      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。あとで見返して、整理して、次のおでかけにつなげるアプリです。"
     />
-    <meta property="og:url" content="https://travel-inbox.hryoichi.com/" />
-    <meta property="og:image" content="https://travel-inbox.hryoichi.com/assets/og.png" />
+    <meta property="og:url" content="https://tottoki.hryoichi.com/" />
+    <meta property="og:image" content="https://tottoki.hryoichi.com/assets/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Travel Inbox — 「いつか行きたい」を、行ける日に変える。" />
+    <meta property="og:image:alt" content="Tottoki — 行きたいを、とっとく。" />
     <meta property="og:locale" content="ja_JP" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Travel Inbox | 「いつか行きたい」を、行ける日に変える" />
+    <meta name="twitter:title" content="Tottoki | 行きたいを、とっとく。" />
     <meta
       name="twitter:description"
-      content="見つけた「行きたい」をひとつに保存して、地図とカレンダーから次のおでかけにつなげるアプリ。"
+      content="見つけた「いつか行きたい場所」をひとつにまとめて保存。あとで見返して、次のおでかけにつなげるアプリ。"
     />
-    <meta name="twitter:image" content="https://travel-inbox.hryoichi.com/assets/og.png" />
+    <meta name="twitter:image" content="https://tottoki.hryoichi.com/assets/og.png" />
 
     <link rel="icon" href="icon.png" />
     <link rel="apple-touch-icon" href="icon.png" />
@@ -44,11 +44,10 @@
   <body>
     <!-- アイコン。本文中では <use href="#i-…"> で参照する。 -->
     <svg class="sprite" aria-hidden="true" focusable="false">
-      <symbol id="logo" viewBox="0 0 40 32">
-        <path d="M2 16.5 38 3 15 20.5z" fill="#f3ece0" />
-        <path d="M15 20.5 38 3 21.5 29.5z" fill="#e3d6c2" />
-        <path d="M15 20.5 17 27.5l2.4-3.1z" fill="#cdbda3" />
-        <path d="M2 16.5 38 3 21.5 29.5 15 20.5zM15 20.5 38 3M15 20.5l2 7 2.4-3.1" fill="none" stroke="#8f7f67" stroke-width=".9" stroke-linejoin="round" />
+      <symbol id="logo" viewBox="0 0 24 28">
+        <defs><linearGradient id="pin-wash" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ad6b0" /><stop offset=".45" stop-color="#5ab0e0" /><stop offset="1" stop-color="#3a7bd5" /></linearGradient></defs>
+        <path d="M12 27C9 23.2 2 17.4 2 11a10 10 0 0 1 20 0c0 6.4-7 12.2-10 16z" fill="url(#pin-wash)" />
+        <path d="M8.9 7.6h6.2a.7.7 0 0 1 .7.7v8.9L12 14.6l-3.8 2.6V8.3a.7.7 0 0 1 .7-.7z" fill="#fffdf8" />
       </symbol>
         <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
         <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M10.2 8.6v6.8l5.6-3.4z" /></symbol>
@@ -88,9 +87,9 @@
 
     <header class="site-header" data-header>
       <div class="container header-inner">
-        <a class="brand" href="./" aria-label="Travel Inbox ホーム">
+        <a class="brand" href="./" aria-label="Tottoki ホーム">
           <svg class="brand-mark" aria-hidden="true"><use href="#logo" /></svg>
-          <span class="brand-name">Travel Inbox</span>
+          <span class="brand-name">Tottoki</span>
         </a>
 
         <nav class="global-nav" id="global-nav" aria-label="メイン">
@@ -118,12 +117,12 @@
           <div class="hero-copy">
             <p class="eyebrow hero-eyebrow">見つけた「行きたい」を、旅にする。</p>
             <h1 class="hero-title" id="hero-title">
-              <span class="line">「いつか行きたい」を、</span>
-              <span class="line">行ける日に変える。</span>
+              <span class="line">行きたいを、</span>
+              <span class="line">とっとく。</span>
             </h1>
             <p class="hero-lead">
-              Instagram、Google Maps、Web記事、SNSで見つけた<br class="br-wide" />行きたい場所やイベントをひとつに保存。<br />
-              地図やカレンダーから再発見して、<br class="br-wide" />次のおでかけや旅行につなげます。
+              InstagramやGoogleマップで見つけた<br class="br-wide" />「いつか行きたい場所」を、ひとつにまとめて保存。<br />
+              あとで見返して、整理して、<br class="br-wide" />次のおでかけにつなげます。
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary btn-lg" href="#download">
@@ -138,7 +137,7 @@
             <p class="hero-note">iPhone 向け　App Store 公開準備中</p>
           </div>
 
-          <div class="hero-stage" aria-label="Travel Inbox のアプリ画面" role="group">
+          <div class="hero-stage" aria-label="Tottoki のアプリ画面" role="group">
             <span class="shape shape-circle-lg" aria-hidden="true"></span>
             <span class="shape shape-circle-sm" aria-hidden="true"></span>
             <span class="shape shape-line shape-line-top" aria-hidden="true"></span>
@@ -149,7 +148,7 @@
               <div class="phone-screen">
                 <div class="status"><span>9:41</span><span class="status-icons"></span></div>
                 <div class="app-head">
-                  <span class="app-brand"><svg aria-hidden="true"><use href="#logo" /></svg>Travel Inbox</span>
+                  <span class="app-brand"><svg aria-hidden="true"><use href="#logo" /></svg>Tottoki</span>
                   <svg class="app-ico" aria-hidden="true"><use href="#i-plus" /></svg>
                 </div>
                 <div class="app-search"><svg aria-hidden="true"><use href="#i-search" /></svg>保存した場所を検索</div>
@@ -267,7 +266,7 @@
       </section>
 
       <!-- ======================================================== BENEFITS -->
-      <section class="benefits" aria-label="Travel Inbox でできること">
+      <section class="benefits" aria-label="Tottoki でできること">
         <ul class="container benefit-list">
           <li class="benefit reveal">
             <span class="benefit-icon"><svg aria-hidden="true"><use href="#i-bookmark" /></svg></span>
@@ -296,7 +295,7 @@
             <h2 class="section-title" id="features-title"><span class="nw">旅のアイデアを、</span><br />ひとつの場所に。</h2>
             <p class="section-lead">
               気になる場所も、行きたいイベントも。<br />
-              Travel Inbox なら、すべてまとめて<br class="br-wide" />あなただけの旅のインボックスに。
+              Tottoki なら、すべてまとめて<br class="br-wide" />あなただけの「とっておき」に。
             </p>
             <a class="btn btn-primary" href="#how">
               使い方を見る
@@ -317,7 +316,7 @@
                   <img src="assets/img/kanazawa_trip-640.jpg" alt="" width="300" height="400" loading="lazy" />
                   <span class="fv-save-btn"><svg><use href="#i-bookmark" /></svg></span>
                 </div>
-                <span class="fv-toast"><svg><use href="#i-check" /></svg>Travel Inbox に保存しました</span>
+                <span class="fv-toast"><svg><use href="#i-check" /></svg>Tottoki に保存しました</span>
               </div>
               <p class="feature-num">01</p>
               <h3>見つけたらすぐ保存</h3>
@@ -388,7 +387,7 @@
             <p class="eyebrow eyebrow-en">How it works</p>
             <h2 class="section-title" id="how-title">旅は、<br />こんなふうに。</h2>
             <p class="section-lead">
-              気になるものとの出会いから、実際の旅の思い出になるまで。Travel Inbox がずっと寄り添います。
+              気になるものとの出会いから、実際の旅の思い出になるまで。Tottoki がずっと寄り添います。
             </p>
           </div>
 
@@ -404,7 +403,7 @@
                 <span class="step-num">02</span>
                 <span class="step-icon"><svg aria-hidden="true"><use href="#i-bookmark" /></svg></span>
                 <h3>保存</h3>
-                <p>共有メニューから、ワンタップで Travel Inbox へ</p>
+                <p>共有メニューから、ワンタップで Tottoki へ</p>
               </li>
               <li class="step reveal">
                 <span class="step-num">03</span>
@@ -543,7 +542,7 @@
             <details>
               <summary>どこから保存できますか？</summary>
               <p>
-                Instagram、Google Maps、Safari など、共有ボタンのあるアプリから保存できます。共有メニューで Travel Inbox を選ぶだけで、アプリを開かずにその場で保存できます。タイトルや画像は URL から読み取り、読み取れなかった項目はあとから書き足せます。
+                Instagram、Google Maps、Safari など、共有ボタンのあるアプリから保存できます。共有メニューで Tottoki を選ぶだけで、アプリを開かずにその場で保存できます。タイトルや画像は URL から読み取り、読み取れなかった項目はあとから書き足せます。
               </p>
             </details>
             <details>
@@ -559,7 +558,7 @@
             <details>
               <summary>保存した場所が、ほかの人に見られることはありますか？</summary>
               <p>
-                ありません。Travel Inbox には公開や共有の機能がなく、保存した内容はあなたにだけ見えます。現在地は近くの保存スポットを探すためだけに端末内で使い、送信も保存もしません。
+                ありません。Tottoki には公開や共有の機能がなく、保存した内容はあなたにだけ見えます。現在地は近くの保存スポットを探すためだけに端末内で使い、送信も保存もしません。
               </p>
             </details>
           </div>
@@ -571,11 +570,11 @@
         <div class="container cta-grid">
           <div class="cta-copy reveal">
             <h2 class="cta-title" id="cta-title">さあ、次の旅へ。</h2>
-            <p>行きたいで終わらせない。<br />Travel Inbox で、もっと自由で、<br class="br-narrow" />豊かな旅のある毎日を。</p>
+            <p>行きたいで終わらせない。<br />Tottoki で、もっと自由で、<br class="br-narrow" />豊かな旅のある毎日を。</p>
           </div>
 
           <div class="store reveal">
-            <img class="store-icon" src="icon.png" alt="Travel Inbox のアプリアイコン" width="96" height="96" loading="lazy" />
+            <img class="store-icon" src="icon.png" alt="Tottoki のアプリアイコン" width="96" height="96" loading="lazy" />
             <div class="store-body">
               <!-- App Store の URL が決まったら href を差し替え、data-app-store-pending を外す。 -->
               <a class="store-btn" href="#download" data-app-store-pending aria-describedby="store-note">
@@ -613,9 +612,9 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <a class="brand" href="./" aria-label="Travel Inbox ホーム">
+          <a class="brand" href="./" aria-label="Tottoki ホーム">
             <svg class="brand-mark" aria-hidden="true"><use href="#logo" /></svg>
-            <span class="brand-name">Travel Inbox</span>
+            <span class="brand-name">Tottoki</span>
           </a>
           <p>「いつか行きたい」を、行ける日に変える。</p>
         </div>
@@ -632,7 +631,7 @@
             <li><a href="mailto:support@travel-inbox-support.hryoichi.com">お問い合わせ</a></li>
           </ul>
         </nav>
-        <p class="copyright">© 2026 Travel Inbox</p>
+        <p class="copyright">© 2026 Tottoki</p>
       </div>
     </footer>
   </body>
