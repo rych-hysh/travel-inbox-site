@@ -1,5 +1,5 @@
 /*
- * Travel Inbox — ランディングページ
+ * Tottoki — ランディングページ
  *
  * アプリアイコン（紙飛行機・大きな円・小さな円・細い縦線・淡いブルー・紙）を
  * ページ全体に展開する。地はアイボリーの紙、色は淡いブルーとブルーグレーだけ。
@@ -347,7 +347,7 @@ input {
 }
 
 .brand-mark {
-  width: 46px;
+  width: 32px;
   height: 37px;
   filter: drop-shadow(0 3px 3px rgb(90 74 54 / 0.12));
 }
@@ -519,10 +519,6 @@ input {
 .hero-title .line {
   display: block;
   white-space: nowrap;
-}
-
-.hero-title .line:first-child {
-  margin-left: -0.42em;
 }
 
 .hero-lead {
@@ -738,7 +734,7 @@ input {
 }
 
 .app-brand svg {
-  width: 1.4em;
+  width: 0.95em;
   height: 1.1em;
 }
 
@@ -2120,7 +2116,7 @@ input {
 }
 
 .footer-brand .brand-mark {
-  width: 40px;
+  width: 27px;
   height: 32px;
 }
 
@@ -2464,7 +2460,7 @@ input {
   }
 
   .brand-mark {
-    width: 38px;
+    width: 26px;
     height: 30px;
   }
 
@@ -2658,10 +2654,6 @@ input {
     /* 半幅のセルに収まらないので、文節で折り返して行をそろえる。 */
     word-break: auto-phrase;
     text-wrap: balance;
-  }
-
-  .hero-title .line:first-child {
-    margin-left: -0.3em;
   }
 
   /* 機能カードは横スワイプ */
