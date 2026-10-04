@@ -881,16 +881,15 @@ input {
   --src-color: #3a3833;
 }
 
-.fav {
-  fill: none;
-  width: 1.5em;
-  height: 1.5em;
-  color: var(--ink-faint);
+.item-state {
+  font-size: 0.72em;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--vermilion);
 }
 
-.fav.is-on {
-  color: #c77575;
-  fill: #e2a4a1;
+.item-state.is-visited {
+  color: var(--moss);
 }
 
 .tabbar {
@@ -1173,7 +1172,7 @@ input {
 
 .cal-list li {
   display: grid;
-  grid-template-columns: 3.2em auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 0.6em;
   padding: 0.55em 0.5em;
@@ -1183,10 +1182,14 @@ input {
   box-shadow: inset 0 0 0 1px var(--rule);
 }
 
-.cal-list time {
-  font-size: 0.9em;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-muted);
+.cal-list .cal-trip {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  color: var(--indigo);
+}
+
+.cal-trip svg {
+  width: 1.3em;
+  height: 1.3em;
 }
 
 .cal-list .bar {
@@ -1236,7 +1239,7 @@ input {
 
 .benefit-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .benefit {
@@ -1272,14 +1275,14 @@ input {
   font-size: var(--fs-item-title);
   font-weight: 600;
   letter-spacing: 0.03em;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 1.5;
 }
 
 .benefit p {
   margin-top: 2px;
   font-size: var(--fs-body-s);
-  white-space: nowrap;
+  white-space: normal;
   color: var(--ink-faint);
 }
 
@@ -1445,7 +1448,9 @@ input {
 
 /* 02 organize */
 .fv-organize {
+  --u: clamp(9px, 0.9vw, 13px);
   padding: 1em;
+  line-height: 1.4;
   background: var(--surface);
   box-shadow: inset 0 0 0 1px var(--rule);
 }
@@ -1498,6 +1503,51 @@ input {
 .fv-tags b {
   font-weight: inherit;
   color: var(--indigo);
+}
+
+/* 04 trip: the daily itinerary belongs in the trip, not the event calendar. */
+.fv-trip {
+  --u: clamp(9px, 0.9vw, 13px);
+  padding: 0.9em;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.fv-trip-day {
+  font-size: 0.72em;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.fv-itinerary li {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.45em 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.8em;
+  line-height: 1.35;
+}
+
+.fv-itinerary li > span {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.65em;
+  height: 1.65em;
+  border-radius: 50%;
+  background: var(--sunken);
+  color: var(--indigo);
+}
+
+.fv-itinerary b,
+.fv-itinerary small {
+  display: block;
+}
+
+.fv-itinerary small {
+  font-size: 0.85em;
+  color: var(--ink-faint);
 }
 
 /* 03 map */
