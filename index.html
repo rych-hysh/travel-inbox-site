@@ -6,7 +6,7 @@
     <title>Tottoki | 行きたいを、とっとく。</title>
     <meta
       name="description"
-      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。あとで見返して、整理して、次のおでかけにつなげるアプリです。"
+      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリです。"
     />
     <link rel="canonical" href="https://tottoki.hryoichi.com/" />
     <meta name="theme-color" content="#faf8f4" />
@@ -16,7 +16,7 @@
     <meta property="og:title" content="Tottoki | 行きたいを、とっとく。" />
     <meta
       property="og:description"
-      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。あとで見返して、整理して、次のおでかけにつなげるアプリです。"
+      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリです。"
     />
     <meta property="og:url" content="https://tottoki.hryoichi.com/" />
     <meta property="og:image" content="https://tottoki.hryoichi.com/assets/og.png" />
@@ -28,7 +28,7 @@
     <meta name="twitter:title" content="Tottoki | 行きたいを、とっとく。" />
     <meta
       name="twitter:description"
-      content="見つけた「いつか行きたい場所」をひとつにまとめて保存。あとで見返して、次のおでかけにつなげるアプリ。"
+      content="見つけた「いつか行きたい場所」をひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリ。"
     />
     <meta name="twitter:image" content="https://tottoki.hryoichi.com/assets/og.png" />
 
@@ -157,34 +157,31 @@
                   <li>
                     <img src="assets/img/kyoto_cafe-400.jpg" alt="" width="60" height="80" />
                     <div><b>ブルーボトルコーヒー 清澄白河</b><small>カフェ・東京</small><em class="src src-ig">Instagram</em></div>
-                    <svg class="fav is-on" aria-hidden="true"><use href="#i-heart" /></svg>
                   </li>
                   <li>
                     <img src="assets/img/setouchi_landscape-400.jpg" alt="" width="60" height="80" />
                     <div><b>直島</b><small>絶景・香川</small><em class="src src-web">Web記事</em></div>
-                    <svg class="fav is-on" aria-hidden="true"><use href="#i-heart" /></svg>
+                    <span class="item-state is-visited">行った</span>
                   </li>
                   <li>
                     <img src="assets/img/tokyo_art-400.jpg" alt="" width="60" height="80" />
                     <div><b>teamLab Planets</b><small>アート・東京</small><em class="src src-x">X</em></div>
-                    <svg class="fav" aria-hidden="true"><use href="#i-heart" /></svg>
+                    <span class="item-state">行く予定</span>
                   </li>
                   <li>
                     <img src="assets/img/greek_landscape-400.jpg" alt="" width="60" height="80" />
                     <div><b>サントリーニ島 イア</b><small>絶景・ギリシャ</small><em class="src src-gm">Google Maps</em></div>
-                    <svg class="fav is-on" aria-hidden="true"><use href="#i-heart" /></svg>
                   </li>
                   <li>
                     <img src="assets/img/kanazawa_trip-400.jpg" alt="" width="60" height="80" />
                     <div><b>金沢 ひがし茶屋街</b><small>街歩き・石川</small><em class="src src-ig">Instagram</em></div>
-                    <svg class="fav" aria-hidden="true"><use href="#i-heart" /></svg>
                   </li>
                 </ul>
                 <nav class="tabbar" aria-hidden="true">
                   <span><svg><use href="#i-home" /></svg>ホーム</span>
                   <span><svg><use href="#i-map" /></svg>マップ</span>
                   <span class="is-on"><svg><use href="#i-inbox" /></svg>インボックス</span>
-                  <span><svg><use href="#i-cal" /></svg>カレンダー</span>
+                  <span><svg><use href="#i-cal" /></svg>イベント</span>
                   <span><svg><use href="#i-plane" /></svg>旅行</span>
                 </nav>
               </div>
@@ -222,21 +219,20 @@
                       <small>東京都江東区平野</small>
                       <span class="chips"><i>カフェ</i><i>週末</i><i>行きたい</i></span>
                     </div>
-                    <svg class="fav is-on" aria-hidden="true"><use href="#i-heart" /></svg>
                   </div>
                 </div>
                 <nav class="tabbar" aria-hidden="true">
                   <span><svg><use href="#i-home" /></svg>ホーム</span>
                   <span class="is-on"><svg><use href="#i-map" /></svg>マップ</span>
                   <span><svg><use href="#i-inbox" /></svg>インボックス</span>
-                  <span><svg><use href="#i-cal" /></svg>カレンダー</span>
+                  <span><svg><use href="#i-cal" /></svg>イベント</span>
                   <span><svg><use href="#i-plane" /></svg>旅行</span>
                 </nav>
               </div>
             </figure>
 
             <!-- Calendar -->
-            <figure class="phone phone-cal" role="img" aria-label="Calendar画面。2026年4月のカレンダーで12日を選ぶと、銀座ランチ、teamLab Planets、東京タワーの予定が並ぶ">
+            <figure class="phone phone-cal" role="img" aria-label="イベント画面。2026年4月のカレンダーで12日を選ぶと、東京旅行の2日目へのリンクと、その日に開催される展示やイベントが並ぶ">
               <div class="phone-screen">
                 <div class="status"><span>9:41</span><span class="status-icons"></span></div>
                 <div class="cal-head">
@@ -247,16 +243,16 @@
                 <div class="cal-grid" data-cal></div>
                 <div class="cal-day">4月12日（日）</div>
                 <ul class="cal-list">
-                  <li><time>11:00</time><span class="bar"></span><div><b>銀座ランチ</b><small>中央区銀座</small></div></li>
-                  <li><time>14:00</time><span class="bar bar-art"></span><div><b>teamLab Planets</b><small>江東区豊洲</small></div></li>
-                  <li><time>17:00</time><span class="bar bar-sight"></span><div><b>東京タワー</b><small>港区芝公園</small></div></li>
+                  <li class="cal-trip"><svg aria-hidden="true"><use href="#i-plane" /></svg><div><b>東京旅行 2日目</b><small>3件の行き先</small></div><svg aria-hidden="true"><use href="#i-chev" /></svg></li>
+                  <li><span class="bar bar-art"></span><div><b>春のアート展</b><small>4月4日〜29日・上野</small></div></li>
+                  <li><span class="bar"></span><div><b>週末のクラフト市</b><small>4月12日・清澄白河</small></div></li>
                 </ul>
                 <span class="fab"><svg aria-hidden="true"><use href="#i-plus" /></svg></span>
                 <nav class="tabbar" aria-hidden="true">
                   <span><svg><use href="#i-home" /></svg>ホーム</span>
                   <span><svg><use href="#i-map" /></svg>マップ</span>
                   <span><svg><use href="#i-inbox" /></svg>インボックス</span>
-                  <span class="is-on"><svg><use href="#i-cal" /></svg>カレンダー</span>
+                  <span class="is-on"><svg><use href="#i-cal" /></svg>イベント</span>
                   <span><svg><use href="#i-plane" /></svg>旅行</span>
                 </nav>
               </div>
@@ -277,8 +273,8 @@
             <div><h2>地図で再発見</h2><p>近くの保存スポットに気づける</p></div>
           </li>
           <li class="benefit reveal">
-            <span class="benefit-icon"><svg aria-hidden="true"><use href="#i-cal" /></svg></span>
-            <div><h2>カレンダーで予定化</h2><p>週末や旅行に組み込める</p></div>
+            <span class="benefit-icon"><svg aria-hidden="true"><use href="#i-plane" /></svg></span>
+            <div><h2>旅行の行程づくり</h2><p>ひとりでも、友だちと</p></div>
           </li>
           <li class="benefit reveal">
             <span class="benefit-icon"><svg aria-hidden="true"><use href="#i-tag" /></svg></span>
@@ -325,13 +321,11 @@
 
             <li class="feature reveal">
               <div class="feature-visual fv-organize" aria-hidden="true">
-                <p class="fv-title"><svg><use href="#i-chev-l" /></svg>コレクション</p>
+                <p class="fv-title"><svg><use href="#i-tag" /></svg>絞り込み</p>
                 <ul>
-                  <li><svg><use href="#i-folder" /></svg>行きたいカフェ<span>24</span></li>
-                  <li><svg><use href="#i-folder" /></svg>次の旅行候補<span>12</span></li>
-                  <li><svg><use href="#i-folder" /></svg>アート・展示<span>8</span></li>
-                  <li><svg><use href="#i-tag" /></svg>雨の日<span>15</span></li>
-                  <li><svg><use href="#i-tag" /></svg>温泉<span>9</span></li>
+                  <li><svg><use href="#i-bookmark" /></svg>ステータス<span>行きたい</span></li>
+                  <li><svg><use href="#i-pin" /></svg>カテゴリ<span>カフェ</span></li>
+                  <li><svg><use href="#i-tag" /></svg>タグ<span>#京都</span></li>
                 </ul>
                 <p class="fv-tags"><i><b>#</b>京都</i><i><b>#</b>絶景</i><i><b>#</b>デート</i></p>
               </div>
@@ -364,17 +358,18 @@
             </li>
 
             <li class="feature reveal">
-              <div class="feature-visual fv-cal" aria-hidden="true">
-                <p class="fv-title">2026年4月<svg><use href="#i-chev" /></svg></p>
-                <div class="cal-grid cal-grid-mini" data-cal data-range="18,22"></div>
-                <div class="fv-event">
-                  <img src="assets/img/greek_landscape-400.jpg" alt="" width="60" height="80" loading="lazy" />
-                  <div><b>ギリシャ旅行</b><small>4月18日（土）〜22日（水）</small></div>
-                </div>
+              <div class="feature-visual fv-trip" aria-hidden="true">
+                <p class="fv-title"><svg><use href="#i-plane" /></svg>週末の京都</p>
+                <p class="fv-trip-day">1日目</p>
+                <ol class="fv-itinerary">
+                  <li><span>1</span><div><b>南禅寺の水路閣</b><small>10:00ごろ</small></div></li>
+                  <li><span>2</span><div><b>岡崎のカフェ</b><small>12:30ごろ</small></div></li>
+                  <li><span>3</span><div><b>京都市京セラ美術館</b><small>14:00ごろ</small></div></li>
+                </ol>
               </div>
               <p class="feature-num">04</p>
-              <h3>カレンダーで計画</h3>
-              <p>会期のある展示やイベントはカレンダーに。旅行の日程を決めれば、保存した中から行き先に合う場所を日ごとの行程にまとめられます。</p>
+              <h3>旅の行き先を計画</h3>
+              <p>行き先と日程を決めたら、保存した場所から候補を選んで日ごとの行程に。たたき台を作って、順番や時刻の目安を調整できます。友だちを招待して、一緒に計画することも。</p>
             </li>
           </ol>
         </div>
@@ -421,7 +416,7 @@
                 <span class="step-num">05</span>
                 <span class="step-icon"><svg aria-hidden="true"><use href="#i-cal" /></svg></span>
                 <h3>計画</h3>
-                <p>カレンダーや旅行の行程に、行ける日を組み込む</p>
+                <p>旅行の行程に、行きたい場所を組み込む。友だちと一緒に計画も</p>
               </li>
               <li class="step reveal">
                 <span class="step-num">06</span>
@@ -523,7 +518,7 @@
               料金の詳細は、App Store での公開にあわせてお知らせします。
             </p>
             <ul class="pricing-points">
-              <li><svg aria-hidden="true"><use href="#i-check" /></svg>保存した内容を第三者に販売・提供しません</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>保存した内容を販売したり、広告に使ったりしません</li>
               <li><svg aria-hidden="true"><use href="#i-check" /></svg>アカウントとデータはいつでも削除できます</li>
             </ul>
           </div>
@@ -546,10 +541,22 @@
               </p>
             </details>
             <details>
-              <summary>Instagram や Google Maps の保存リストを自動で取り込めますか？</summary>
+              <summary>Google Maps の保存リストをまとめて取り込めますか？</summary>
               <p>
-                現時点では、各サービスの保存リストとの自動同期には対応していません。見つけたその場で共有から保存する仕組みなので、ほかのサービスのアカウント連携は必要ありません。
+                はい。Google Takeout で書き出したファイルから、Google Maps のリストやスターを付けた場所をまとめて取り込めます。プロフィールの「Google マップから取り込む」から、取り込みたいリストや場所を選べます。Google Maps との自動同期や、Instagram の保存リストの一括取り込みには対応していません。
               </p>
+            </details>
+            <details>
+              <summary>友だちと旅行の計画を共有できますか？</summary>
+              <p>はい。旅行の招待リンクを送ると、参加した人と行程を共有できます。「編集できる」「見るだけ」を選べるので、一緒に行き先を追加したり、できあがった計画を見てもらったりできます。保存した場所やイベントを、ひとつずつリンクで送ることもできます。</p>
+            </details>
+            <details>
+              <summary>イベントの日程はどこで確認できますか？</summary>
+              <p>「イベント」タブのカレンダーに、保存した展示やイベントの開催日が表示されます。旅行の日程も同じカレンダーから確認でき、その日の旅行の行程を開けます。</p>
+            </details>
+            <details>
+              <summary>アカウント登録は必要ですか？</summary>
+              <p>アプリのご利用には、メールアドレスでのアカウント登録が必要です。Instagram や Google Maps のアカウントと連携する必要はありません。</p>
             </details>
             <details>
               <summary>どの端末で使えますか？</summary>
@@ -558,8 +565,12 @@
             <details>
               <summary>保存した場所が、ほかの人に見られることはありますか？</summary>
               <p>
-                ありません。Tottoki には公開や共有の機能がなく、保存した内容はあなたにだけ見えます。現在地は近くの保存スポットを探すためだけに端末内で使い、送信も保存もしません。
+                保存した内容は、あなたが共有しない限り、ほかの利用者には見えません。項目をリンクで送ると、そのリンクを知っている人に内容が表示されます。旅行に招待した人には、参加した旅行の行程と、そこに追加した項目が表示されます。リンクを受け取った人は、アプリがなくても Web ページで内容の一部を見られます。送ったリンクはいつでも止められます。詳しくは<a href="privacy.html#sec-3">プライバシーポリシー</a>をご覧ください。
               </p>
+            </details>
+            <details>
+              <summary>現在地は保存されますか？</summary>
+              <p>現在地は、近くの保存スポットを探したり、地図を現在地に動かしたりするために端末内で使います。現在地そのものを Tottoki のサーバーへ送信・保存することはありません。位置情報を許可しなくても、保存・整理や旅行の計画を利用できます。</p>
             </details>
           </div>
         </div>
