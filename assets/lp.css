@@ -661,7 +661,7 @@ input {
   z-index: 5;
 }
 
-.phone-inbox {
+.phone-collection {
   left: 0;
   top: 5.2em;
   rotate: -7deg;
@@ -2253,7 +2253,7 @@ input {
     float 7s ease-in-out infinite;
 }
 
-.js .hero-stage > .phone-inbox {
+.js .hero-stage > .phone-collection {
   animation-delay: 0.2s, -1s;
 }
 .js .hero-stage > .phone-map {
@@ -2620,7 +2620,7 @@ input {
     letter-spacing: 0.1em;
   }
 
-  /* 真ん中の Map を手前に、Inbox と Calendar を左右に少しのぞかせる */
+  /* 真ん中の Map を手前に、Collection と Calendar を左右に少しのぞかせる */
   .hero-stage {
     --u: calc((100vw - var(--gutter) * 2) / 36.5);
     width: 36.5em;
@@ -2661,7 +2661,7 @@ input {
     --w: 16.4em;
   }
 
-  .phone-inbox {
+  .phone-collection {
     left: 0;
     top: 4.6em;
     rotate: -8deg;
