@@ -1828,7 +1828,7 @@
                 <strong>明朝に 500 を指定しない。</strong>ヒラギノ明朝には W3 と W6 しかなく、500 は Mac では W3 になるが、Noto Serif JP（Android・一部の Windows）では Medium になり、OS によって見え方が変わる。
               </li>
               <li>
-                <strong>選択状態で太さを変えない。</strong>文字幅が変わって、タブやチップが選ぶたびに揺れる。選択は色と地の色で示す。アプリのチップ・インボックスのタブ・地図のセグメント・アイコン選択で 700 に変えている <span class="diff">現状と違う</span>
+                <strong>選択状態で太さを変えない。</strong>文字幅が変わって、タブやチップが選ぶたびに揺れる。選択は色と地の色で示す。アプリのチップ・コレクションのタブ・地図のセグメント・アイコン選択で 700 に変えている <span class="diff">現状と違う</span>
               </li>
               <li>和文にイタリック（斜体）は使わない。</li>
             </ul>
@@ -1937,7 +1937,7 @@
                 <span class="spec">ゴシック 600 ／ 10 / 12 ／ +0.2</span>
                 <p class="step-use">タブバーの文言だけ（OS の慣例に合わせた例外）。今は <code>(tabs)/_layout.tsx</code> に直書き</p>
               </div>
-              <div class="phone-col"><p class="sample a-tabLabel"><span style="color: var(--indigo)">ホーム</span>　　<span style="color: var(--ink-faint)">マップ</span>　　<span style="color: var(--ink-faint)">インボックス</span></p></div>
+              <div class="phone-col"><p class="sample a-tabLabel"><span style="color: var(--indigo)">ホーム</span>　　<span style="color: var(--ink-faint)">マップ</span>　　<span style="color: var(--ink-faint)">コレクション</span></p></div>
             </div>
           </div>
           <div class="prose">
@@ -2141,7 +2141,7 @@
           <ol class="todo">
             <li>
               <b><code>subheading</code> を <code>button</code> に改名し、ボタンとセグメント以外で使わない。</b>見出しに使っているところは <code>heading</code> に、場所の名前に使っているところは <code>itemTitle</code> にする。
-              <span class="where">SpotPreviewSheet.tsx:74（場所名 → itemTitle）、NearbyListSheet.tsx:47・TripReview.tsx:39・SuggestionSheet.tsx:159（見出し → heading）、Button.tsx:80・inbox.tsx:146（→ button）</span>
+              <span class="where">SpotPreviewSheet.tsx:74（場所名 → itemTitle）、NearbyListSheet.tsx:47・TripReview.tsx:39・SuggestionSheet.tsx:159（見出し → heading）、Button.tsx:80・collection/index.tsx（→ button）</span>
             </li>
             <li>
               <b>旅程の行の場所名を <code>itemTitle</code> にする。</b>今は <code>bodyStrong</code>（ゴシック）で、一覧やカードの明朝と食い違っている。
@@ -2161,7 +2161,7 @@
             </li>
             <li>
               <b>選択状態で 700 に太らせるのをやめ、色と地の色だけで示す。</b>
-              <span class="where">components/ui/Chip.tsx:133、app/(tabs)/inbox.tsx:209、app/(tabs)/map.tsx:516、components/forms/IconField.tsx:190</span>
+              <span class="where">components/ui/Chip.tsx:133、app/(tabs)/collection/index.tsx、app/(tabs)/map.tsx:516、components/forms/IconField.tsx:190</span>
             </li>
             <li>
               <b>ホームの見出しの改行を直す。</b>「に。」だけが2行目に落ちる。改行位置を指定するか、1行に収まる文言にする。
