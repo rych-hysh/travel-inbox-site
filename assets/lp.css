@@ -935,26 +935,32 @@ input {
   height: 100%;
 }
 
-.map-search {
+/* The map's own すべて／行きたい／行った, as the app draws it at the top. */
+.map-status {
   position: absolute;
   top: 5.2em;
   left: 50%;
   translate: -50% 0;
   display: flex;
   align-items: center;
-  gap: 0.5em;
-  padding: 0.6em 1.2em;
+  padding: 0.25em;
   border-radius: 2em;
   background: var(--surface);
   box-shadow: var(--shadow-sm);
-  font-size: 0.95em;
+  font-size: 0.9em;
   white-space: nowrap;
   color: var(--ink-muted);
 }
 
-.map-search svg {
-  width: 1.15em;
-  height: 1.15em;
+.map-status span {
+  padding: 0.45em 0.9em;
+  border-radius: 2em;
+}
+
+.map-status .is-on {
+  background: var(--indigo);
+  color: #fff;
+  font-weight: 700;
 }
 
 .pin {
