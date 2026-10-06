@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tottoki | 行きたいを、とっとく。</title>
+    <title>Tottoki（とっとき） | 行きたいを、とっとく。</title>
     <meta
       name="description"
-      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリです。"
+      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリ「Tottoki（とっとき）」です。"
     />
     <link rel="canonical" href="https://tottoki.hryoichi.com/" />
     <meta name="theme-color" content="#faf8f4" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Tottoki" />
-    <meta property="og:title" content="Tottoki | 行きたいを、とっとく。" />
+    <meta property="og:title" content="Tottoki（とっとき） | 行きたいを、とっとく。" />
     <meta
       property="og:description"
-      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリです。"
+      content="InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリ「Tottoki（とっとき）」です。"
     />
     <meta property="og:url" content="https://tottoki.hryoichi.com/" />
     <meta property="og:image" content="https://tottoki.hryoichi.com/assets/og.png" />
@@ -25,12 +25,42 @@
     <meta property="og:image:alt" content="Tottoki — 行きたいを、とっとく。" />
     <meta property="og:locale" content="ja_JP" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tottoki | 行きたいを、とっとく。" />
+    <meta name="twitter:title" content="Tottoki（とっとき） | 行きたいを、とっとく。" />
     <meta
       name="twitter:description"
       content="見つけた「いつか行きたい場所」をひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリ。"
     />
     <meta name="twitter:image" content="https://tottoki.hryoichi.com/assets/og.png" />
+
+    <!-- 検索結果のサイト名とアプリの情報。「とっとき」とかなで探す人にも見つかるよう、読みを alternateName に入れる。
+         App Store で公開したら、MobileApplication に installUrl（App Store の URL）と offers を足す。 -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://tottoki.hryoichi.com/#website",
+            "name": "Tottoki",
+            "alternateName": ["とっとき", "トットキ"],
+            "url": "https://tottoki.hryoichi.com/",
+            "inLanguage": "ja"
+          },
+          {
+            "@type": "MobileApplication",
+            "@id": "https://tottoki.hryoichi.com/#app",
+            "name": "Tottoki",
+            "alternateName": ["とっとき", "トットキ"],
+            "description": "InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリです。",
+            "url": "https://tottoki.hryoichi.com/",
+            "image": "https://tottoki.hryoichi.com/icon.png",
+            "operatingSystem": "iOS",
+            "applicationCategory": "TravelApplication",
+            "inLanguage": "ja"
+          }
+        ]
+      }
+    </script>
 
     <link rel="icon" href="icon.png" />
     <link rel="apple-touch-icon" href="icon.png" />
@@ -571,6 +601,10 @@
             <details>
               <summary>現在地は保存されますか？</summary>
               <p>現在地は、近くの保存スポットを探したり、地図を現在地に動かしたりするために端末内で使います。現在地そのものを Tottoki のサーバーへ送信・保存することはありません。位置情報を許可しなくても、保存・整理や旅行の計画を利用できます。</p>
+            </details>
+            <details>
+              <summary>「Tottoki」はなんと読みますか？</summary>
+              <p>「とっとき」と読みます。「とっておき」のくだけた言い方で、見つけた「行きたい」を、行ける日までとっておく場所という意味をこめています。</p>
             </details>
           </div>
         </div>
