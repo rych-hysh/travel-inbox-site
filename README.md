@@ -20,6 +20,7 @@ Node.js で `node scripts/preview.mjs` を実行し、下記を開きます。�
 
 - 旅行: `http://127.0.0.1:4173/i/?preview=invite&ua=iphone#demo_token`
 - 場所: `http://127.0.0.1:4173/i/?preview=item&ua=iphone#demo_token`
+- リスト: `http://127.0.0.1:4173/i/?preview=list&ua=iphone#demo_token`（空のリストは `listEmpty`）
 - `preview` を `event`, `empty`, `sparse`, `full`, `long`, `expired`, `unavailable`, `error`, `loading` に変えると各状態を確認できます。
 - `&store=live` で公開後のストア案内、`&theme=dark` で暗い配色、`&ua=android` で Android 向け案内を確認できます。
 

@@ -77,6 +77,33 @@ const fixtures = {
       ],
     },
   },
+  list: {
+    state: 'ok',
+    kind: 'list',
+    list: {
+      title: '次の旅行先の候補',
+      description: '来年の夏までに、どこか1つ。',
+      owner_name: 'はるか',
+      items: [
+        {
+          type: 'place',
+          title: '兼六園',
+          category: 'sightseeing',
+          address: '石川県金沢市兼六町1',
+          latitude: 36.5621,
+          longitude: 136.6625,
+        },
+        { ...event, title: '金沢21世紀美術館の企画展', venue: '金沢21世紀美術館' },
+        { ...place },
+        {
+          type: 'place',
+          title: '九份',
+          category: 'sightseeing',
+          prefecture: '新北市',
+        },
+      ],
+    },
+  },
   sparse: {
     state: 'ok',
     kind: 'item',
@@ -88,6 +115,10 @@ const fixtures = {
 fixtures.empty = {
   ...fixtures.invite,
   trip: { title: 'これからの旅', member_count: 1, items: [] },
+};
+fixtures.listEmpty = {
+  ...fixtures.list,
+  list: { title: 'これから集めるリスト', owner_name: 'はるか', items: [] },
 };
 fixtures.full = {
   ...fixtures.invite,
