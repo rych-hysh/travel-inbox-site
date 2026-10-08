@@ -92,14 +92,14 @@
       text(
         '[data-install-title]',
         kind === 'invite'
-          ? '旅の楽しみを、みんなで。'
+          ? 'Tottoki でできること'
           : '「行きたい」を、忘れない。',
       );
       show('[data-benefits]', true);
       text(
         '[data-open-title]',
         kind === 'invite'
-          ? 'この旅を、一緒につくろう。'
+          ? 'この旅行の計画に、参加しませんか'
           : '次のおでかけに、つなげよう。',
       );
       text(
