@@ -501,10 +501,6 @@ input {
   padding-bottom: 24px;
 }
 
-.hero-eyebrow {
-  margin-bottom: 28px;
-}
-
 .hero-title {
   font-family: var(--font-serif);
   font-weight: 400;
@@ -1648,7 +1644,7 @@ input {
 .timeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
   counter-reset: step;
 }
@@ -1657,8 +1653,8 @@ input {
 .timeline::before {
   content: '';
   position: absolute;
-  left: calc(100% / 12);
-  right: calc(100% / 12 - 110px);
+  left: calc(100% / 6);
+  right: calc(100% / 6 - 110px);
   top: 67px;
   height: 1px;
   background: linear-gradient(90deg, var(--sky-line), var(--powder-deep));
@@ -2276,7 +2272,7 @@ input {
   }
 
   .timeline::before {
-    right: calc(100% / 12);
+    right: calc(100% / 6);
   }
 
   .flight {
@@ -2558,12 +2554,6 @@ input {
 
   .hero {
     padding-top: calc(var(--header-h) + 28px);
-  }
-
-  .hero-eyebrow {
-    margin-bottom: 18px;
-    font-size: var(--fs-label);
-    letter-spacing: 0.22em;
   }
 
   .hero-title {
