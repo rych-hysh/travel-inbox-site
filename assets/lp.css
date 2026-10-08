@@ -532,8 +532,35 @@ input {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  align-items: center;
+  gap: 16px 36px;
   margin-top: 44px;
+}
+
+/* バッジの隣は角丸の長方形とピルが並ばないよう、ボタンにせず文字のリンクにする。 */
+.hero-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 44px;
+  font-size: var(--fs-button);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.3s var(--ease);
+}
+
+.hero-demo:hover {
+  text-decoration-color: var(--rule-strong);
+}
+
+.hero-demo .icon {
+  width: 1.3em;
+  height: 1.3em;
+  color: var(--indigo);
 }
 
 .hero-note {
@@ -2052,21 +2079,25 @@ input {
     var(--shadow-md);
 }
 
-/* Apple の公式バッジ。Apple のガイドラインどおり、形・色を変えず、高さ 40px 以上・まわりに高さの 1/4 以上の余白をとる。 */
+/*
+ * Apple の公式バッジ。紙の地に黒は重いので、Apple が「黒が重く見えるとき」のために用意している白を使う。
+ * 形・色・文字を変えず、影やホバーの効果もつけない。高さ 40px 以上、まわりに高さの 1/4（13px）以上の余白をとる。
+ * 大きさはボタン（52px）にそろえ、見出しより目立たせない。
+ */
 .store-badge {
   display: inline-flex;
   flex: none;
-  border-radius: 8px;
+  border-radius: 9px;
+}
+
+.store-badge:focus-visible {
+  outline-offset: 4px;
 }
 
 .store-badge img {
   display: block;
   width: auto;
-  height: 58px;
-}
-
-.store-badge-cta img {
-  height: 60px;
+  height: 52px;
 }
 
 .store-note {
@@ -2183,6 +2214,18 @@ input {
   font-size: var(--fs-label);
   color: var(--ink-faint);
   letter-spacing: 0.06em;
+}
+
+/* App Store バッジを使うときに Apple が求める商標の表記。 */
+.trademark {
+  grid-column: 1 / -1;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
 }
 
 /* ------------------------------------------------------------------ */
@@ -2579,11 +2622,6 @@ input {
   .hero-actions {
     margin-top: 30px;
     gap: 16px;
-  }
-
-  .hero-actions .btn {
-    flex: 1 1 100%;
-    min-width: 0;
   }
 
   .hero-note {
