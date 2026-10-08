@@ -95,6 +95,55 @@
         color: var(--ink-muted);
         font-size: var(--fs-body-s);
       }
+      /*
+        共有シートのスクショ。アプリの「保存のしかた」と同じ3枚（アプリの assets/guide/ の写し。
+        撮り直したら両方を替え、枠の位置（% の値）もアプリの ShareSheetHelp.ios.tsx と揃える）。
+        押す場所の枠は画像に焼き込まず、ここで重ねる。
+      */
+      .shot {
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+      .shot .frame {
+        position: relative;
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--sunken);
+      }
+      .shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .shot .mark {
+        position: absolute;
+        border: 3px solid var(--indigo);
+        border-radius: 12px;
+      }
+      .shot figcaption {
+        color: var(--ink-muted);
+        font-size: var(--fs-body-s);
+        line-height: 1.7;
+      }
+      .help {
+        display: grid;
+        gap: 20px;
+        scroll-margin-top: 96px;
+      }
+      .help h2 {
+        margin: 0;
+        font-family: var(--font-sans);
+        font-size: var(--fs-title);
+        font-weight: 700;
+      }
+      .help p {
+        margin: 0;
+        color: var(--ink-muted);
+        font-size: var(--fs-body-s);
+        line-height: 1.7;
+      }
       /* 画面の下のツールバー（共有ボタンがある）を指す。iOS のアプリ内ブラウザ用。 */
       .pointer {
         position: fixed;
@@ -163,15 +212,53 @@
               <svg class="icon" viewBox="0 0 24 24" aria-label="共有" role="img" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12" /><path d="M8 7l4-4 4 4" /><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" /></svg>
               を押します。Android では、右上の︙から「共有」を選びます。
             </li>
-            <li>アプリの並びから「Tottoki」を選びます。見つからないときは、並びの右端の「その他」から選べます。</li>
+            <li>アプリの並びから「Tottoki」を選びます。見つからないときは、<a href="#not-found">下の「Tottoki が見つからないとき」</a>を見てください。</li>
             <li>「保存しました」と出たら、左上の「完了」でアプリに戻ります。</li>
           </ol>
+
+          <figure class="shot">
+            <div class="frame">
+              <img src="img/share-sheet.png" width="720" height="447" alt="共有シートのアプリの並び。Tottoki に印" />
+              <span class="mark" style="left: 51%; top: 55%; right: 29%; bottom: 4%" aria-hidden="true"></span>
+            </div>
+            <figcaption>共有シートのアプリの並びから、Tottoki を選びます（iPhone の画面）。</figcaption>
+          </figure>
 
           <section class="sample" aria-label="練習で保存される場所">
             <span class="label">練習で保存される場所</span>
             <p class="name">清水寺</p>
             <p class="meta">京都府京都市東山区清水1丁目294</p>
             <p class="meta">京都・東山の寺院。「清水の舞台」で知られる本堂から、京都の街を見渡せます。</p>
+          </section>
+
+          <section class="help" id="not-found" aria-labelledby="not-found-title">
+            <h2 id="not-found-title">Tottoki が見つからないとき</h2>
+
+            <figure class="shot">
+              <div class="frame">
+                <img src="img/share-sheet.png" width="720" height="447" loading="lazy" alt="共有シートのアプリの並び。右端の「その他」に印" />
+                <span class="mark" style="left: 73%; top: 55%; right: 7%; bottom: 4%" aria-hidden="true"></span>
+              </div>
+              <figcaption>並びの右端の「その他」を押すと、すべてのアプリが出ます。ここで Tottoki を押しても保存できます。</figcaption>
+            </figure>
+
+            <figure class="shot">
+              <div class="frame">
+                <img src="img/share-sheet-more.png" width="720" height="504" loading="lazy" alt="「その他」で開くアプリの一覧。右上の「編集」に印" />
+                <span class="mark" style="left: 79%; top: 4%; right: 3%; bottom: 77%" aria-hidden="true"></span>
+              </div>
+              <figcaption>右上の「編集」を押します。</figcaption>
+            </figure>
+
+            <figure class="shot">
+              <div class="frame">
+                <img src="img/share-sheet-edit.png" width="720" height="504" loading="lazy" alt="アプリの一覧の編集。Tottoki の左のプラスに印" />
+                <span class="mark" style="left: 8%; top: 83%; right: 82%; bottom: 3%" aria-hidden="true"></span>
+              </div>
+              <figcaption>Tottoki の左の ＋ を押すと、次からは並びの最初のほうに出ます。右のスイッチがオフなら、オンにします。</figcaption>
+            </figure>
+
+            <p>Android では、共有の一覧を上へずらすと、すべてのアプリが出ます。Tottoki を長押しすると、一覧の上に固定できる機種もあります。</p>
           </section>
 
           <p class="note">
