@@ -75,6 +75,7 @@
     text('[data-message-body]', body);
     show('[data-view="message"]', true);
     show('[data-view="item"]', false);
+    show('[data-view="list"]', false);
     show('[data-view="invite"]', false);
     $('[data-content]').setAttribute('aria-busy', 'false');
   };
@@ -106,11 +107,17 @@
         '[data-open-description]',
         kind === 'invite'
           ? '参加すると、みんなの「行きたい」を日ごとの行程にまとめられます。'
-          : '届いた場所を保存して、地図や旅行の行程で見返せます。',
+          : kind === 'list'
+            ? '届いたリストをまとめて保存して、地図や旅行の行程で見返せます。'
+            : '届いた場所を保存して、地図や旅行の行程で見返せます。',
       );
       text(
         '[data-open-label]',
-        kind === 'invite' ? 'アプリで旅行を見る' : 'アプリで場所を見る',
+        kind === 'invite'
+          ? 'アプリで旅行を見る'
+          : kind === 'list'
+            ? 'アプリでリストを見る'
+            : 'アプリで場所を見る',
       );
     }
     if (isAndroid) {
@@ -128,7 +135,7 @@
       link.textContent =
         kind === 'invite'
           ? 'App Store で入手して参加する'
-          : kind === 'item'
+          : kind === 'item' || kind === 'list'
             ? 'App Store で入手して保存する'
             : 'App Store で入手';
       show('[data-store]', true);
@@ -309,6 +316,56 @@
     $('[data-content]').setAttribute('aria-busy', 'false');
   };
 
+  // 行程とリストの1件（§5.2・リスト機能仕様書.md §7.5）。名前・種類・日時・
+  // 住所と地図のリンク。時刻は行程のときだけ。
+  var stop = function (item, plannedTime) {
+    var li = document.createElement('li');
+    if (plannedTime) {
+      var time = document.createElement('p');
+      time.className = 'share-stop-time';
+      time.textContent = plannedTime;
+      li.appendChild(time);
+    }
+    var head = document.createElement('h4');
+    head.className = 'share-stop-title';
+    head.textContent = item.title || '名前のない場所';
+    li.appendChild(head);
+
+    var category =
+      item.type === 'event' ? 'イベント' : CATEGORIES[item.category];
+    if (category) {
+      var kind = document.createElement('span');
+      kind.className = 'share-stop-category';
+      kind.textContent = category;
+      li.appendChild(kind);
+    }
+
+    var meta = [
+      item.type === 'event'
+        ? period(
+            parseInstant(item.event_start_at),
+            parseInstant(item.event_end_at),
+          )
+        : null,
+      item.type === 'event' && item.venue ? '会場: ' + item.venue : null,
+      item.address ||
+        [item.prefecture, item.city].filter(Boolean).join('') ||
+        null,
+    ].filter(Boolean);
+    meta.forEach(function (value) {
+      var line = document.createElement('p');
+      line.className = 'share-stop-meta';
+      line.textContent = value;
+      li.appendChild(line);
+    });
+
+    var links = document.createElement('div');
+    links.className = 'share-stop-links';
+    mapLinks(links, item, false);
+    if (links.childNodes.length > 0) li.appendChild(links);
+    return li;
+  };
+
   // 行程（§5.2）。日ごとに、時刻・名前・種類・住所と地図のリンク。日が
   // 決まっていない場所は最後に「未定」としてまとめる。
   var renderItinerary = function (root, entries, start) {
@@ -382,56 +439,59 @@
       var list = document.createElement('ol');
       list.className = 'share-stops';
       group.entries.forEach(function (entry) {
-        var item = entry.item || {};
-        var li = document.createElement('li');
-        if (entry.planned_time) {
-          var time = document.createElement('p');
-          time.className = 'share-stop-time';
-          time.textContent = entry.planned_time;
-          li.appendChild(time);
-        }
-        var head = document.createElement('h4');
-        head.className = 'share-stop-title';
-        head.textContent = item.title || '名前のない場所';
-        li.appendChild(head);
-
-        var category =
-          item.type === 'event' ? 'イベント' : CATEGORIES[item.category];
-        if (category) {
-          var kind = document.createElement('span');
-          kind.className = 'share-stop-category';
-          kind.textContent = category;
-          li.appendChild(kind);
-        }
-
-        var meta = [
-          item.type === 'event'
-            ? period(
-                parseInstant(item.event_start_at),
-                parseInstant(item.event_end_at),
-              )
-            : null,
-          item.type === 'event' && item.venue ? '会場: ' + item.venue : null,
-          item.address ||
-            [item.prefecture, item.city].filter(Boolean).join('') ||
-            null,
-        ].filter(Boolean);
-        meta.forEach(function (value) {
-          var line = document.createElement('p');
-          line.className = 'share-stop-meta';
-          line.textContent = value;
-          li.appendChild(line);
-        });
-
-        var links = document.createElement('div');
-        links.className = 'share-stop-links';
-        mapLinks(links, item, false);
-        if (links.childNodes.length > 0) li.appendChild(links);
-        list.appendChild(li);
+        list.appendChild(stop(entry.item || {}, entry.planned_time));
       });
       section.appendChild(list);
       root.appendChild(section);
     });
+  };
+
+  // 届いたリスト（リスト機能仕様書.md §7.5）。行程から「日」を外した形。
+  var renderList = function (data) {
+    var shared = data.list || {};
+    var items = shared.items || [];
+    text(
+      '[data-list-lead]',
+      (shared.owner_name ? shared.owner_name + 'さんから' : '') +
+        'リストが届きました',
+    );
+    text('[data-list-title]', shared.title || '');
+    document.title = 'リスト「' + (shared.title || '') + '」 — Tottoki';
+    fact($('[data-list-facts]'), items.length + '件の行きたい', '中身', 'bookmark');
+
+    if (shared.description) {
+      text('[data-list-description-body]', shared.description);
+      show('[data-list-description]', true);
+    }
+
+    var root = $('[data-list-items]');
+    var header = document.createElement('div');
+    header.className = 'share-itinerary-header';
+    var heading = document.createElement('h2');
+    heading.textContent = 'リストの中身';
+    header.appendChild(heading);
+    var count = document.createElement('span');
+    count.className = 'share-itinerary-count';
+    count.textContent = items.length + '件';
+    header.appendChild(count);
+    root.appendChild(header);
+    if (items.length === 0) {
+      var empty = document.createElement('p');
+      empty.className = 'share-empty-itinerary';
+      empty.textContent = 'このリストには、まだ何も入っていません。';
+      root.appendChild(empty);
+    } else {
+      var list = document.createElement('ol');
+      list.className = 'share-stops';
+      items.forEach(function (item) {
+        list.appendChild(stop(item || {}, null));
+      });
+      root.appendChild(list);
+    }
+
+    show('[data-view="message"]', false);
+    show('[data-view="list"]', true);
+    $('[data-content]').setAttribute('aria-busy', 'false');
   };
 
   var renderInvite = function (data) {
@@ -514,6 +574,9 @@
       if (data.state === 'ok' && data.kind === 'item') {
         renderItem(data);
         setInstall('item');
+      } else if (data.state === 'ok' && data.kind === 'list') {
+        renderList(data);
+        setInstall('list');
       } else if (data.state === 'ok' && data.kind === 'invite') {
         renderInvite(data);
         setInstall('invite');
@@ -526,7 +589,7 @@
       } else {
         setMessage(
           'このリンクは使えなくなっています',
-          '送った人が止めたか、送った項目や旅行が削除された可能性があります。',
+          '送った人が止めたか、送ったアイテム・リスト・旅行が削除された可能性があります。',
         );
         show('[data-has-token]', false);
       }

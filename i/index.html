@@ -122,7 +122,7 @@
               このリンクはアプリで開きます
             </h1>
             <p data-message-body>
-              Tottoki で送られた場所や、旅行への招待のリンクです。
+              Tottoki で送られた場所やリスト、旅行への招待のリンクです。
             </p>
           </section>
           <article
@@ -165,6 +165,43 @@
               <div class="share-actions" data-item-actions></div>
             </section>
             <p class="share-link-note share-expiry" data-expires></p>
+          </article>
+          <article
+            class="share-card"
+            data-view="list"
+            aria-labelledby="list-title"
+            hidden
+          >
+            <p class="share-lead">
+              <svg class="share-icon" aria-hidden="true">
+                <use href="#icon-plane" /></svg
+              ><span data-list-lead></span>
+            </p>
+            <div class="share-hero">
+              <div class="share-emblem" aria-hidden="true">
+                <svg class="share-icon"><use href="#icon-bookmark" /></svg>
+              </div>
+              <p class="share-eyebrow">PLACES TO KEEP</p>
+              <p class="share-kind">リスト</p>
+              <h1 id="list-title" data-list-title></h1>
+              <ul class="share-facts" data-list-facts></ul>
+            </div>
+            <section class="share-memo" data-list-description hidden>
+              <h2>
+                <svg class="share-icon" aria-hidden="true">
+                  <use href="#icon-note" /></svg
+                ><span>リストの説明</span>
+              </h2>
+              <p data-list-description-body></p>
+            </section>
+            <section
+              class="share-itinerary"
+              data-list-items
+              aria-label="リストの中身"
+            ></section>
+            <p class="share-link-note">
+              送った人がリストを変えると、このページの中身も変わります。メモと写真は表示されません。
+            </p>
           </article>
           <article
             class="share-card"
