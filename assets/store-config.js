@@ -1,5 +1,5 @@
-/* 公開後は live を true に。App Store Connect の Apple ID も確認してください。 */
-window.TOTTOKI_STORE = Object.freeze({ live: false, appId: '6818862412' });
+/* 2026-10-08 に App Store で公開（v1.0.0）。配信を止めるときは live を false に戻す。 */
+window.TOTTOKI_STORE = Object.freeze({ live: true, appId: '6818862412' });
 
 // head 内で同期実行し、Safari の Smart App Banner を公開設定と連動させる。
 // 共有トークンは app-argument に含めず、Apple へ渡さない。

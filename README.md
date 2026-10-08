@@ -3,13 +3,14 @@
 共有ページは `i/index.html`、表示処理は `assets/share.js`、専用デザインは `assets/share.css`。
 既存の共有 API の返却項目だけを表示します。画像の取得・表示は今回の変更に含みません。
 
-## App Store 公開後
+## App Store へのリンク
 
-1. `assets/store-config.js` の `appId` が App Store Connect の Apple ID（現在 `6818862412`）と一致することを確認。
-2. 同じファイルの `live: false` を **`live: true`** に変更してサイトを公開。
-3. 公開済みアプリを入手できる地域の iPhone / Safari で共有ページを開き、上部の Smart App Banner と入手リンクを確認。
+2026-10-08 に App Store で公開しました（v1.0.0・<https://apps.apple.com/jp/app/id6818862412>）。
 
-この1か所で、Safari の `apple-itunes-app` メタタグと、ページ上部・本文の App Store リンクが有効になります。
+- 共有ページ（`i/`）: `assets/store-config.js` の `live: true` と `appId`（App Store Connect の Apple ID `6818862412`）で決まる。配信を止めるときは `live: false` に戻す。
+- LP（`index.html`）とサポート（`support.html`）: App Store の URL と Smart App Banner の `apple-itunes-app` を HTML に直接書いている。URL を変えるときはこの2つと `store-config.js` を揃える。
+
+共有ページでは `store-config.js` の1か所で、Safari の `apple-itunes-app` メタタグと、ページ上部・本文の App Store リンクが有効になります。
 Safari のバナーはブラウザ側が制御します。非対応端末・公開対象外の地域などでは表示されないため、ページ内リンクも用意しています。Android ではストアリンクを表示しません。
 共有トークンは `app-argument` に渡しません。登録後は元の共有リンクを再度開いてください。
 仕様: [Apple — Smart App Banners](https://developer.apple.com/documentation/webkit/promoting-apps-with-smart-app-banners)
