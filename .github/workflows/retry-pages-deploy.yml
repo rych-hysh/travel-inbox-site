@@ -20,8 +20,12 @@ jobs:
           script: |
             const runId = context.payload.workflow_run.id;
             core.info(`Requesting rerun of failed jobs for workflow run ${runId}`);
-            await github.request('POST /repos/{owner}/{repo}/actions/runs/{run_id}/rerun-failed-jobs', {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: runId,
-            });
+            try {
+              await github.request('POST /repos/{owner}/{repo}/actions/runs/{run_id}/rerun-failed-jobs', {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: runId,
+              });
+            } catch (error) {
+              core.setFailed(`Failed to request rerun for workflow run ${runId}: ${error.message}`);
+            }
