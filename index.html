@@ -105,7 +105,6 @@
         <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7A1.5 1.5 0 0 1 5 5.5h4.5l2 2H19a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 19 20H5a1.5 1.5 0 0 1-1.5-1.5z" /></symbol>
         <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-locate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="7.5" /><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22" /></symbol>
         <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-flag" viewBox="0 0 24 24"><path d="M5.5 21V4M5.5 4.5h11l-2.2 4 2.2 4h-11" /></symbol>
-        <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14" /></symbol>
         <symbol fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" /></symbol>
 
         <!-- 保存元サービスのマーク。Instagram と X は単色版が公式に認められているので本文の墨色で使い、
@@ -158,9 +157,9 @@
               あとで見返して、整理して、<br class="br-wide" />次のおでかけにつなげます。
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="https://apps.apple.com/jp/app/id6818862412">
-                App Store で入手
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+              <!-- App Store への導線は Apple の公式バッジ（assets/app-store-badge.svg）。形・色・文字を変えない。 -->
+              <a class="store-badge" href="https://apps.apple.com/jp/app/id6818862412">
+                <img src="assets/app-store-badge.svg" alt="App Store からダウンロード" width="158" height="58" />
               </a>
               <a class="btn btn-ghost btn-lg" href="#how">
                 デモを見る
@@ -624,11 +623,10 @@
           <div class="store reveal">
             <img class="store-icon" src="icon.png" alt="Tottoki のアプリアイコン" width="96" height="96" loading="lazy" />
             <div class="store-body">
-              <a class="store-btn" href="https://apps.apple.com/jp/app/id6818862412" aria-describedby="store-note">
-                <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
-                <span><small>iPhone 向け</small>App Store でダウンロード</span>
+              <a class="store-badge store-badge-cta" href="https://apps.apple.com/jp/app/id6818862412" aria-describedby="store-note">
+                <img src="assets/app-store-badge.svg" alt="App Store からダウンロード" width="164" height="60" loading="lazy" />
               </a>
-              <p class="store-note" id="store-note">無料　iOS 16.4 以降</p>
+              <p class="store-note" id="store-note">iPhone 向け　無料　iOS 16.4 以降</p>
             </div>
           </div>
 
