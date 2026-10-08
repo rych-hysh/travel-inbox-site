@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!--
+      共有の練習のページ（アプリの docs/share-practice.md）。アプリの「保存のしかた」から
+      アプリ内ブラウザで開き、ここから共有で Tottoki に保存してもらう。
+
+      保存されるのは下の JSON-LD の場所（清水寺）。アプリの関数 extract-metadata は、
+      og:title を名前に、JSON-LD の geo と address を位置と住所に使う。ここを変えると
+      練習で保存されるアイテムが変わるので、名前と座標は実在の場所のままにすること。
+      アプリと共有 Extension は、自分のサイトのうちこの /try/ だけを保存してよいページと
+      して扱っている（share-links.ts の PRACTICE_PAGE）。パスを変えるときはアプリも直す。
+    -->
+    <title>清水寺 — Tottoki の共有の練習</title>
+    <meta name="robots" content="noindex" />
+    <meta name="description" content="京都・東山の寺院。「清水の舞台」で知られる本堂から、京都の街を見渡せます。" />
+    <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="清水寺" />
+    <meta property="og:description" content="京都・東山の寺院。「清水の舞台」で知られる本堂から、京都の街を見渡せます。" />
+    <meta property="og:url" content="https://tottoki.hryoichi.com/try/" />
+    <meta property="og:locale" content="ja_JP" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "清水寺",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "JP",
+          "addressRegion": "京都府",
+          "addressLocality": "京都市東山区",
+          "streetAddress": "清水1丁目294"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 34.994856,
+          "longitude": 135.785046
+        }
+      }
+    </script>
+
+    <link rel="icon" href="../icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      .practice {
+        display: grid;
+        gap: 20px;
+        padding-bottom: calc(120px + env(safe-area-inset-bottom));
+      }
+      .practice ol {
+        margin: 0;
+        padding-left: 1.4em;
+        display: grid;
+        gap: 10px;
+      }
+      .practice li {
+        font-size: var(--fs-body);
+        line-height: 1.7;
+      }
+      .practice .icon {
+        width: 1.1em;
+        height: 1.1em;
+        vertical-align: -0.15em;
+      }
+      .sample {
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        padding: 16px 18px;
+        display: grid;
+        gap: 4px;
+      }
+      .sample .label {
+        color: var(--ink-faint);
+        font-size: var(--fs-caption);
+      }
+      .sample .name {
+        font-family: var(--font-serif);
+        font-size: var(--fs-title);
+        font-weight: 600;
+        margin: 0;
+      }
+      .sample .meta {
+        color: var(--ink-muted);
+        font-size: var(--fs-body-s);
+        margin: 0;
+      }
+      .note {
+        color: var(--ink-muted);
+        font-size: var(--fs-body-s);
+      }
+      /* 画面の下のツールバー（共有ボタンがある）を指す。iOS のアプリ内ブラウザ用。 */
+      .pointer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .pointer span {
+        background: var(--indigo);
+        color: var(--ink-inverse);
+        font-size: var(--fs-body-s);
+        font-weight: 600;
+        border-radius: 999px;
+        padding: 8px 16px;
+        animation: nudge 1.6s ease-in-out infinite;
+      }
+      @keyframes nudge {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .pointer span {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="wordmark" href="../">
+          <svg class="mark" viewBox="0 0 24 28" aria-hidden="true" focusable="false">
+            <defs><linearGradient id="pin-wash" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ad6b0" /><stop offset=".45" stop-color="#5ab0e0" /><stop offset="1" stop-color="#3a7bd5" /></linearGradient></defs>
+            <path d="M12 27C9 23.2 2 17.4 2 11a10 10 0 0 1 20 0c0 6.4-7 12.2-10 16z" fill="url(#pin-wash)" />
+            <path d="M8.9 7.6h6.2a.7.7 0 0 1 .7.7v8.9L12 14.6l-3.8 2.6V8.3a.7.7 0 0 1 .7-.7z" fill="#fffdf8" />
+          </svg>
+          Tottoki
+        </a>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="doc-header">
+        <div class="wrap">
+          <p class="kicker">共有の練習</p>
+          <h1>このページを Tottoki に保存してみましょう</h1>
+        </div>
+      </div>
+
+      <div class="doc-body">
+        <div class="wrap practice">
+          <ol>
+            <li>
+              画面の下の共有ボタン
+              <svg class="icon" viewBox="0 0 24 24" aria-label="共有" role="img" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12" /><path d="M8 7l4-4 4 4" /><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" /></svg>
+              を押します。Android では、右上の︙から「共有」を選びます。
+            </li>
+            <li>アプリの並びから「Tottoki」を選びます。見つからないときは、並びの右端の「その他」から選べます。</li>
+            <li>「保存しました」と出たら、左上の「完了」でアプリに戻ります。</li>
+          </ol>
+
+          <section class="sample" aria-label="練習で保存される場所">
+            <span class="label">練習で保存される場所</span>
+            <p class="name">清水寺</p>
+            <p class="meta">京都府京都市東山区清水1丁目294</p>
+            <p class="meta">京都・東山の寺院。「清水の舞台」で知られる本堂から、京都の街を見渡せます。</p>
+          </section>
+
+          <p class="note">
+            このページは、アプリ「Tottoki」の使い方を練習するためのものです。保存した清水寺は、アプリで削除できます。
+            <a href="../">Tottoki について</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <div class="pointer" aria-hidden="true"><span>この下の共有ボタンへ ↓</span></div>
+  </body>
+</html>
