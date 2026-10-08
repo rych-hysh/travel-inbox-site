@@ -2103,13 +2103,6 @@ input {
   color: var(--ink-faint);
 }
 
-.store-status {
-  min-height: 1.6em;
-  margin-top: 4px;
-  font-size: var(--fs-caption);
-  color: var(--indigo);
-}
-
 .cta-art {
   position: relative;
   height: 260px;

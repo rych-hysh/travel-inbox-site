@@ -102,14 +102,4 @@
   track.addEventListener('scroll', updateButtons, { passive: true });
   window.addEventListener('resize', updateButtons);
   updateButtons();
-
-  /* --- App Store への導線 --------------------------------------------- */
-  // 公開前は data-app-store-pending を付けておき、押されたら準備中であることを伝える。
-  const storeStatus = $('[data-store-status]');
-  $$('[data-app-store-pending]').forEach((a) =>
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      storeStatus.textContent = 'App Store での公開準備中です。もうしばらくお待ちください。';
-    })
-  );
 })();

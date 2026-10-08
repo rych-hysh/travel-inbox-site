@@ -31,9 +31,10 @@
       content="見つけた「いつか行きたい場所」をひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリ。"
     />
     <meta name="twitter:image" content="https://tottoki.hryoichi.com/assets/og.png" />
+    <!-- Safari の上部に出る「入手／開く」の帯（Smart App Banner） -->
+    <meta name="apple-itunes-app" content="app-id=6818862412" />
 
-    <!-- 検索結果のサイト名とアプリの情報。「とっとき」とかなで探す人にも見つかるよう、読みを alternateName に入れる。
-         App Store で公開したら、MobileApplication に installUrl（App Store の URL）と offers を足す。 -->
+    <!-- 検索結果のサイト名とアプリの情報。「とっとき」とかなで探す人にも見つかるよう、読みを alternateName に入れる。 -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -54,8 +55,10 @@
             "description": "InstagramやGoogleマップで見つけた「いつか行きたい場所」を、ひとつにまとめて保存。地図で見返して、旅行の行程に。友だちと一緒に計画できるアプリです。",
             "url": "https://tottoki.hryoichi.com/",
             "image": "https://tottoki.hryoichi.com/icon.png",
-            "operatingSystem": "iOS",
+            "operatingSystem": "iOS 16.4",
             "applicationCategory": "TravelApplication",
+            "installUrl": "https://apps.apple.com/jp/app/id6818862412",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
             "inLanguage": "ja"
           }
         ]
@@ -155,7 +158,7 @@
               あとで見返して、整理して、<br class="br-wide" />次のおでかけにつなげます。
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="#download">
+              <a class="btn btn-primary btn-lg" href="https://apps.apple.com/jp/app/id6818862412">
                 App Store で入手
                 <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
               </a>
@@ -164,7 +167,7 @@
                 <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
               </a>
             </div>
-            <p class="hero-note">iPhone 向け　App Store 公開準備中</p>
+            <p class="hero-note">iPhone 向け　無料</p>
           </div>
 
           <div class="hero-stage" aria-label="Tottoki のアプリ画面" role="group">
@@ -544,8 +547,8 @@
           </div>
           <div class="pricing-body reveal">
             <p class="pricing-text">
-              保存・整理・地図・カレンダーといった基本機能は、無料でお使いいただける予定です。
-              料金の詳細は、App Store での公開にあわせてお知らせします。
+              Tottoki は無料でダウンロードできます。
+              保存・整理・地図・カレンダー・旅行の計画まで、いまある機能はすべて無料でお使いいただけます。
             </p>
             <ul class="pricing-points">
               <li><svg aria-hidden="true"><use href="#i-check" /></svg>保存した内容を販売したり、広告に使ったりしません</li>
@@ -590,7 +593,7 @@
             </details>
             <details>
               <summary>どの端末で使えますか？</summary>
-              <p>まずは iPhone 向けに App Store での公開を準備しています。公開したら、このページからダウンロードできるようになります。</p>
+              <p>iPhone（iOS 16.4 以降）でお使いいただけます。<a href="https://apps.apple.com/jp/app/id6818862412">App Store</a> から無料でダウンロードできます。Android 版はまだありません。</p>
             </details>
             <details>
               <summary>保存した場所が、ほかの人に見られることはありますか？</summary>
@@ -621,13 +624,11 @@
           <div class="store reveal">
             <img class="store-icon" src="icon.png" alt="Tottoki のアプリアイコン" width="96" height="96" loading="lazy" />
             <div class="store-body">
-              <!-- App Store の URL が決まったら href を差し替え、data-app-store-pending を外す。 -->
-              <a class="store-btn" href="#download" data-app-store-pending aria-describedby="store-note">
+              <a class="store-btn" href="https://apps.apple.com/jp/app/id6818862412" aria-describedby="store-note">
                 <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
                 <span><small>iPhone 向け</small>App Store でダウンロード</span>
               </a>
-              <p class="store-note" id="store-note">App Store 公開準備中</p>
-              <p class="store-status" role="status" aria-live="polite" data-store-status></p>
+              <p class="store-note" id="store-note">無料　iOS 16.4 以降</p>
             </div>
           </div>
 
